@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3atrfvfc3i23"]
+
+[ext_resource type="Texture2D" uid="uid://df24qdu6l60bq" path="res://Resorse/OrbinautBacrgoundLightGrey.png" id="1_t4yp3"]
+[ext_resource type="Texture2D" uid="uid://cld7tw27w6fwp" path="res://Resorse/MenuBackground.png" id="2_qovnw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_t4yp3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(960, 20)
+layout_mode = 2
+texture = ExtResource("2_qovnw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2

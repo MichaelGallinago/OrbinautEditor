@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="OrbinautEditor"
+run/main_scene="res://CollisionEditorMainWindow.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
 
 [dotnet]
 
