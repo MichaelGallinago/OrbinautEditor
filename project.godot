@@ -24,6 +24,10 @@ window/size/viewport_height=540
 
 project/assembly_name="OrbinautEditor"
 
+[gui]
+
+theme/custom_font="res://consolas.ttf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
