@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=6 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Texture2D" uid="uid://df24qdu6l60bq" path="res://Resorse/OrbinautBacrgoundLightGrey.png" id="1_t4yp3"]
 [ext_resource type="Texture2D" uid="uid://cld7tw27w6fwp" path="res://Resorse/MenuBackground.png" id="2_qovnw"]
-[ext_resource type="StyleBox" path="res://style_menu.tres" id="3_0rk4l"]
-[ext_resource type="StyleBox" path="res://style_main_panel.tres" id="4_j3op3"]
+[ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://style_menu.tres" id="3_0rk4l"]
+[ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://style_main_panel.tres" id="4_j3op3"]
+[ext_resource type="StyleBox" uid="uid://h70c1mhf6qsc" path="res://style_main_panel_light.tres" id="5_6vhna"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -56,13 +57,19 @@ grow_vertical = 2
 
 [node name="MenuButton4" type="MenuButton" parent="VBoxContainer2/HBoxContainer/TextureRect2/HBoxContainer"]
 layout_mode = 2
-text = "Mode"
+theme_override_styles/normal = ExtResource("3_0rk4l")
+theme_override_styles/pressed = ExtResource("3_0rk4l")
+theme_override_styles/hover = ExtResource("3_0rk4l")
+theme_override_styles/disabled = ExtResource("3_0rk4l")
+theme_override_styles/focus = ExtResource("3_0rk4l")
+text = "Editor
+"
 item_count = 3
-popup/item_0/text = "Tile Mode"
+popup/item_0/text = "Tiles"
 popup/item_0/id = 0
-popup/item_1/text = "Deformation Mode"
+popup/item_1/text = "Deformations"
 popup/item_1/id = 1
-popup/item_2/text = "Surfaces Mode"
+popup/item_2/text = "Surfaces"
 popup/item_2/id = 2
 
 [node name="MenuButton" type="MenuButton" parent="VBoxContainer2/HBoxContainer/TextureRect2/HBoxContainer"]
@@ -83,6 +90,11 @@ popup/item_1/id = 2
 [node name="MenuButton2" type="MenuButton" parent="VBoxContainer2/HBoxContainer/TextureRect2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_0rk4l")
+theme_override_styles/pressed = ExtResource("3_0rk4l")
+theme_override_styles/hover = ExtResource("3_0rk4l")
+theme_override_styles/disabled = ExtResource("3_0rk4l")
+theme_override_styles/focus = ExtResource("3_0rk4l")
 text = "Save"
 item_count = 5
 popup/item_0/text = "AngleMap"
@@ -98,6 +110,11 @@ popup/item_4/id = 4
 
 [node name="MenuButton3" type="MenuButton" parent="VBoxContainer2/HBoxContainer/TextureRect2/HBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_0rk4l")
+theme_override_styles/pressed = ExtResource("3_0rk4l")
+theme_override_styles/hover = ExtResource("3_0rk4l")
+theme_override_styles/disabled = ExtResource("3_0rk4l")
+theme_override_styles/focus = ExtResource("3_0rk4l")
 text = "Unload"
 item_count = 3
 popup/item_0/text = "TileMap"
@@ -115,6 +132,7 @@ theme_override_constants/separation = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
@@ -128,6 +146,171 @@ theme_override_constants/margin_bottom = 8
 [node name="Panel" type="Panel" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_j3op3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = ExtResource("5_6vhna")
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 8
+
+[node name="Button" type="Button" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(96, 25)
+layout_mode = 2
+text = "Angle mode
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("5_6vhna")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("5_6vhna")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "˄"
+
+[node name="Button2" type="Button" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "˅"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "˄"
+
+[node name="Button2" type="Button" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "˅"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/MarginContainer2/Panel/HBoxContainer5/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
@@ -144,3 +327,11 @@ theme_override_constants/margin_bottom = 8
 [node name="Panel" type="Panel" parent="VBoxContainer2/HBoxContainer2/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_j3op3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2/VBoxContainer2/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
