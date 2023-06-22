@@ -263,7 +263,7 @@ text = "Tile mode
 "
 
 [node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 98)
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_fbibm")
@@ -282,7 +282,7 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 27)
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_constants/outline_size = 0
 theme_override_styles/normal = ExtResource("5_irjis")
@@ -291,7 +291,7 @@ theme_override_styles/read_only = ExtResource("7_wc3jb")
 editable = false
 
 [node name="TextEdit2" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 27)
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("5_irjis")
 theme_override_styles/focus = ExtResource("6_d6gea")
@@ -299,7 +299,7 @@ theme_override_styles/read_only = ExtResource("7_wc3jb")
 editable = false
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
@@ -312,6 +312,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("5_irjis")
 theme_override_styles/focus = ExtResource("6_d6gea")
 theme_override_styles/read_only = ExtResource("7_wc3jb")
+caret_blink = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit"]
 layout_mode = 1
@@ -321,11 +322,11 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -18.0
-offset_top = -16.0
-offset_bottom = 16.0
+offset_top = -14.0
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 0
 
 [node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit/VBoxContainer"]
 layout_mode = 2
@@ -352,6 +353,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("5_irjis")
 theme_override_styles/focus = ExtResource("6_d6gea")
 theme_override_styles/read_only = ExtResource("7_wc3jb")
+caret_blink = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit"]
 layout_mode = 1
@@ -361,11 +363,11 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -18.0
-offset_top = -16.0
-offset_bottom = 16.0
+offset_top = -14.0
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 0
 
 [node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit/VBoxContainer"]
 layout_mode = 2
