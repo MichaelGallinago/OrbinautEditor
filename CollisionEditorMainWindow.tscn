@@ -400,55 +400,35 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 2
+theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("4_j3op3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 4
-
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer"]
+[node name="Panel2" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = ExtResource("4_j3op3")
+theme_override_styles/panel = ExtResource("7_atcmn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 7.6
+size_flags_stretch_ratio = 6.99
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("5_6vhna")
+theme_override_styles/panel = ExtResource("4_j3op3")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer2/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2/VBoxContainer/HBoxContainer2/Panel"]
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
@@ -458,12 +438,12 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.39
+size_flags_stretch_ratio = 0.4
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel/VBoxContainer/MarginContainer/Panel/VBoxContainer/VBoxContainer2"]
+[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/VBoxContainer2/MarginContainer/Panel2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("5_6vhna")
+theme_override_styles/panel = ExtResource("4_j3op3")
