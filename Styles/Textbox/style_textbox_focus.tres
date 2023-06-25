@@ -1,6 +1,8 @@
 [gd_resource type="StyleBoxFlat" format=3 uid="uid://crmexapr3te3j"]
 
 [resource]
+content_margin_left = 4.0
+content_margin_top = 4.0
 bg_color = Color(0.145098, 0.168627, 0.203922, 1)
 border_width_left = 2
 border_width_top = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df24qdu6l60bq"
-path="res://.godot/imported/OrbinautBacrgoundLightGrey.png-4e3ac50c89b0ba349cf8329637e43a44.ctex"
+uid="uid://cnxmp45la47u7"
+path="res://.godot/imported/arrow_up.png-bd9ebd7a985e6498da1c1e5f37d39fb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resorse/OrbinautBacrgoundLightGrey.png"
-dest_files=["res://.godot/imported/OrbinautBacrgoundLightGrey.png-4e3ac50c89b0ba349cf8329637e43a44.ctex"]
+source_file="res://Resorse/arrow_up.png"
+dest_files=["res://.godot/imported/arrow_up.png-bd9ebd7a985e6498da1c1e5f37d39fb7.ctex"]
 
 [params]
 
