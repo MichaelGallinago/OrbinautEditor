@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://p0xhnyor07xk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4516"]
+bg_color = Color(0.298039, 0.32549, 0.368627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cuu4"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1jdc7"]
+color = Color(0.290196, 0.313726, 0.360784, 1)
+
+[resource]
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_d4516")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_7cuu4")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_1jdc7")

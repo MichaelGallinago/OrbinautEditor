@@ -7,7 +7,6 @@ public partial class MenuButtonFile : MenuButton
 	private PopupMenu saveMenu = new();
 	private PopupMenu unloadMenu = new();
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		var popup = GetPopup();
@@ -34,12 +33,7 @@ public partial class MenuButtonFile : MenuButton
 		popup.AddSubmenuItem("Save", "saveMenu");
 		popup.AddChild(unloadMenu);
 		popup.AddSubmenuItem("Unload", "unloadMenu");
+		popup.AddSeparator();
 		popup.AddItem("Exit");
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		
 	}
 }
