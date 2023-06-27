@@ -39,7 +39,7 @@ public class TileSet
         }
     }
 
-    public ImageTexture DrawTileMap(int columnCount, Color[] groupColor,
+    public Image CreateTileMap(int columnCount, Color[] groupColor,
         int[] groupOffset, Vector2I separation, Vector2I offset)
     {
         var cell = new Vector2I(
@@ -52,18 +52,16 @@ public class TileSet
         var tileMapSize = new Vector2I(
             offset.X + columnCount * cell.X - separation.X,
             offset.Y + rowCount * cell.Y - separation.Y);
-        
-        var tileMap = new ImageTexture(
-            tileMapSize.X, tileMapSize.Y,
-            SKColorType.Rgba8888, SKAlphaType.Premul);
-        byte[,,] bitmapArray = BitmapConvertor.GetBitmapArrayFromSKBitmap(tileMap);
+
+        var tileMap = Image.Create(tileMapSize.X, tileMapSize.Y, false, Image.Format.Rgba8);
+        var texture = ImageTexture.CreateFromImage(tileMap);
 
         int groupCount = groupColor.Length;
 
-        DrawTiles(bitmapArray, groupOffset, groupColor, separation,
+        DrawTiles(texture, groupOffset, groupColor, separation,
             offset, columnCount, groupCount);
 
-        return BitmapConvertor.GetSKBitmapFromBitmapArray(bitmapArray);
+        return texture;
     }
 
     public void ChangeTile(int tileIndex, Vector2I pixelPosition, bool isLeftButtonPressed)
@@ -151,7 +149,7 @@ public class TileSet
         Tiles.Add(tile);
     }
 
-    private void DrawTiles(byte[,,] bitmapArray, int[] groupOffset, Color[] groupColor,
+    private void DrawTiles(ImageTexture texture, int[] groupOffset, Color[] groupColor,
         Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
         var white = new Color(1F, 1F, 1F, 1F);
