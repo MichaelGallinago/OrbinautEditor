@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://c3atrfvfc3i23"]
 
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMainScreen.cs" id="1_blk3s"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_cevwq"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/CollisionEditorMainScreen.gd" id="1_qfe42"]
 [ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="2_jn600"]
 [ext_resource type="Script" path="res://General/ViewModel/MenuButtonEditor.cs" id="3_csh4m"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/MenuHelp/MenuButtonHelp.cs" id="4_k6sxq"]
@@ -42,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qfe42")
+script = ExtResource("1_blk3s")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -474,14 +474,3 @@ offset_top = -471.0
 offset_right = 470.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.99
-
-[node name="FileDialog" type="FileDialog" parent="."]
-title = "Open Tilemap"
-position = Vector2i(150, 150)
-size = Vector2i(400, 250)
-ok_button_text = "Открыть"
-file_mode = 0
-access = 2
-filters = PackedStringArray(".png")
-
-[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

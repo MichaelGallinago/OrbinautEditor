@@ -3,8 +3,12 @@ using System;
 
 public partial class PopupMenuLoad : PopupMenuHandler
 {
+    private CollisionEditorMainScreen screen;
+    
     public PopupMenuLoad()
     {
+        screen = (CollisionEditorMainScreen)GetTree().CurrentScene;
+        
         Name = "loadMenu";
         AddItem("TileMap", 0);
         AddItem("AngleMap", 1);
@@ -19,11 +23,19 @@ public partial class PopupMenuLoad : PopupMenuHandler
         }
     }
     
-    private static void OnTileMapPressed()
+    private void OnTileMapPressed()
     {
-        throw new NotImplementedException();
+        var fileDialog = new FileDialog();
+        fileDialog.AddFilter("*.png", "PNG");
+        fileDialog.FileSelected += OnFileSelected;
     }
-    
+
+    private void OnFileSelected(string path)
+    {
+        GD.Print(path);
+        screen.CreateTileSet(path);
+    }
+
     private static void OnAngleMapPressed()
     {
         throw new NotImplementedException();
