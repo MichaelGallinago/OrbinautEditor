@@ -179,12 +179,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="Panel2" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.39
 theme_override_styles/panel = SubResource("StyleBoxFlat_nuy6r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel2"]
@@ -245,6 +247,7 @@ theme_override_constants/separation = 4
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/outline_size = 0
 theme_override_styles/normal = ExtResource("5_irjis")
 theme_override_styles/focus = ExtResource("6_d6gea")
@@ -254,6 +257,7 @@ editable = false
 [node name="TextEdit2" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/normal = ExtResource("5_irjis")
 theme_override_styles/focus = ExtResource("6_d6gea")
 theme_override_styles/read_only = ExtResource("7_wc3jb")
@@ -262,6 +266,7 @@ editable = false
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
