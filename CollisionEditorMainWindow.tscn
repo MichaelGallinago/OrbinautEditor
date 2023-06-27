@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=21 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_6b4hm"]
 [ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="2_b5ohw"]
 [ext_resource type="Script" path="res://MenuButtonFile.cs" id="2_kudwp"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="3_biyva"]
 [ext_resource type="StyleBox" uid="uid://h70c1mhf6qsc" path="res://Styles/style_main_panel_light.tres" id="3_x57ko"]
+[ext_resource type="Script" path="res://MenuButtonHelp.cs" id="4_md1o4"]
 [ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="5_irjis"]
 [ext_resource type="StyleBox" uid="uid://bhba0rgiujedb" path="res://Styles/Button Mode/style_button_mode_normal.tres" id="5_rh01b"]
 [ext_resource type="StyleBox" uid="uid://cmwn0m05ax52g" path="res://Styles/Button Mode/style_button_mode_pressed.tres" id="6_cif4t"]
@@ -112,7 +113,8 @@ text = "Help"
 switch_on_hover = true
 item_count = 1
 popup/item_0/text = "Docs"
-popup/item_0/id = 1
+popup/item_0/id = 0
+script = ExtResource("4_md1o4")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2

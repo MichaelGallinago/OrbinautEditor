@@ -10,7 +10,7 @@ public partial class MenuButtonFile : MenuButton
 	public override void _Ready()
 	{
 		var popup = GetPopup();
-		
+
 		loadMenu.Name = "loadMenu";
 		loadMenu.AddItem("TileMap");
 		loadMenu.AddItem("AngleMap");
