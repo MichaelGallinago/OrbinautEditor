@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=23 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_cevwq"]
 [ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="2_jn600"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="15_fhodj"]
 [ext_resource type="Texture2D" uid="uid://p2nm41bupgnt" path="res://Resorses/Sprites/lupa.png" id="16_b8lly"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="17_4yaha"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/TileMapPanel/TileButtonAdd.cs" id="19_kxjt1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -430,6 +431,11 @@ disabled = true
 icon = ExtResource("16_b8lly")
 flat = true
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.41
+
 [node name="Button3" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
@@ -445,6 +451,7 @@ theme_override_styles/disabled = ExtResource("17_4yaha")
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
 text = "+"
+script = ExtResource("19_kxjt1")
 
 [node name="Button2" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
@@ -461,11 +468,6 @@ theme_override_styles/disabled = ExtResource("17_4yaha")
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
 text = "	—"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.41
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel"]
 layout_mode = 2
