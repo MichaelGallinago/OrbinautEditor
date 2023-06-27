@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="OrbinautEditor"
-run/main_scene="res://CollisionEditorMainWindow.tscn"
+run/main_scene="res://CollisionEditor/Screens/CollisionEditorMainScreen.tscn"
 config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 
@@ -26,7 +25,7 @@ project/assembly_name="OrbinautEditor"
 
 [gui]
 
-theme/custom_font="res://consolas.ttf"
+theme/custom_font="res://Resorses/Fonts/consolas.ttf"
 
 [rendering]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iwd8pccx7frl"
-path="res://.godot/imported/plus.png-d86338b21ca79f1bf42a4baaaada9d80.ctex"
+uid="uid://c7c3l30fy8evm"
+path="res://.godot/imported/arrow_up_light.png-9fc92b1f9f55c70b8c97356948a28de3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resorse/plus.png"
-dest_files=["res://.godot/imported/plus.png-d86338b21ca79f1bf42a4baaaada9d80.ctex"]
+source_file="res://Resorses/Sprites/arrow_up_light.png"
+dest_files=["res://.godot/imported/arrow_up_light.png-9fc92b1f9f55c70b8c97356948a28de3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgcfiplj86k3n"
-path="res://.godot/imported/arrow_down_light.png-9cb010dd7ed7b11861437123432e7e9c.ctex"
+uid="uid://chs3jt3tuhgm8"
+path="res://.godot/imported/minus.png-da11079f91545f23bfab583b43f15d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resorse/arrow_down_light.png"
-dest_files=["res://.godot/imported/arrow_down_light.png-9cb010dd7ed7b11861437123432e7e9c.ctex"]
+source_file="res://Resorses/Sprites/minus.png"
+dest_files=["res://.godot/imported/minus.png-da11079f91545f23bfab583b43f15d8e.ctex"]
 
 [params]
 

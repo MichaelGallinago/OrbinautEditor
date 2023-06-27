@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p2nm41bupgnt"
-path="res://.godot/imported/lupa.png-e4d2d939ddbfdb75031898e597ac9686.ctex"
+uid="uid://iwd8pccx7frl"
+path="res://.godot/imported/plus.png-ca6213af157703033280083917167a21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resorse/lupa.png"
-dest_files=["res://.godot/imported/lupa.png-e4d2d939ddbfdb75031898e597ac9686.ctex"]
+source_file="res://Resorses/Sprites/plus.png"
+dest_files=["res://.godot/imported/plus.png-ca6213af157703033280083917167a21.ctex"]
 
 [params]
 
