@@ -55,6 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
@@ -92,19 +93,76 @@ text = "Tile Height:"
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.22
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.39
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.39
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_60c2v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tile Width:"
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tile Height:"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.39
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.39
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_60c2v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tile Width:"
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tile Height:"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
