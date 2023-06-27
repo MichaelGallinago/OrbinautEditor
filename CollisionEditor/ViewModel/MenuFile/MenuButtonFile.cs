@@ -24,9 +24,14 @@ public partial class MenuButtonFile : MenuButtonHandler
 	protected override void OnItemPressed(long id)
 	{
 		switch (id)
-		{
+		{	
+			case 0: LoadTileMap();
 			case 3: OnExitPressed(); break;
 		}
+	}
+	private void LoadTileMap();
+	{
+		$FileDialog.popup();
 	}
 	
 	private void OnExitPressed()
