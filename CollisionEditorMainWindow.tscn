@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_6b4hm"]
 [ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="2_b5ohw"]
-[ext_resource type="Script" path="res://MenuButtonFile.cs" id="2_kudwp"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/MenuFile/MenuButtonFile.cs" id="2_kudwp"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="3_biyva"]
 [ext_resource type="StyleBox" uid="uid://h70c1mhf6qsc" path="res://Styles/style_main_panel_light.tres" id="3_x57ko"]
-[ext_resource type="Script" path="res://MenuButtonHelp.cs" id="4_md1o4"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/MenuHelp/MenuButtonHelp.cs" id="4_md1o4"]
 [ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="5_irjis"]
 [ext_resource type="StyleBox" uid="uid://bhba0rgiujedb" path="res://Styles/Button Mode/style_button_mode_normal.tres" id="5_rh01b"]
 [ext_resource type="StyleBox" uid="uid://cmwn0m05ax52g" path="res://Styles/Button Mode/style_button_mode_pressed.tres" id="6_cif4t"]
@@ -13,10 +13,10 @@
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="7_atcmn"]
 [ext_resource type="StyleBox" uid="uid://h8my0eje2qlc" path="res://Styles/Textbox/style_textbox_read_only.tres" id="7_wc3jb"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="8_yqe1v"]
-[ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorse/arrow_up_light.png" id="11_l4u74"]
-[ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorse/arrow_down_light.png" id="12_3gilw"]
+[ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="11_l4u74"]
+[ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="12_3gilw"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="14_bs0ya"]
-[ext_resource type="Texture2D" uid="uid://p2nm41bupgnt" path="res://Resorse/lupa.png" id="14_m7kci"]
+[ext_resource type="Texture2D" uid="uid://p2nm41bupgnt" path="res://Resorses/Sprites/lupa.png" id="14_m7kci"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -181,7 +181,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="Panel2" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer"]

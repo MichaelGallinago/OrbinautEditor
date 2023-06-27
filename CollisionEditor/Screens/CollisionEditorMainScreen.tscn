@@ -68,10 +68,7 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-
-[node name="MenuButton4" type="MenuButton" parent="VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="MenuButton4" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_cevwq")
 theme_override_styles/normal = ExtResource("2_jn600")
@@ -91,7 +88,7 @@ popup/item_2/text = "Surfaces"
 popup/item_2/id = 2
 script = ExtResource("3_csh4m")
 
-[node name="MenuButton5" type="MenuButton" parent="VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="MenuButton5" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_cevwq")
 theme_override_styles/normal = ExtResource("2_jn600")
@@ -103,7 +100,7 @@ text = "File"
 switch_on_hover = true
 script = ExtResource("4_p81g6")
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("1_cevwq")
