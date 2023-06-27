@@ -25,13 +25,13 @@ public partial class MenuButtonFile : MenuButtonHandler
 	{
 		switch (id)
 		{	
-			case 0: LoadTileMap();
+			case 0: LoadTileMap(); break;
 			case 3: OnExitPressed(); break;
 		}
 	}
-	private void LoadTileMap();
+	private void LoadTileMap()
 	{
-		$FileDialog.popup();
+		
 	}
 	
 	private void OnExitPressed()
