@@ -68,18 +68,14 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.45
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.39
-
-[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 theme_override_styles/panel = ExtResource("2_68oep")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,12 +83,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Tile Width:"
 
-[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("3_kckdu")
@@ -137,17 +133,13 @@ placeholder_text = "16"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.39
-
-[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_68oep")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,13 +147,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Horizontal
 Separation:"
 
-[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer3/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("3_kckdu")
@@ -204,17 +196,13 @@ placeholder_text = "0"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7"]
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.39
-
-[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("2_68oep")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,13 +210,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Horisontal 
 Offset:"
 
-[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/HBoxContainer7/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("3_kckdu")
