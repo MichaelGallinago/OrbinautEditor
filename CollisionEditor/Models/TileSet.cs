@@ -3,18 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
-public class TileSet
+public partial class TileSet : GodotObject
 {
     public Vector2I TileSize { get; }
+    public List<Tile> Tiles { get; }
+    private Control screen;
 
-    public List<Tile> Tiles { get; private set; }
-
-    public TileSet(string path, int tileWidth = 16, int tileHeight = 16,
+    public TileSet(Control screen, string path, int tileWidth = 16, int tileHeight = 16,
         Vector2I separation = new(), Vector2I offset = new())
     {
         TileSize = new Vector2I(tileWidth, tileHeight);
         Tiles = new List<Tile>();
+        this.screen = screen;
 
         var image = new Image();
         Error loadError = image.Load(path);
@@ -22,63 +24,50 @@ public class TileSet
         {
             throw new FileLoadException();
         }
-        
-        var texture = ImageTexture.CreateFromImage(image);
 
-        CreateTiles(texture, separation, offset);
+        CreateTiles(image, separation, offset);
     }
 
-    public TileSet(int angleCount = 0, int tileWidth = 16, int tileHeight = 16)
+    public TileSet(Control screen, int angleCount = 0, int tileWidth = 16, int tileHeight = 16)
     {
         TileSize = new Vector2I(tileWidth, tileHeight);
         Tiles = new List<Tile>(angleCount);
+        this.screen = screen;
 
-        for (int i = 0; i < angleCount; i++)
+        for (var i = 0; i < angleCount; i++)
         {
             Tiles.Add(new Tile(TileSize));
         }
     }
 
-    public Image CreateTileMap(int columnCount, Color[] groupColor,
+    public async Task<Image> CreateTileMap(int columnCount, Color[] groupColor,
         int[] groupOffset, Vector2I separation, Vector2I offset)
     {
         var cell = new Vector2I(
             TileSize.X + separation.X,
             TileSize.Y + separation.Y);
 
-        int rowCount = (int)Math.Ceiling((Tiles.Count * groupOffset.Length
-            + groupOffset.Sum()) / (double)columnCount);
+        double tilesRowWidth = Tiles.Count * groupOffset.Length + groupOffset.Sum();
+        int rowCount = Mathf.CeilToInt(tilesRowWidth / columnCount);
 
         var tileMapSize = new Vector2I(
             offset.X + columnCount * cell.X - separation.X,
             offset.Y + rowCount * cell.Y - separation.Y);
-
-        var tileMap = Image.Create(tileMapSize.X, tileMapSize.Y, false, Image.Format.Rgba8);
-        var texture = ImageTexture.CreateFromImage(tileMap);
-
+        
         int groupCount = groupColor.Length;
 
-        DrawTiles(texture, groupOffset, groupColor, separation,
-            offset, columnCount, groupCount);
-
-        return texture;
+        return await DrawTiles(tileMapSize, groupOffset, groupColor, 
+            separation, offset, columnCount, groupCount);
     }
 
     public void ChangeTile(int tileIndex, Vector2I pixelPosition, bool isLeftButtonPressed)
     {
-        bool[] pixels = Tiles[tileIndex].Pixels;
-
-        if (isLeftButtonPressed)
-        {
-            ChangeHeight(pixels, pixelPosition);
-        }
-        else
-        {
-            int pixelOnPositionIndex = GetPixelIndex(pixelPosition.X, pixelPosition.Y);
-            pixels[pixelOnPositionIndex] = !pixels[pixelOnPositionIndex];
-        }
-
-        Tiles[tileIndex].Pixels = pixels;
+        Image image = Tiles[tileIndex].GetImage();
+        
+        ChangeTileHeight(image, isLeftButtonPressed 
+            ? pixelPosition : new Vector2I(pixelPosition.X, image.GetHeight()));
+        
+        Tiles[tileIndex].SetImage(image);
     }
 
     public void InsertTile(int tileIndex)
@@ -91,134 +80,118 @@ public class TileSet
         Tiles.RemoveAt(tileIndex);
     }
 
-    private void ChangeHeight(bool[] pixels, Vector2I pixelPosition)
+    private void ChangeTileHeight(Image image, Vector2I pixelPosition)
     {
-        if (!pixels[GetPixelIndex(pixelPosition.X, pixelPosition.Y)] ||
-            pixelPosition.Y != 0 && pixels[GetPixelIndex(pixelPosition.X, pixelPosition.Y - 1)])
+        if (image.GetPixelv(pixelPosition) == Colors.Transparent || pixelPosition.Y != 0 
+            && image.GetPixel(pixelPosition.X, pixelPosition.Y - 1) != Colors.Transparent)
         {
-            for (int y = 0; y < TileSize.Y; y++)
+            for (var y = 0; y < TileSize.Y; y++)
             {
-                pixels[GetPixelIndex(pixelPosition.X, y)] = y >= pixelPosition.Y;
+                image.SetPixel(pixelPosition.X, y, y >= pixelPosition.Y 
+                    ? Colors.Black : Colors.Transparent);
             }
         }
         else
         {
-            for (int y = 0; y < TileSize.Y; y++)
+            for (var y = 0; y < TileSize.Y; y++)
             {
-                pixels[GetPixelIndex(pixelPosition.X, y)] = false;
+                image.SetPixel(pixelPosition.X, y, Colors.Transparent);
             }
         }
     }
 
-    private void CreateTiles(ImageTexture tileMap, Vector2I separation, Vector2I offset)
+    private void CreateTiles(Image tileMap, Vector2I separation, Vector2I offset)
     {
         var cellCount = new Vector2I(
             (tileMap.GetWidth() - offset.X) / (TileSize.X + separation.X),
             (tileMap.GetHeight() - offset.Y) / (TileSize.Y + separation.Y));
 
-        byte[,,] bitmapArray = BitmapConvertor.GetBitmapArrayFromSKBitmap(tileMap);
-
-        for (int y = 0; y < cellCount.Y; y++)
+        for (var y = 0; y < cellCount.Y; y++)
         {
-            for (int x = 0; x < cellCount.X; x++)
+            for (var x = 0; x < cellCount.X; x++)
             {
                 var tilePosition = new Vector2I(
                     x * (TileSize.X + separation.X) + offset.X,
                     y * (TileSize.Y + separation.Y) + offset.Y);
 
-                CreateTileFromTileMap(bitmapArray, tilePosition);
+                CreateTileFromTileMap(tileMap, tilePosition);
             }
         }
     }
 
-    private void CreateTileFromTileMap(byte[,,] bitmapArray, Vector2I tilePosition)
+    private void CreateTileFromTileMap(Image tileMap, Vector2I tilePosition)
     {
         var tile = new Tile(TileSize);
-        bool[] tilePixels = tile.Pixels;
-
-        for (int w = 0; w < TileSize.Y; w++)
-        {
-            for (int z = 0; z < TileSize.X; z++)
-            {
-                tilePixels[w * TileSize.X + z] = bitmapArray[
-                tilePosition.X + z, tilePosition.Y + w, 0] != 0;
-            }
-        }
-
-        tile.Pixels = tilePixels;
+        
+        Image image = tile.GetImage();
+        image.BlitRect(tileMap, new Rect2I(tilePosition, TileSize), tilePosition);
+        tile.SetImage(image);
+        
         Tiles.Add(tile);
     }
 
-    private void DrawTiles(ImageTexture texture, int[] groupOffset, Color[] groupColor,
+    private async Task<Image> DrawTiles(Vector2I tileMapSize, int[] groupOffset, Color[] groupColor,
         Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
-        var white = new Color(1F, 1F, 1F, 1F);
-        Vector2I position = new();
-
-        for (int group = 0; group < groupCount; group++)
+        var viewport = new SubViewport()
         {
+            Size = tileMapSize,
+            TransparentBg = true,
+            RenderTargetUpdateMode = SubViewport.UpdateMode.Always
+        };
+        screen.AddChild(viewport);
+        
+        var position = new Vector2I();
+        Sprite2D blankSprite = new Tile(TileSize).Sprite;
+        for (var group = 0; group < groupCount; group++)
+        {
+            Vector2I tilePosition;
             foreach (Tile tile in Tiles)
             {
-                DrawTile(bitmapArray, tile.Pixels, groupColor[group],
-                    separation, offset, columnCount, ref position);
+                tilePosition = GetNextTilePosition(separation, offset, columnCount, position);
+                AddTileSprite(viewport, tile.Sprite, groupColor[group], tilePosition);
             }
-
+            
             while (groupOffset[group]-- > 0)
             {
-                DrawTile(bitmapArray, null, white,
-                    separation, offset, columnCount, ref position);
+                tilePosition = GetNextTilePosition(separation, offset, columnCount, position);
+                AddTileSprite(viewport, blankSprite, groupColor[group], tilePosition);
             }
         }
+        
+        await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+        Image image = viewport.GetTexture().GetImage();
+        viewport.QueueFree();
+        return image;
     }
 
-    private void DrawTile(byte[,,] bitmapArray, bool[]? tilePixels, Color tileColor,
-        Vector2I separation, Vector2I offset, int columnCount, ref Vector2I position)
+    private void AddTileSprite(SubViewport viewport, 
+        Sprite2D sprite, Color tileColor, Vector2I tilePosition)
     {
-        Color secondColor = GetSecondColor(tilePixels, out bool[] checkedTilePixels);
+        var duplicate = (Sprite2D)sprite.Duplicate();
 
+        duplicate.Position = tilePosition;
+        viewport.AddChild(duplicate);
+        // TODO: tileColor
+    }
+
+    private Vector2I GetNextTilePosition(Vector2I separation, 
+        Vector2I offset, int columnCount, Vector2I position)
+    {
         var tilePosition = new Vector2I(
             offset.X + position.X * (TileSize.X + separation.X),
             offset.Y + position.Y * (TileSize.Y + separation.Y));
 
-        for (int y = 0; y < TileSize.Y; y++)
+        if (position.X + 1 >= columnCount)
         {
-            for (int x = 0; x < TileSize.X; x++)
-            {
-                Color pixelColor = checkedTilePixels[y * TileSize.X + x] ? tileColor : secondColor;
-                for (int i = 0; i < 4; i++)
-                {
-                    bitmapArray[tilePosition.X + x, tilePosition.Y + y, i] = (byte)(pixelColor[i] * 255f);
-                }
-            }
+            position.X = 0;
+            position.Y++;
+        }
+        else
+        {
+            position.X++;   
         }
 
-        position = position.X + 1 >= columnCount ?
-            new Vector2I(0, position.Y + 1) :
-            new Vector2I(position.X + 1, position.Y);
-    }
-
-    private Color GetSecondColor(bool[]? tilePixels, out bool[] checkedTilePixels)
-    {
-        if (tilePixels is not null)
-        {
-            checkedTilePixels = tilePixels;
-            return new Color(0F, 0F, 0F, 0F);
-        }
-
-        checkedTilePixels = new bool[TileSize.X * TileSize.Y];
-        for (int y = 0; y < TileSize.Y; y++)
-        {
-            for (int x = 0; x < TileSize.X; x++)
-            {
-                checkedTilePixels[y * TileSize.X + x] = (x + y) % 4 < 2;
-            }
-        }
-
-        return new Color(0F, 0F, 0F, 1F);
-    }
-
-    private int GetPixelIndex(int positionX, int positionY)
-    {
-        return positionY * TileSize.X + positionX;
+        return tilePosition;
     }
 }

@@ -8,7 +8,6 @@ public partial class PopupMenuLoad : PopupMenuHandler
     public PopupMenuLoad()
     {
         screen = (CollisionEditorMainScreen)GetTree().CurrentScene;
-        
         Name = "loadMenu";
         AddItem("TileMap", 0);
         AddItem("AngleMap", 1);

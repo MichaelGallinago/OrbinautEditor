@@ -277,7 +277,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
-placeholder_text = "BYTE ANGLE"
+placeholder_text = "Byte Angle"
 editable = false
 caret_blink = true
 
@@ -322,7 +322,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
-placeholder_text = "HEX ANGLE"
+placeholder_text = "Hex Angle"
 editable = false
 caret_blink = true
 
@@ -362,7 +362,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
-text = "full angle"
+placeholder_text = "Full Angle"
 editable = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2"]
@@ -413,7 +413,7 @@ size_flags_stretch_ratio = 3.37
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
-placeholder_text = "TILE INDEX"
+placeholder_text = "Tile Index"
 editable = false
 
 [node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer/TextEdit"]

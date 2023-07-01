@@ -7,7 +7,7 @@ public partial class CollisionEditorMainScreen : Control
 	
 	public override void _Ready()
 	{
-		tileSet = new TileSet();
+		tileSet = new TileSet(this);
 	}
 
 	public override void _Process(double delta)
@@ -17,6 +17,6 @@ public partial class CollisionEditorMainScreen : Control
 
 	public void CreateTileSet(string imagePath)
 	{
-		tileSet = new TileSet(imagePath);
+		tileSet = new TileSet(this, imagePath);
 	}
 }
