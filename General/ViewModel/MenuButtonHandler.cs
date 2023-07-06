@@ -2,7 +2,7 @@ using Godot;
 
 public abstract partial class MenuButtonHandler : MenuButton
 {
-    public override void _Ready()
+    protected MenuButtonHandler()
     {
         GetPopup().IdPressed += OnItemPressed;
     }

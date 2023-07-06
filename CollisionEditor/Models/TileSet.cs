@@ -24,7 +24,7 @@ public partial class TileSet : GodotObject
         {
             throw new FileLoadException();
         }
-
+        
         CreateTiles(image, separation, offset);
     }
 
