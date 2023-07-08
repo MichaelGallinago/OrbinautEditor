@@ -138,8 +138,8 @@ public partial class TileSet : GodotObject
         Tiles.Add(tile);
     }
 
-    private async Task<Image> DrawTiles(Vector2I tileMapSize, IList<int> groupOffset, IReadOnlyList<Color> groupColor,
-        Vector2I separation, Vector2I offset, int columnCount, int groupCount)
+    private async Task<Image> DrawTiles(Vector2I tileMapSize, IReadOnlyList<int> groupOffset, 
+        IReadOnlyList<Color> groupColor, Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
         var viewport = new SubViewport()
         {
@@ -153,17 +153,13 @@ public partial class TileSet : GodotObject
         Sprite2D blankSprite = new Tile(TileSize).Sprite;
         for (var group = 0; group < groupCount; group++)
         {
-            Vector2I tilePosition;
-            foreach (Tile tile in Tiles)
+            int groupTileCount = Tiles.Count + groupOffset[group];
+            for (var i = 0; i < groupTileCount; i++)
             {
-                tilePosition = GetNextTilePosition(separation, offset, columnCount, position);
-                AddTileSprite(viewport, tile.Sprite, groupColor[group], tilePosition);
-            }
-            
-            while (groupOffset[group]-- > 0)
-            {
-                tilePosition = GetNextTilePosition(separation, offset, columnCount, position);
-                AddTileSprite(viewport, blankSprite, groupColor[group], tilePosition);
+                Vector2I tilePosition = GetTilePosition(position, separation, offset);
+                position = GetNextPosition(columnCount, position);
+                AddTileSprite(i < Tiles.Count ? Tiles[i].Sprite : blankSprite, 
+                    viewport, tilePosition, groupColor[group]);
             }
         }
         
@@ -173,24 +169,17 @@ public partial class TileSet : GodotObject
         return image;
     }
 
-    private void AddTileSprite(SubViewport viewport, 
-        Sprite2D sprite, Color tileColor, Vector2I tilePosition)
+    private void AddTileSprite(Node sprite, 
+        Node viewport, Vector2I tilePosition, Color tileColor)
     {
         var duplicate = (Sprite2D)sprite.Duplicate();
-
         duplicate.Position = tilePosition;
         viewport.AddChild(duplicate);
-        duplicate.Show();
         // TODO: tileColor
     }
 
-    private Vector2I GetNextTilePosition(Vector2I separation, 
-        Vector2I offset, int columnCount, Vector2I position)
+    private static Vector2I GetNextPosition(int columnCount, Vector2I position)
     {
-        var tilePosition = new Vector2I(
-            offset.X + position.X * (TileSize.X + separation.X),
-            offset.Y + position.Y * (TileSize.Y + separation.Y));
-
         if (position.X + 1 >= columnCount)
         {
             position.X = 0;
@@ -201,6 +190,13 @@ public partial class TileSet : GodotObject
             position.X++;   
         }
 
-        return tilePosition;
+        return position;
+    }
+
+    private Vector2I GetTilePosition(Vector2I position, Vector2I separation, Vector2I offset)
+    {
+        return new Vector2I(
+            offset.X + position.X * (TileSize.X + separation.X), 
+            offset.Y + position.Y * (TileSize.Y + separation.Y));
     }
 }
