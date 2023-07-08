@@ -8,17 +8,42 @@ public class AngleMap
 {
     private const double ConvertRadiansToByte = 128 / Math.PI;
 
-    public List<byte> Values { get; private set; }
+    public List<byte> Angles { get; private set; }
 
-    public AngleMap(string path)
+    public AngleMap(string binaryFilePath, int tileCount = 0)
     {
-        var reader = new BinaryReader(File.Open(path, FileMode.Open));
-        Values = reader.ReadBytes((int)Math.Min(int.MaxValue, reader.BaseStream.Length)).ToList();
+        //var reader = new BinaryReader(File.Open(path, FileMode.Open));
+        //Angles = reader.ReadBytes((int)Math.Min(int.MaxValue, reader.BaseStream.Length)).ToList();
+        Angles = File.ReadAllBytes(binaryFilePath).ToList();
+
+        if (tileCount != 0)
+        {
+            SetAnglesCount(tileCount);
+        }
+    }
+
+    public void SetAnglesCount(int tileCount)
+    {
+        if (Angles.Count >= tileCount)
+        {
+            Angles = Angles.GetRange(0, tileCount);
+            return;
+        }
+
+        for (int i = tileCount - Angles.Count; i > 0; i--)
+        {
+            Angles.Add(0);
+        }
     }
 
     public AngleMap(int tileCount = 0)
     {
-        Values = new List<byte>(new byte[tileCount]);
+        Angles = new List<byte>(new byte[tileCount]);
+    }
+
+    public void UnloadAngles()
+    {
+        Angles = new List<byte>(Angles.Count);
     }
 
     public void Save(string path)
@@ -32,16 +57,16 @@ public class AngleMap
         
         using BinaryWriter writer = new(File.Open(path, FileMode.CreateNew));
         {
-            foreach (byte value in Values)
+            foreach (byte angle in Angles)
             {
-                writer.Write(value);
+                writer.Write(angle);
             }
         }
     }
 
     public byte SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
     {
-        return Values[tileIndex] = (byte)(Math.Atan2(
+        return Angles[tileIndex] = (byte)(Math.Atan2(
             positionBlue.Y - positionGreen.Y,
             positionBlue.X - positionGreen.X)
             * ConvertRadiansToByte);
@@ -49,21 +74,21 @@ public class AngleMap
 
     public byte SetAngle(int tileIndex, byte value)
     {
-        return Values[tileIndex] = value;
+        return Angles[tileIndex] = value;
     }
 
     public byte ChangeAngle(int tileIndex, int value)
     {
-        return Values[tileIndex] = (byte)(Values[tileIndex] + value);
+        return Angles[tileIndex] = (byte)(Angles[tileIndex] + value);
     }
 
     public void InsertAngle(int tileIndex)
     {
-        Values.Insert(tileIndex, 0);
+        Angles.Insert(tileIndex, 0);
     }
 
     public void RemoveAngle(int tileIndex)
     {
-        Values.RemoveAt(tileIndex);
+        Angles.RemoveAt(tileIndex);
     }
 }

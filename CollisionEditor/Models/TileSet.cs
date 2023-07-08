@@ -7,30 +7,31 @@ using System.Threading.Tasks;
 
 public partial class TileSet : GodotObject
 {
-    public Vector2I TileSize { get; }
+    public Vector2I TileSize { get; private set; }
     public List<Tile> Tiles { get; }
+    
     private Control screen;
 
-    public TileSet(Control screen, string path, int tileWidth = 16, int tileHeight = 16,
-        Vector2I separation = new(), Vector2I offset = new())
+    public TileSet(Control screen, string imagePath, 
+        Vector2I tileSize, Vector2I separation, Vector2I offset)
     {
-        TileSize = new Vector2I(tileWidth, tileHeight);
+        TileSize = tileSize;
         Tiles = new List<Tile>();
         this.screen = screen;
 
         var image = new Image();
-        Error loadError = image.Load(path);
+        Error loadError = image.Load(imagePath);
         if (loadError != Error.Ok)
         {
-            throw new FileLoadException();
+            throw new FileLoadException("TileSet");
         }
         
         CreateTiles(image, separation, offset);
     }
 
-    public TileSet(Control screen, int angleCount = 0, int tileWidth = 16, int tileHeight = 16)
+    public TileSet(Control screen, int angleCount = 0, Vector2I tileSize = new())
     {
-        TileSize = new Vector2I(tileWidth, tileHeight);
+        TileSize = tileSize;
         Tiles = new List<Tile>(angleCount);
         this.screen = screen;
 
@@ -80,6 +81,14 @@ public partial class TileSet : GodotObject
         Tiles.RemoveAt(tileIndex);
     }
 
+    public void UnloadTiles()
+    {
+        for (var i = 0; i < Tiles.Count; i++)
+        {
+            Tiles[i] = new Tile(TileSize);
+        }
+    }
+
     private void ChangeTileHeight(Image image, Vector2I pixelPosition)
     {
         if (image.GetPixelv(pixelPosition) == Colors.Transparent || pixelPosition.Y != 0 
@@ -90,13 +99,12 @@ public partial class TileSet : GodotObject
                 image.SetPixel(pixelPosition.X, y, y >= pixelPosition.Y 
                     ? Colors.Black : Colors.Transparent);
             }
+            return;
         }
-        else
+        
+        for (var y = 0; y < TileSize.Y; y++)
         {
-            for (var y = 0; y < TileSize.Y; y++)
-            {
-                image.SetPixel(pixelPosition.X, y, Colors.Transparent);
-            }
+            image.SetPixel(pixelPosition.X, y, Colors.Transparent);
         }
     }
 
@@ -124,13 +132,13 @@ public partial class TileSet : GodotObject
         var tile = new Tile(TileSize);
         
         Image image = tile.GetImage();
-        image.BlitRect(tileMap, new Rect2I(tilePosition, TileSize), tilePosition);
+        image.BlitRect(tileMap, new Rect2I(tilePosition, TileSize), new Vector2I());
         tile.SetImage(image);
         
         Tiles.Add(tile);
     }
 
-    private async Task<Image> DrawTiles(Vector2I tileMapSize, int[] groupOffset, Color[] groupColor,
+    private async Task<Image> DrawTiles(Vector2I tileMapSize, IList<int> groupOffset, IReadOnlyList<Color> groupColor,
         Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
         var viewport = new SubViewport()
@@ -172,6 +180,7 @@ public partial class TileSet : GodotObject
 
         duplicate.Position = tilePosition;
         viewport.AddChild(duplicate);
+        duplicate.Show();
         // TODO: tileColor
     }
 

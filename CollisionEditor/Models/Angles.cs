@@ -6,7 +6,7 @@ public class Angles
     public const int HexAngleMaxLength = 2;
     public const int HexAnglePrefixLength = 2;
 
-    private const double convertByteToFull = 1.40625d;
+    private const double ConvertByteToFull = 1.40625d;
 
     public byte ByteAngle { get; private set; }
     public string HexAngle { get; private set; } = "0x00";
@@ -41,7 +41,7 @@ public class Angles
 
     private static double GetFullAngle(byte byteAngle)
     {
-        return Math.Round((byte.MaxValue + 1 - byteAngle) * convertByteToFull, 1);
+        return Math.Round((byte.MaxValue + 1 - byteAngle) * ConvertByteToFull, 1);
     }
 
     private static byte GetByteAngle(string hexAngle)

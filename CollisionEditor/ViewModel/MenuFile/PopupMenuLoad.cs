@@ -1,11 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class PopupMenuLoad : PopupMenuHandler
 {
     private CollisionEditorMainScreen screen;
-    private FileDialog fileDialog;
-    
+
     public PopupMenuLoad()
     {
         Name = "loadMenu";
@@ -29,23 +29,23 @@ public partial class PopupMenuLoad : PopupMenuHandler
     
     private void OnTileMapPressed()
     {
-        fileDialog = new FileDialog();
-        fileDialog.Access = FileDialog.AccessEnum.Filesystem;
-        fileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
-        fileDialog.AddFilter("*.png", "PNG");
-        fileDialog.FileSelected += OnFileSelected;
-        fileDialog.Visible = true;
-        screen.AddChild(fileDialog);
+        var filters = new Dictionary<string, string>
+        {
+            { "*.png", "PNG" }
+        };
+            
+        screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => screen.CreateTileSet(path));
     }
 
-    private void OnFileSelected(string path)
+    private void OnAngleMapPressed()
     {
-        GD.Print(path);
-        screen.CreateTileSet(path);
-    }
-
-    private static void OnAngleMapPressed()
-    {
-        throw new NotImplementedException();
+        var filters = new Dictionary<string, string>
+        {
+            { "*.bin", "BIN" }
+        };
+        
+        screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => screen.CreateAngleMap(path));
     }
 }

@@ -1,8 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class PopupMenuUnload : PopupMenuHandler
 {
+    private CollisionEditorMainScreen screen;
+    
     public PopupMenuUnload()
     {
         Name = "unloadMenu";
@@ -11,28 +14,34 @@ public partial class PopupMenuUnload : PopupMenuHandler
         AddItem("AngleMap", 2);
     }
 
+    public override void _Ready()
+    {
+        screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+    }
+
     protected override void OnItemPressed(long id)
     {
         switch (id)
         {
             case 0: OnAllPressed(); break;
             case 1: OnAngleMapPressed(); break;
-            case 2: OnHeightMapPressed(); break;
+            case 2: OnTileSetPressed(); break;
         }
     }
     
-    private static void OnAllPressed()
+    private void OnAllPressed()
     {
-        throw new NotImplementedException();
+        screen.TileSet.Tiles.Clear();
+        screen.AngleMap.Angles.Clear();
     }
     
-    private static void OnAngleMapPressed()
+    private void OnAngleMapPressed()
     {
-        throw new NotImplementedException();
+        screen.AngleMap.UnloadAngles();
     }
     
-    private static void OnHeightMapPressed()
+    private void OnTileSetPressed()
     {
-        throw new NotImplementedException();
+        screen.TileSet.UnloadTiles();
     }
 }
