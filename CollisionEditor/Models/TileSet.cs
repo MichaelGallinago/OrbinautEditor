@@ -173,6 +173,7 @@ public partial class TileSet : GodotObject
         Node viewport, Vector2I tilePosition, Color tileColor)
     {
         var duplicate = (Sprite2D)sprite.Duplicate();
+        duplicate.Centered = false;
         duplicate.Position = tilePosition;
         viewport.AddChild(duplicate);
         // TODO: tileColor
