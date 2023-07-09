@@ -11,6 +11,7 @@ public class Tile
     public Tile(Vector2I tileSize)
     {
         Sprite = new Sprite2D();
+        Sprite.UseParentMaterial = true;
         Heights = new byte[tileSize.X];
         Widths = new byte[tileSize.Y];
         

@@ -57,8 +57,7 @@ public partial class TileSet : GodotObject
         
         int groupCount = groupColor.Length;
 
-        return await DrawTiles(tileMapSize, groupOffset, groupColor, 
-            separation, offset, columnCount, groupCount);
+        return await DrawTiles(tileMapSize, groupOffset, groupColor, separation, offset, columnCount, groupCount);
     }
 
     public void ChangeTile(int tileIndex, Vector2I pixelPosition, bool isLeftButtonPressed)
@@ -151,16 +150,23 @@ public partial class TileSet : GodotObject
         
         var position = new Vector2I();
         Sprite2D blankSprite = new Tile(TileSize).Sprite;
+        var material = (ShaderMaterial)GD.Load("res://Shaders/colour.tres");
         for (var group = 0; group < groupCount; group++)
         {
+            var spriteContainer = new Node2D();
+            Color color = groupColor[group];
+            var shaderColor = new Vector3(color.R, color.G, color.B);
+            spriteContainer.Material = (Material)material.Duplicate();
+            ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Colour", shaderColor);
+            
             int groupTileCount = Tiles.Count + groupOffset[group];
             for (var i = 0; i < groupTileCount; i++)
             {
                 Vector2I tilePosition = GetTilePosition(position, separation, offset);
                 position = GetNextPosition(columnCount, position);
-                AddTileSprite(i < Tiles.Count ? Tiles[i].Sprite : blankSprite, 
-                    viewport, tilePosition, groupColor[group]);
+                AddTileSprite(i < Tiles.Count ? Tiles[i].Sprite : blankSprite, spriteContainer, tilePosition);
             }
+            viewport.AddChild(spriteContainer);
         }
         
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
@@ -170,13 +176,12 @@ public partial class TileSet : GodotObject
     }
 
     private void AddTileSprite(Node sprite, 
-        Node viewport, Vector2I tilePosition, Color tileColor)
+        Node container, Vector2I tilePosition)
     {
         var duplicate = (Sprite2D)sprite.Duplicate();
         duplicate.Centered = false;
         duplicate.Position = tilePosition;
-        viewport.AddChild(duplicate);
-        // TODO: tileColor
+        container.AddChild(duplicate);
     }
 
     private static Vector2I GetNextPosition(int columnCount, Vector2I position)
