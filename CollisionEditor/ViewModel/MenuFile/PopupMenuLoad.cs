@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class PopupMenuLoad : PopupMenuHandler
 {
-    private CollisionEditorMainScreen screen;
+    private CollisionEditorMainScreen _screen;
 
     public PopupMenuLoad()
     {
@@ -15,7 +15,7 @@ public partial class PopupMenuLoad : PopupMenuHandler
     
     public override void _Ready()
     {
-        screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+        _screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
     }
     
     protected override void OnItemPressed(long id)
@@ -34,8 +34,8 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.png", "PNG" }
         };
             
-        screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => screen.CreateTileSet(path));
+        _screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => _screen.CreateTileSet(path));
     }
 
     private void OnAngleMapPressed()
@@ -45,7 +45,7 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => screen.CreateAngleMap(path));
+        _screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => _screen.CreateAngleMap(path));
     }
 }

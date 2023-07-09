@@ -10,14 +10,14 @@ public partial class TileSet : GodotObject
     public Vector2I TileSize { get; private set; }
     public List<Tile> Tiles { get; }
     
-    private Control screen;
+    private Control _screen;
 
     public TileSet(Control screen, string imagePath, 
         Vector2I tileSize, Vector2I separation, Vector2I offset)
     {
         TileSize = tileSize;
         Tiles = new List<Tile>();
-        this.screen = screen;
+        this._screen = screen;
 
         var image = new Image();
         Error loadError = image.Load(imagePath);
@@ -33,7 +33,7 @@ public partial class TileSet : GodotObject
     {
         TileSize = tileSize;
         Tiles = new List<Tile>(angleCount);
-        this.screen = screen;
+        this._screen = screen;
 
         for (var i = 0; i < angleCount; i++)
         {
@@ -146,7 +146,7 @@ public partial class TileSet : GodotObject
             TransparentBg = true,
             RenderTargetUpdateMode = SubViewport.UpdateMode.Always
         };
-        screen.AddChild(viewport);
+        _screen.AddChild(viewport);
         
         var position = new Vector2I();
         Sprite2D blankSprite = new Tile(TileSize).Sprite;

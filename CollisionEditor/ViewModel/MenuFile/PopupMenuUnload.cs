@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class PopupMenuUnload : PopupMenuHandler
 {
-    private CollisionEditorMainScreen screen;
+    private CollisionEditorMainScreen _screen;
     
     public PopupMenuUnload()
     {
@@ -16,7 +16,7 @@ public partial class PopupMenuUnload : PopupMenuHandler
 
     public override void _Ready()
     {
-        screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+        _screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
     }
 
     protected override void OnItemPressed(long id)
@@ -31,17 +31,17 @@ public partial class PopupMenuUnload : PopupMenuHandler
     
     private void OnAllPressed()
     {
-        screen.TileSet.Tiles.Clear();
-        screen.AngleMap.Angles.Clear();
+        _screen.TileSet.Tiles.Clear();
+        _screen.AngleMap.Angles.Clear();
     }
     
     private void OnAngleMapPressed()
     {
-        screen.AngleMap.UnloadAngles();
+        _screen.AngleMap.UnloadAngles();
     }
     
     private void OnTileSetPressed()
     {
-        screen.TileSet.UnloadTiles();
+        _screen.TileSet.UnloadTiles();
     }
 }

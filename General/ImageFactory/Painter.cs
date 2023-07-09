@@ -8,20 +8,20 @@ public partial class Painter : Node2D
 	{
 		add
 		{
-			draw += value;
+			_draw += value;
 			QueueRedraw();
 		}
 		remove
 		{
-			draw -= value;
+			_draw -= value;
 			QueueRedraw();
 		}
 	}
 
-	private DrawHandler? draw;
+	private DrawHandler? _draw;
 
 	public override void _Draw()
 	{
-		draw?.Invoke();
+		_draw?.Invoke();
 	}
 }

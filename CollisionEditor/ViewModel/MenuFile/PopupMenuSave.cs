@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class PopupMenuSave : PopupMenuHandler
 {
-    private CollisionEditorMainScreen screen;
+    private CollisionEditorMainScreen _screen;
     private const FileDialog.FileModeEnum FileMode = FileDialog.FileModeEnum.SaveFile;
     
     public PopupMenuSave()
@@ -19,7 +19,7 @@ public partial class PopupMenuSave : PopupMenuHandler
     
     public override void _Ready()
     {
-        screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+        _screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
     }
     
     protected override void OnItemPressed(long id)
@@ -49,8 +49,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        screen.OpenFileDialog(filters, FileMode, 
-            path => screen.AngleMap.Save(path));
+        _screen.OpenFileDialog(filters, FileMode, 
+            path => _screen.AngleMap.Save(path));
     }
     
     private void OnHeightMapPressed()
@@ -60,8 +60,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        screen.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, screen.TileSet.Tiles, false));
+        _screen.OpenFileDialog(filters, FileMode, 
+            path => TileUtilities.SaveCollisionMap(path, _screen.TileSet.Tiles, false));
     }
     
     private void OnWidthMapPressed()
@@ -71,8 +71,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        screen.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, screen.TileSet.Tiles, true));
+        _screen.OpenFileDialog(filters, FileMode, 
+            path => TileUtilities.SaveCollisionMap(path, _screen.TileSet.Tiles, true));
     }
 
     private async void OnTileMapPressed()
@@ -83,11 +83,11 @@ public partial class PopupMenuSave : PopupMenuHandler
         };
 
         // TODO: no more constants
-        Image tileMap = await screen.TileSet.CreateTileMap(
+        Image tileMap = await _screen.TileSet.CreateTileMap(
             8, new Color[] { Colors.Yellow, Colors.Black, Colors.White },
             new[] { 6, 6, 0 }, new Vector2I(2, 2), new Vector2I());
 
-        screen.OpenFileDialog(filters, FileMode, 
+        _screen.OpenFileDialog(filters, FileMode, 
             path => TileUtilities.SaveTileMap(path, tileMap));
     }
 }

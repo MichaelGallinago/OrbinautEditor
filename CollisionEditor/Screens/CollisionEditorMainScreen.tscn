@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=27 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMainScreen.cs" id="1_blk3s"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_cevwq"]
@@ -13,14 +13,16 @@
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="9_7rltt"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="10_sfpsq"]
 [ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="11_sequl"]
-[ext_resource type="ButtonGroup" uid="uid://c7lk7blubdbv2" path="res://new_button_group.tres" id="12_avqbn"]
 [ext_resource type="StyleBox" uid="uid://crmexapr3te3j" path="res://Styles/Textbox/style_textbox_focus.tres" id="12_crto4"]
+[ext_resource type="ButtonGroup" uid="uid://c7lk7blubdbv2" path="res://collision_editor_group.tres" id="12_xtpr0"]
 [ext_resource type="StyleBox" uid="uid://h8my0eje2qlc" path="res://Styles/Textbox/style_textbox_read_only.tres" id="13_7rbqm"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="14_ytfv2"]
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="15_fhodj"]
 [ext_resource type="Texture2D" uid="uid://p2nm41bupgnt" path="res://Resorses/Sprites/lupa.png" id="16_b8lly"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="17_4yaha"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/TileMapPanel/TileButtonAdd.cs" id="19_kxjt1"]
+[ext_resource type="Material" uid="uid://cbswm202gr4m3" path="res://Shaders/colour.tres" id="19_lxdgu"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonsGridContainer.cs" id="20_rsowm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -45,7 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_blk3s")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ca04k")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="ScreenContainer" type="VBoxContainer" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -66,12 +68,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="TopPanel" type="HBoxContainer" parent="ScreenContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="MenuButton4" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
+[node name="MenuButton4" type="MenuButton" parent="ScreenContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("1_cevwq")
 theme_override_styles/normal = ExtResource("2_jn600")
@@ -91,7 +93,7 @@ popup/item_2/text = "Surfaces"
 popup/item_2/id = 2
 script = ExtResource("3_csh4m")
 
-[node name="MenuButton5" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
+[node name="MenuButton5" type="MenuButton" parent="ScreenContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("1_cevwq")
 theme_override_styles/normal = ExtResource("2_jn600")
@@ -103,7 +105,7 @@ text = "File"
 switch_on_hover = true
 script = ExtResource("4_p81g6")
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer2/HBoxContainer"]
+[node name="MenuButton" type="MenuButton" parent="ScreenContainer/TopPanel"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("1_cevwq")
@@ -119,7 +121,7 @@ popup/item_0/text = "Docs"
 popup/item_0/id = 0
 script = ExtResource("4_k6sxq")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+[node name="MainPanelMarginContainer" type="MarginContainer" parent="ScreenContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 4
@@ -127,16 +129,16 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer"]
+[node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dkm24")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer"]
+[node name="MainPanel" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2"]
+[node name="EditorPanelMarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -145,11 +147,11 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_tub4j")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel"]
+[node name="EditorPanel" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -158,21 +160,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("6_41a16")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/HBoxContainer2/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/HBoxContainer2/Panel"]
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
@@ -182,17 +184,17 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Panel2" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_nuy6r")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,7 +203,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel2/HBoxContainer"]
+[node name="Button" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(96, 25)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -213,11 +215,11 @@ theme_override_styles/focus = ExtResource("9_7rltt")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
-button_group = ExtResource("12_avqbn")
+button_group = ExtResource("12_xtpr0")
 text = "AngleMode
 "
 
-[node name="Button2" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel2/HBoxContainer"]
+[node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(96, 25)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -228,17 +230,17 @@ theme_override_styles/disabled = ExtResource("7_ojl5e")
 theme_override_styles/focus = ExtResource("9_7rltt")
 toggle_mode = true
 action_mode = 0
-button_group = ExtResource("12_avqbn")
+button_group = ExtResource("12_xtpr0")
 text = "TileMode
 "
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer"]
+[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("10_sfpsq")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -247,11 +249,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_constants/outline_size = 0
@@ -260,7 +262,7 @@ theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 editable = false
 
-[node name="TextEdit2" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+[node name="TextEdit2" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -268,15 +270,15 @@ theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 editable = false
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -284,9 +286,10 @@ theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Byte Angle"
 editable = false
+scroll_fit_content_height = true
 caret_blink = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -300,7 +303,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit/VBoxContainer"]
+[node name="Button" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -308,7 +311,7 @@ disabled = true
 icon = ExtResource("14_ytfv2")
 flat = true
 
-[node name="Button2" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit/VBoxContainer"]
+[node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEdit/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/outline_size = 0
@@ -317,11 +320,11 @@ disabled = true
 icon = ExtResource("15_fhodj")
 flat = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2"]
+[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -331,7 +334,7 @@ placeholder_text = "Hex Angle"
 editable = false
 caret_blink = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -345,7 +348,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit/VBoxContainer"]
+[node name="Button" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -353,7 +356,7 @@ disabled = true
 icon = ExtResource("14_ytfv2")
 flat = true
 
-[node name="Button2" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit/VBoxContainer"]
+[node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEdit/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -361,7 +364,7 @@ disabled = true
 icon = ExtResource("15_fhodj")
 flat = true
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer/Panel/VBoxContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -370,7 +373,7 @@ theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Full Angle"
 editable = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2"]
+[node name="SelectorPanelMarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -379,12 +382,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel2" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2"]
+[node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_styles/panel = ExtResource("5_tub4j")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2"]
+[node name="SelectorPanel" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -394,13 +397,26 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Panel" type="Panel" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TileButtonsGrid" type="GridContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/ScrollContainer"]
+material = ExtResource("19_lxdgu")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+script = ExtResource("20_rsowm")
+
+[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = ExtResource("10_sfpsq")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -411,7 +427,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.37
@@ -421,7 +437,7 @@ theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Tile Index"
 editable = false
 
-[node name="Button" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer/TextEdit"]
+[node name="Button" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/TextEdit"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -435,12 +451,12 @@ disabled = true
 icon = ExtResource("16_b8lly")
 flat = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.41
 
-[node name="Button3" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
+[node name="Button3" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -457,7 +473,7 @@ disabled = true
 text = "+"
 script = ExtResource("19_kxjt1")
 
-[node name="Button2" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel/HBoxContainer"]
+[node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -472,10 +488,3 @@ theme_override_styles/disabled = ExtResource("17_4yaha")
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
 text = "	—"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer2/Panel2/VBoxContainer/Panel"]
-layout_mode = 2
-offset_top = -471.0
-offset_right = 470.0
-size_flags_vertical = 3
-size_flags_stretch_ratio = 6.99
