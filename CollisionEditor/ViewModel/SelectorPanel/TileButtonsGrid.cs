@@ -6,21 +6,27 @@ public partial class TileButtonsGrid : GridContainer
 {
 	private readonly List<TextureButton> _tileButtons = new();
 	private ButtonGroup _buttonGroup = new();
+	private CollisionEditorMainScreen _screen;
+	private Vector2I _buttonSize;
+	
+	private const byte Separation = 4;
+	private const byte ButtonScale = 2;
+
+	public override void _Ready()
+	{
+		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+		_screen.TileButtonsGrid = this;
+		Resized += () => Columns = ((Vector2I)Size).X / (_buttonSize.X + Separation);
+	}
 
 	public void CreateTileButtons(TileSet tileSet)
 	{
 		ClearTileButtons();
 		
-		Vector2I size = tileSet.TileSize * 2;
+		_buttonSize = tileSet.TileSize * ButtonScale;
 		foreach (Tile tile in tileSet.Tiles)
 		{
-			var textureButton = new TextureButton()
-			{
-				Size = size,
-				ToggleMode = true,
-				ButtonGroup = _buttonGroup,
-				TextureNormal = tile.Sprite.Texture
-			};
+			TextureButton textureButton = CreateTileButton(tile);
 			_tileButtons.Add(textureButton);
 			AddChild(textureButton);
 		}
@@ -34,20 +40,26 @@ public partial class TileButtonsGrid : GridContainer
 	
 	public void InsertTileButton(int index, TileSet tileSet)
 	{
-		TextureButton tileButton = CreateTextureButton(tileSet.TileSize, tileSet.Tiles[index]);
+		if (_buttonSize != tileSet.TileSize * ButtonScale)
+		{
+			throw new Exception("wrong tile size");
+		}
+		
+		TextureButton tileButton = CreateTileButton(tileSet.Tiles[index]);
 		_tileButtons.Insert(index, tileButton);
 		AddChild(tileButton);
 		MoveChild(tileButton, index);
 	}
 
-	private TextureButton CreateTextureButton(Vector2I size, Tile tile)
+	private TextureButton CreateTileButton(Tile tile)
 	{
 		return new TextureButton()
 		{
-			Size = size,
+			CustomMinimumSize = _buttonSize,
 			ToggleMode = true,
 			ButtonGroup = _buttonGroup,
-			TextureNormal = tile.Sprite.Texture
+			TextureNormal = tile.Sprite.Texture,
+			StretchMode = TextureButton.StretchModeEnum.Scale
 		};
 	}
 

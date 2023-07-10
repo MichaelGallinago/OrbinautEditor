@@ -6,11 +6,11 @@ public partial class CollisionEditorMainScreen : Control
 {
 	public TileSet TileSet { get; private set; }
 	public AngleMap AngleMap { get; private set; }
+	public TileButtonsGrid TileButtonsGrid { get; set; }
 	
 	private FileDialog _fileDialog;
 	private FileDialog.FileSelectedEventHandler? _fileDialogEvent;
 	private readonly Vector2I _tileSize = new(16, 16);
-	private TileButtonsGrid _tileButtonsGrid;
 
 	public CollisionEditorMainScreen()
 	{
@@ -21,7 +21,6 @@ public partial class CollisionEditorMainScreen : Control
 	
 	public override void _Ready()
 	{
-		_tileButtonsGrid = (TileButtonsGrid)GetTree().Root.GetNode("Control/ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/ScrollContainer/TileButtonsGrid");
 		Window window = GetTree().Root;
 		_fileDialog.Unresizable = true;
 		_fileDialog.Size = window.Size;
@@ -56,7 +55,7 @@ public partial class CollisionEditorMainScreen : Control
 		TileSet = new TileSet(this, imagePath, _tileSize, 
 			new Vector2I(), new Vector2I());
 		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
-		_tileButtonsGrid.CreateTileButtons(TileSet);
+		TileButtonsGrid.CreateTileButtons(TileSet);
 	}
 
 	public void CreateAngleMap(string binaryFilePath)
@@ -67,6 +66,6 @@ public partial class CollisionEditorMainScreen : Control
 		{
 			TileSet = new TileSet(this, AngleMap.Angles.Count, _tileSize);
 		}
-		_tileButtonsGrid.CreateTileButtons(TileSet);
+		TileButtonsGrid.CreateTileButtons(TileSet);
 	}
 }

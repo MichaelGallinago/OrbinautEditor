@@ -20,9 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="15_fhodj"]
 [ext_resource type="Texture2D" uid="uid://p2nm41bupgnt" path="res://Resorses/Sprites/lupa.png" id="16_b8lly"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="17_4yaha"]
-[ext_resource type="Script" path="res://CollisionEditor/ViewModel/TileMapPanel/TileButtonAdd.cs" id="19_kxjt1"]
 [ext_resource type="Material" uid="uid://cbswm202gr4m3" path="res://Shaders/colour.tres" id="19_lxdgu"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonsGridContainer.cs" id="20_rsowm"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonsGrid.cs" id="20_n7trk"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonAdd.cs" id="23_ngbgh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -397,23 +397,32 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="TileButtonsGrid" type="GridContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+
+[node name="TileButtonsGrid" type="GridContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/ScrollContainer"]
 material = ExtResource("19_lxdgu")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-script = ExtResource("20_rsowm")
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+script = ExtResource("20_n7trk")
 
 [node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 theme_override_styles/panel = ExtResource("10_sfpsq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel"]
@@ -471,7 +480,7 @@ theme_override_styles/disabled = ExtResource("17_4yaha")
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
 text = "+"
-script = ExtResource("19_kxjt1")
+script = ExtResource("23_ngbgh")
 
 [node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
