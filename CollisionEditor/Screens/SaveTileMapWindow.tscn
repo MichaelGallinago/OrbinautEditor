@@ -16,11 +16,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
 theme_override_styles/panel = ExtResource("1_pts2e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
 
@@ -63,7 +65,7 @@ theme_override_constants/separation = 6
 [node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.02
+size_flags_stretch_ratio = 5.24
 theme_override_styles/panel = ExtResource("1_pts2e")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel"]
@@ -257,6 +259,231 @@ theme_override_styles/normal = ExtResource("3_3rjst")
 theme_override_styles/focus = ExtResource("4_atjce")
 placeholder_text = "8"
 
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.02
+theme_override_styles/panel = ExtResource("1_pts2e")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.44
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_mib38")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
+text = "Colors in RGBA:"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_mib38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit4" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit5" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit6" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "255"
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
+text = "Offset in tiles:"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_mib38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer7/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer7/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
+text = "Colors in RGBA:"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_mib38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit4" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit5" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
+[node name="TextEdit6" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer6/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "255"
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
+text = "Offset in tiles:"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_mib38")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer7/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit3" type="TextEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer/Panel2/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer3/VBoxContainer2/HBoxContainer7/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_3rjst")
+theme_override_styles/focus = ExtResource("4_atjce")
+placeholder_text = "0"
+
 [node name="HBoxContainer9" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -277,10 +504,6 @@ grow_horizontal = 0
 theme_override_styles/normal = ExtResource("6_niu5c")
 theme_override_styles/pressed = ExtResource("7_8irya")
 text = "Save"
-
-[node name="HBoxContainer10" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
