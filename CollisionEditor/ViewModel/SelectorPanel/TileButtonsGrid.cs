@@ -16,7 +16,12 @@ public partial class TileButtonsGrid : GridContainer
 	{
 		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
 		_screen.TileButtonsGrid = this;
-		Resized += () => Columns = ((Vector2I)Size).X / (_buttonSize.X + Separation);
+		Resized += () =>
+		{
+			int buttonSpace = _buttonSize.X + Separation;
+			Columns = ((Vector2I)((Control)GetParent()).Size).X / buttonSpace;
+			Size = new Vector2(buttonSpace * Columns, Size.Y);
+		};
 	}
 
 	public void CreateTileButtons(TileSet tileSet)
@@ -55,9 +60,9 @@ public partial class TileButtonsGrid : GridContainer
 	{
 		return new TextureButton()
 		{
-			CustomMinimumSize = _buttonSize,
 			ToggleMode = true,
 			ButtonGroup = _buttonGroup,
+			CustomMinimumSize = _buttonSize,
 			TextureNormal = tile.Sprite.Texture,
 			StretchMode = TextureButton.StretchModeEnum.Scale
 		};

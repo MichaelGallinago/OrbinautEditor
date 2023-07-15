@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class TileButtonAdd : Button
+public partial class AngleButtonAdd : Button
 {
 	private CollisionEditorMainScreen _screen;
 	public override void _Ready()
@@ -13,7 +13,6 @@ public partial class TileButtonAdd : Button
 
 	private void OnPressed()
 	{
-		_screen.TileSet.InsertTile(_screen.TileIndex);
-		_screen.TileButtonsGrid.InsertTileButton(_screen.TileIndex, _screen.TileSet);
+		_screen.AngleMap.Angles[_screen.TileIndex]++;
 	}
 }
