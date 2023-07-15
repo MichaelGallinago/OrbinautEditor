@@ -166,10 +166,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 size_flags_vertical = 3

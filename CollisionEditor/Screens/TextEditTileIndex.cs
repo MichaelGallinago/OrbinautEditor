@@ -20,7 +20,7 @@ public partial class TextEditTileIndex : TextEditValidable
 
 	protected override bool ValidateText()
 	{
-		return int.TryParse(Text, out _);
+		return int.TryParse(Text, out int value) && value < _screen.TileSet.Tiles.Count;
 	}
 
 	private void UpdateIndex()
