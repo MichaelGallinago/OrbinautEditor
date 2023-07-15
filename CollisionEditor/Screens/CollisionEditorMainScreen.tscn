@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=34 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMainScreen.cs" id="1_blk3s"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_cevwq"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditHexAngle.cs" id="22_thjvh"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonAdd.cs" id="23_ngbgh"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonRemove.cs" id="24_4ip02"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditFullAngle.cs" id="24_4x2bi"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditTileIndex.cs" id="25_4sgaf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
@@ -166,27 +167,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
+[node name="BoxContainer" type="BoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("6_41a16")
 
-[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/HBoxContainer2/Panel"]
+[node name="BigTile" type="TextureRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/BoxContainer/Panel"]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-metadata/_edit_use_anchors_ = true
-
-[node name="BigTile" type="Sprite2D" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/HBoxContainer2/Panel/MarginContainer"]
 script = ExtResource("9_p2wyj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
@@ -194,6 +197,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Panel2" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 3
@@ -279,11 +283,7 @@ editable = false
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextEditByteAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer"]
+[node name="TextEditByteAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -295,7 +295,7 @@ scroll_fit_content_height = true
 caret_blink = true
 script = ExtResource("17_dp5ur")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEditByteAngle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -309,7 +309,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEditByteAngle/VBoxContainer"]
+[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -318,7 +318,7 @@ icon = ExtResource("14_ytfv2")
 flat = true
 script = ExtResource("19_57b5b")
 
-[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer/TextEditByteAngle/VBoxContainer"]
+[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/outline_size = 0
@@ -328,11 +328,7 @@ icon = ExtResource("15_fhodj")
 flat = true
 script = ExtResource("20_v6iwc")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextEditHexAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2"]
+[node name="TextEditHexAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -343,7 +339,7 @@ editable = false
 caret_blink = true
 script = ExtResource("22_thjvh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEditHexAngle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -357,7 +353,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEditHexAngle/VBoxContainer"]
+[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -366,7 +362,7 @@ icon = ExtResource("14_ytfv2")
 flat = true
 script = ExtResource("19_57b5b")
 
-[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/HBoxContainer2/TextEditHexAngle/VBoxContainer"]
+[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -375,7 +371,7 @@ icon = ExtResource("15_fhodj")
 flat = true
 script = ExtResource("20_v6iwc")
 
-[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="TextEditFullAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -383,6 +379,7 @@ theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Full Angle"
 editable = false
+script = ExtResource("24_4x2bi")
 
 [node name="SelectorPanelMarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel"]
 layout_mode = 2

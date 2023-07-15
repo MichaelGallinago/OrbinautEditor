@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class TileButtonsGrid : GridContainer
 {
@@ -29,9 +30,8 @@ public partial class TileButtonsGrid : GridContainer
 		ClearTileButtons();
 		
 		_buttonSize = tileSet.TileSize * ButtonScale;
-		foreach (Tile tile in tileSet.Tiles)
+		foreach (TextureButton textureButton in tileSet.Tiles.Select(CreateTileButton))
 		{
-			TextureButton textureButton = CreateTileButton(tile);
 			_tileButtons.Add(textureButton);
 			AddChild(textureButton);
 		}

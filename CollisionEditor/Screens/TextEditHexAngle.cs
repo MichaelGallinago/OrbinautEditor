@@ -1,12 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 public partial class TextEditHexAngle : TextEditValidable
 {
 	private CollisionEditorMainScreen _screen;
 	private const string BaseText = "0x00";
-	private readonly string[] _prefixes = new[] { "0x", "0X", "0", "$" };
+	private const int BasePrefixIndex = 0;
+	private readonly IReadOnlyList<string> _prefixes = new[] { "0x", "0X", "0", "$" };
 	private int _prefixLength = 2;
 
 	public override void _Ready()
@@ -18,6 +20,15 @@ public partial class TextEditHexAngle : TextEditValidable
 		{
 			Text = isActive ? BaseText : string.Empty;
 			Editable = isActive;
+		};
+		
+		_screen.AngleChangedEvents += angle =>
+		{
+			var newText = $"{_prefixes[BasePrefixIndex]}{angle:X}";
+			if (Text != newText)
+			{
+				Text = newText;
+			}
 		};
 	}
 
@@ -38,7 +49,6 @@ public partial class TextEditHexAngle : TextEditValidable
 
 	private void UpdateAngle()
 	{
-		_screen.AngleMap.Angles[_screen.TileIndex] = 
-			byte.Parse(Text[_prefixLength..], NumberStyles.HexNumber, null);
+		_screen.SetAngle(byte.Parse(Text[_prefixLength..], NumberStyles.HexNumber, null));
 	}
 }

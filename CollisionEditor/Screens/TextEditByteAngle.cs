@@ -8,7 +8,7 @@ public partial class TextEditByteAngle : TextEditValidable
 
 	public override void _Ready()
 	{
-		TextValidated += UpdateAngle;
+		TextValidated += () => _screen.SetAngle(byte.Parse(Text));
 		
 		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
 		_screen.ActivityChangedEvents += isActive =>
@@ -16,15 +16,19 @@ public partial class TextEditByteAngle : TextEditValidable
 			Text = isActive ? BaseText : string.Empty;
 			Editable = isActive;
 		};
+
+		_screen.AngleChangedEvents += angle =>
+		{
+			var newText = angle.ToString();
+			if (Text != newText)
+			{
+				Text = newText;
+			}
+		};
 	}
 
 	protected override bool ValidateText()
 	{
 		return byte.TryParse(Text, out _);
-	}
-
-	private void UpdateAngle()
-	{
-		_screen.AngleMap.Angles[_screen.TileIndex] = byte.Parse(Text);
 	}
 }

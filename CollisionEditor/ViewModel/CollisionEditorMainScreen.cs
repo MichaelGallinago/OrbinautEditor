@@ -21,6 +21,7 @@ public partial class CollisionEditorMainScreen : Control
 	
 	public event Action<bool> ActivityChangedEvents;
 	public event Action TileIndexChangedEvents;
+	public event Action<byte> AngleChangedEvents;
 
 	private FileDialog _fileDialog;
 	private FileDialog.FileSelectedEventHandler? _fileDialogEvent;
@@ -92,6 +93,33 @@ public partial class CollisionEditorMainScreen : Control
 			SetTileIndex(TileIndex);
 		}
 		TileButtonsGrid.CreateTileButtons(TileSet);
+	}
+
+	public void AddTile()
+	{
+		TileSet.RemoveTile(TileIndex);
+		TileSet.InsertTile(TileIndex);
+		TileButtonsGrid.InsertTileButton(TileIndex, TileSet);
+	}
+
+	public void RemoveTile()
+	{
+		TileSet.RemoveTile(TileIndex);
+		TileButtonsGrid.RemoveTileButton(TileIndex);
+		TileIndexChangedEvents?.Invoke();
+	}
+
+	public void ChangeAngleBy(int value)
+	{
+		var angle = (byte)(AngleMap.Angles[TileIndex] + value);
+		AngleMap.Angles[TileIndex] = angle;
+		AngleChangedEvents?.Invoke(angle);
+	}
+
+	public void SetAngle(byte value)
+	{
+		AngleMap.Angles[TileIndex] = value;
+		AngleChangedEvents?.Invoke(value);
 	}
 
 	private void SetTileIndex(int value)
