@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static Godot.Mathf;
 
 public partial class BigTile : TextureRect
 {
@@ -31,20 +32,26 @@ public partial class BigTile : TextureRect
 
 		if (_screen.AngleMap.Angles.Count == 0) return;
 		Vector2 size = (Vector2)(_screen.TileSet.TileSize * TileScale) / 2f;
-		float angle = (360 - (float)Angles.GetFullAngle(_screen.AngleMap.Angles[_screen.TileIndex], false)) % 180;
+		Vector2 position = GetLinePosition(size);
+		
+		DrawLine(position + size, -position + size, Colors.Red, 2);
+	}
 
-		Vector2 position;
-		if (Mathf.Abs(90 - angle) > Mathf.RadToDeg(Mathf.Atan2(size.Y, size.X)))
+	private Vector2 GetLinePosition(Vector2 size)
+	{
+		byte realAngle = _screen.AngleMap.Angles[_screen.TileIndex];
+		float angle = DegToRad((360 - (float)Angles.GetFullAngle(realAngle, false)) % 180);
+		float invertedAngle = Pi / 2 - angle;
+		if (Abs(invertedAngle) > Atan2(size.Y, size.X))
 		{
-			float tangent = Mathf.Tan(Mathf.DegToRad(angle));
-			position = new Vector2(size.X, tangent * size.X);
+			size.Y = Tan(angle) * size.X;
 		}
 		else
 		{
-			float tangent = -Mathf.Tan(Mathf.DegToRad(angle - 90));
-			position = new Vector2(tangent * size.Y, size.Y);
+			size.X = Tan(invertedAngle) * size.Y;
 		}
-		DrawLine(position + size, -position + size, Colors.Red, 2);
+
+		return size;
 	}
 
 	private void UpdateTile(int? tileIndex)
