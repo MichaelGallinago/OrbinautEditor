@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class TextEditValidable : TextEdit
+public abstract partial class LineEditValidable : LineEdit
 {
 	private StyleBoxFlat _styleNormal;
 	private StyleBoxFlat _styleNormalError;
@@ -9,11 +9,11 @@ public abstract partial class TextEditValidable : TextEdit
 	private StyleBoxFlat _styleFocusError;
 	private bool _isTextValid = true;
 
-	protected Action TextValidated;
+	protected Action<string> TextValidated;
 
 	protected abstract bool ValidateText();
 
-	protected TextEditValidable()
+	protected LineEditValidable()
 	{
 		TextChanged += OnTextChanged;
 		
@@ -31,13 +31,13 @@ public abstract partial class TextEditValidable : TextEdit
 		AddThemeStyleboxOverride("focus", isValid ? _styleFocus : _styleFocusError);
 	}
 
-	private void OnTextChanged()
+	private void OnTextChanged(string text)
 	{
 		bool isValid = ValidateText();
 
 		if (isValid)
 		{
-			TextValidated?.Invoke();
+			TextValidated?.Invoke(text);
 		}
 		
 		if (isValid == _isTextValid) return;

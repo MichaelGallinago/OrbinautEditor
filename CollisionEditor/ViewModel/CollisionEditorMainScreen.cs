@@ -1,4 +1,3 @@
-#nullable enable
 using System;
 using Godot;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ public partial class CollisionEditorMainScreen : Control
 		set
 		{
 			_tileIndex = value;
-			TileIndexChangedEvents();
+			TileIndexChangedEvents?.Invoke();
 		}
 	}
 	
@@ -24,7 +23,7 @@ public partial class CollisionEditorMainScreen : Control
 	public event Action<byte> AngleChangedEvents;
 
 	private FileDialog _fileDialog;
-	private FileDialog.FileSelectedEventHandler? _fileDialogEvent;
+	private FileDialog.FileSelectedEventHandler _fileDialogEvent;
 	private readonly Vector2I _tileSize = new(16, 16);
 	private int _tileCount;
 	private int _tileIndex;
@@ -34,8 +33,9 @@ public partial class CollisionEditorMainScreen : Control
 		TileSet = new TileSet(this);
 		AngleMap = new AngleMap();
 		_fileDialog = new FileDialog();
+		TileIndexChangedEvents += () => AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}
-	
+
 	public override void _Ready()
 	{
 		Window window = GetTree().Root;
@@ -51,7 +51,7 @@ public partial class CollisionEditorMainScreen : Control
 	{
 		if (_tileCount == TileSet.Tiles.Count || (_tileCount != 0 && TileSet.Tiles.Count != 0)) return;
 		_tileCount = TileSet.Tiles.Count;
-		ActivityChangedEvents(_tileCount != 0);
+		ActivityChangedEvents?.Invoke(_tileCount != 0);
 	}
 
 	public void OpenFileDialog(Dictionary<string, string> filters, 
@@ -97,14 +97,16 @@ public partial class CollisionEditorMainScreen : Control
 
 	public void AddTile()
 	{
-		TileSet.RemoveTile(TileIndex);
 		TileSet.InsertTile(TileIndex);
+		AngleMap.InsertAngle(TileIndex);
 		TileButtonsGrid.InsertTileButton(TileIndex, TileSet);
+		TileIndexChangedEvents?.Invoke();
 	}
 
 	public void RemoveTile()
 	{
 		TileSet.RemoveTile(TileIndex);
+		AngleMap.RemoveAngle(TileIndex);
 		TileButtonsGrid.RemoveTileButton(TileIndex);
 		TileIndexChangedEvents?.Invoke();
 	}
@@ -125,5 +127,6 @@ public partial class CollisionEditorMainScreen : Control
 	private void SetTileIndex(int value)
 	{
 		TileIndex = Mathf.Min(value, TileSet.Tiles.Count - 1);
+		TileIndexChangedEvents?.Invoke();
 	}
 }

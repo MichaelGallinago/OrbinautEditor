@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Globalization;
 
-public partial class TextEditFullAngle : TextEdit
+public partial class LineEditFullAngle : LineEdit
 {
 	private CollisionEditorMainScreen _screen;
 	private const string BaseText = "360°";
@@ -12,10 +12,12 @@ public partial class TextEditFullAngle : TextEdit
 	{
 		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
 		_screen.ActivityChangedEvents += isActive => Text = isActive ? BaseText : string.Empty;
-		_screen.AngleChangedEvents += angle =>
-		{
-			double value = Math.Round((byte.MaxValue + 1 - angle) * ConvertByteToFull, 2);
-			Text = value.ToString(CultureInfo.InvariantCulture) + '°';
-		};
+		_screen.AngleChangedEvents += OnAngleChanged;
+	}
+	
+	private void OnAngleChanged(byte angle)
+	{
+		double value = Math.Round((byte.MaxValue + 1 - angle) * ConvertByteToFull, 2);
+		Text = value.ToString(CultureInfo.InvariantCulture) + '°';
 	}
 }

@@ -58,7 +58,7 @@ public partial class TileButtonsGrid : GridContainer
 
 	private TextureButton CreateTileButton(Tile tile)
 	{
-		return new TextureButton()
+		var button = new TextureButton()
 		{
 			ToggleMode = true,
 			ButtonGroup = _buttonGroup,
@@ -66,6 +66,8 @@ public partial class TileButtonsGrid : GridContainer
 			TextureNormal = tile.Sprite.Texture,
 			StretchMode = TextureButton.StretchModeEnum.Scale
 		};
+		button.Pressed += () => _screen.TileIndex = _tileButtons.IndexOf(button);
+		return button;
 	}
 
 	private void ClearTileButtons()

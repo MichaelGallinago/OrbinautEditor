@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=36 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMainScreen.cs" id="1_blk3s"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="1_cevwq"]
@@ -20,16 +20,18 @@
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="14_ytfv2"]
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="15_fhodj"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="17_4yaha"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditByteAngle.cs" id="17_dp5ur"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditHeights.cs" id="18_1hq8c"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/AngleButtonAdd.cs" id="19_57b5b"]
 [ext_resource type="Material" uid="uid://cbswm202gr4m3" path="res://Shaders/colour.tres" id="19_lxdgu"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditWidths.cs" id="19_oeaim"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditByteAngle.cs" id="20_lt04x"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonsGrid.cs" id="20_n7trk"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/AngleButtonSub.cs" id="20_v6iwc"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditHexAngle.cs" id="22_thjvh"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditHexAngle.cs" id="21_7gyth"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditFullAngle.cs" id="22_l3rmc"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonAdd.cs" id="23_ngbgh"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonRemove.cs" id="24_4ip02"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditFullAngle.cs" id="24_4x2bi"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TextEditTileIndex.cs" id="25_4sgaf"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileIndex.cs" id="29_grl6x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -258,44 +260,46 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer"]
+[node name="TileData" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TextEdit" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
-theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("11_sequl")
-theme_override_styles/focus = ExtResource("12_crto4")
-theme_override_styles/read_only = ExtResource("13_7rbqm")
-editable = false
-
-[node name="TextEdit2" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+[node name="LineEditHeights" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
+alignment = 1
 editable = false
+script = ExtResource("18_1hq8c")
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+[node name="LineEditWidths" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("11_sequl")
+theme_override_styles/focus = ExtResource("12_crto4")
+theme_override_styles/read_only = ExtResource("13_7rbqm")
+alignment = 1
+editable = false
+script = ExtResource("19_oeaim")
+
+[node name="AngleLines" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="TextEditByteAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="LineEditByteAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Byte Angle"
+max_length = 3
 editable = false
-scroll_fit_content_height = true
-caret_blink = true
-script = ExtResource("17_dp5ur")
+script = ExtResource("20_lt04x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditByteAngle"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -309,18 +313,18 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle/VBoxContainer"]
+[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditByteAngle/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
 icon = ExtResource("14_ytfv2")
 flat = true
 script = ExtResource("19_57b5b")
 
-[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditByteAngle/VBoxContainer"]
+[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditByteAngle/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 theme_override_constants/outline_size = 0
 theme_override_styles/focus = ExtResource("9_7rltt")
 disabled = true
@@ -328,18 +332,18 @@ icon = ExtResource("15_fhodj")
 flat = true
 script = ExtResource("20_v6iwc")
 
-[node name="TextEditHexAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="LineEditHexAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Hex Angle"
+max_length = 4
 editable = false
-caret_blink = true
-script = ExtResource("22_thjvh")
+script = ExtResource("21_7gyth")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditHexAngle"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -353,7 +357,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle/VBoxContainer"]
+[node name="AngleButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditHexAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -362,7 +366,7 @@ icon = ExtResource("14_ytfv2")
 flat = true
 script = ExtResource("19_57b5b")
 
-[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5/TextEditHexAngle/VBoxContainer"]
+[node name="AngleButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines/LineEditHexAngle/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/focus = ExtResource("9_7rltt")
@@ -371,7 +375,7 @@ icon = ExtResource("15_fhodj")
 flat = true
 script = ExtResource("20_v6iwc")
 
-[node name="TextEditFullAngle" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/VBoxContainer2/HBoxContainer5"]
+[node name="LineEditFullAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("11_sequl")
@@ -379,7 +383,7 @@ theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Full Angle"
 editable = false
-script = ExtResource("24_4x2bi")
+script = ExtResource("22_l3rmc")
 
 [node name="SelectorPanelMarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel"]
 layout_mode = 2
@@ -444,21 +448,20 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="TextEditTileIndex" type="TextEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+[node name="LineEditTileIndex" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.37
 theme_override_styles/normal = ExtResource("11_sequl")
 theme_override_styles/focus = ExtResource("12_crto4")
 theme_override_styles/read_only = ExtResource("13_7rbqm")
 placeholder_text = "Tile Index"
 editable = false
-script = ExtResource("25_4sgaf")
+script = ExtResource("29_grl6x")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.41
+size_flags_stretch_ratio = 0.5
 
 [node name="TileButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
