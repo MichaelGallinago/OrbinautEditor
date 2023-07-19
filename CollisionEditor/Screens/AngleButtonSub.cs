@@ -3,12 +3,10 @@ using System;
 
 public partial class AngleButtonSub : Button
 {
-	private CollisionEditorMainScreen _screen;
 	public override void _Ready()
 	{
-		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
-		_screen.ActivityChangedEvents += isActive => Disabled = !isActive;
-		
-		Pressed += () => _screen.ChangeAngleBy(-1);
+		CollisionEditorMain screen = CollisionEditorMain.Screen;
+		screen.ActivityChangedEvents += isActive => Disabled = !isActive;
+		Pressed += () => screen.ChangeAngleBy(-1);
 	}
 }

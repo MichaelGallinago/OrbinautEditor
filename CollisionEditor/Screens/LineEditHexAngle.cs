@@ -5,7 +5,7 @@ using System.Globalization;
 
 public partial class LineEditHexAngle : LineEditValidable
 {
-	private CollisionEditorMainScreen _screen;
+	private CollisionEditorMain _screen;
 	private const string BaseText = "0x00";
 	private const int BasePrefixIndex = 0;
 	private const byte BaseLength = 2;
@@ -14,7 +14,7 @@ public partial class LineEditHexAngle : LineEditValidable
 
 	public override void _Ready()
 	{
-		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+		_screen = CollisionEditorMain.Screen;
 		_screen.ActivityChangedEvents += OnActivityChanged;
 		_screen.AngleChangedEvents += OnAngleChanged;
 		TextValidated += OnTextValidated;

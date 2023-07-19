@@ -3,13 +3,11 @@ using System;
 
 public partial class TileButtonAdd : Button
 {
-	private CollisionEditorMainScreen _screen;
-	
 	public override void _Ready()
 	{
-		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
-		_screen.ActivityChangedEvents += isActive => Disabled = !isActive;
+		CollisionEditorMain screen = CollisionEditorMain.Screen;
+		screen.ActivityChangedEvents += isActive => Disabled = !isActive;
 		
-		Pressed += _screen.AddTile;
+		Pressed += screen.AddTile;
 	}
 }

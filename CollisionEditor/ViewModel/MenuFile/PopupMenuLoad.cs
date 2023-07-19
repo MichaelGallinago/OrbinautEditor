@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class PopupMenuLoad : PopupMenuHandler
 {
-    private CollisionEditorMainScreen _screen;
+    private CollisionEditorMain _screen;
 
     public PopupMenuLoad()
     {
@@ -15,7 +15,7 @@ public partial class PopupMenuLoad : PopupMenuHandler
     
     public override void _Ready()
     {
-        _screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+        _screen = CollisionEditorMain.Screen;
     }
     
     protected override void OnItemPressed(long id)

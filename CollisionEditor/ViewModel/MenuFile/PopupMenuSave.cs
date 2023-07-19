@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class PopupMenuSave : PopupMenuHandler
 {
-    private CollisionEditorMainScreen _screen;
+    private CollisionEditorMain _screen;
     private const FileDialog.FileModeEnum FileMode = FileDialog.FileModeEnum.SaveFile;
     
     public PopupMenuSave()
@@ -19,7 +19,7 @@ public partial class PopupMenuSave : PopupMenuHandler
     
     public override void _Ready()
     {
-        _screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+        _screen = CollisionEditorMain.Screen;
     }
     
     protected override void OnItemPressed(long id)

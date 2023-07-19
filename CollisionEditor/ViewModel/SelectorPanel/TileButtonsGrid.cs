@@ -7,7 +7,7 @@ public partial class TileButtonsGrid : GridContainer
 {
 	private readonly List<TextureButton> _tileButtons = new();
 	private ButtonGroup _buttonGroup = new();
-	private CollisionEditorMainScreen _screen;
+	private CollisionEditorMain _screen;
 	private Vector2I _buttonSize;
 	
 	private const byte Separation = 4;
@@ -15,7 +15,7 @@ public partial class TileButtonsGrid : GridContainer
 
 	public override void _Ready()
 	{
-		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+		_screen = CollisionEditorMain.Screen;
 		_screen.TileButtonsGrid = this;
 		Resized += () =>
 		{
@@ -61,6 +61,7 @@ public partial class TileButtonsGrid : GridContainer
 		var button = new TextureButton()
 		{
 			ToggleMode = true,
+			UseParentMaterial = true,
 			ButtonGroup = _buttonGroup,
 			CustomMinimumSize = _buttonSize,
 			TextureNormal = tile.Sprite.Texture,

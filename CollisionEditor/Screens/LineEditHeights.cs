@@ -5,11 +5,11 @@ using System.Text;
 
 public partial class LineEditHeights : LineEdit
 {
-	private CollisionEditorMainScreen _screen;
+	private CollisionEditorMain _screen;
 
 	public override void _Ready()
 	{
-		_screen = (CollisionEditorMainScreen)GetTree().Root.GetChild(0);
+		_screen = CollisionEditorMain.Screen;
 		_screen.TileIndexChangedEvents += () => Text = CreateString(_screen.TileSet.Tiles[_screen.TileIndex].Heights);
 	}
 	
