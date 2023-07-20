@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=37 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMain.cs" id="1_sw61k"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_octjv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/MenuHelp/MenuButtonHelp.cs" id="6_ki8ou"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="7_mra65"]
 [ext_resource type="StyleBox" uid="uid://h70c1mhf6qsc" path="res://Styles/style_main_panel_light.tres" id="8_olnoq"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/BigTilePanel.cs" id="9_vvsv8"]
 [ext_resource type="Material" uid="uid://cbswm202gr4m3" path="res://Shaders/colour.tres" id="9_wre5s"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/BigTile.cs" id="10_cjs7n"]
 [ext_resource type="StyleBox" uid="uid://bhba0rgiujedb" path="res://Styles/Button Mode/style_button_mode_normal.tres" id="11_fitl4"]
@@ -174,35 +175,34 @@ theme_override_constants/separation = 0
 [node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
 
-[node name="BoxContainer" type="BoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer/BoxContainer"]
+[node name="BigTilePanel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer/CenterContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("8_olnoq")
+script = ExtResource("9_vvsv8")
 
-[node name="BigTile" type="TextureRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer/BoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer/CenterContainer/BigTilePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="BigTile" type="TextureRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/MarginContainer/CenterContainer/BigTilePanel/MarginContainer"]
 material = ExtResource("9_wre5s")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("10_cjs7n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel"]
