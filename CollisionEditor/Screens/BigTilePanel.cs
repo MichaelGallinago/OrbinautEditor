@@ -18,6 +18,7 @@ public partial class BigTilePanel : Panel
 		_container = (CenterContainer)GetParent();
 		GetTree().Root.SizeChanged += ResetPanelSize;
 		_container.Resized += UpdatePanelSize;
+		_screen.ActivityChangedEvents += _ => UpdatePanelSize();
 	}
 	
 	private void ResetPanelSize()

@@ -12,7 +12,7 @@ public partial class LineEditTileIndex : LineEditValidable
 
 		_screen = CollisionEditorMain.Screen;
 		_screen.ActivityChangedEvents += OnActivityChanged;
-		_screen.TileIndexChangedEvents += UpdateMaxLength;
+		_screen.TileIndexChangedEvents += OnTileIndexChanged;
 	}
 
 	protected override bool ValidateText()
@@ -29,11 +29,16 @@ public partial class LineEditTileIndex : LineEditValidable
 	{
 		Text = isActive ? BaseText : string.Empty;
 		Editable = isActive;
-		UpdateMaxLength();
+		OnTileIndexChanged();
 	}
 
-	private void UpdateMaxLength()
+	private void OnTileIndexChanged()
 	{
+		if (!int.TryParse(Text, out int value) || value != _screen.TileIndex)
+		{
+			Text = _screen.TileIndex.ToString();
+		}
+		
 		MaxLength = _screen.TileSet.Tiles.Count.ToString().Length;
 	}
 }

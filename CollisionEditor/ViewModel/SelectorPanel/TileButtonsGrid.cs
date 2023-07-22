@@ -65,6 +65,7 @@ public partial class TileButtonsGrid : GridContainer
 			ButtonGroup = _buttonGroup,
 			CustomMinimumSize = _buttonSize,
 			TextureNormal = tile.Sprite.Texture,
+			ActionMode = BaseButton.ActionModeEnum.Press,
 			StretchMode = TextureButton.StretchModeEnum.Scale
 		};
 		button.Pressed += () => _screen.TileIndex = _tileButtons.IndexOf(button);

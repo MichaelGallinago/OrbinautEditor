@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=41 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMain.cs" id="1_sw61k"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_octjv"]
@@ -34,6 +34,8 @@
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="30_nu577"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonAdd.cs" id="31_rvu86"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonRemove.cs" id="32_472t3"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileIndexButtonAdd.cs" id="32_hrfsb"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileIndexButtonSub.cs" id="33_e0xrn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca04k"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -502,7 +504,7 @@ theme_override_styles/focus = ExtResource("13_nwl58")
 disabled = true
 icon = ExtResource("22_sgfg8")
 flat = true
-script = ExtResource("23_y4m88")
+script = ExtResource("32_hrfsb")
 
 [node name="TileIndexButtonSub" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/LineEditTileIndex/VBoxContainer2"]
 layout_mode = 2
@@ -512,7 +514,7 @@ theme_override_styles/focus = ExtResource("13_nwl58")
 disabled = true
 icon = ExtResource("24_me1g3")
 flat = true
-script = ExtResource("25_cqqdv")
+script = ExtResource("33_e0xrn")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2

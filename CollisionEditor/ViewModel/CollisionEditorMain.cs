@@ -16,7 +16,7 @@ public partial class CollisionEditorMain : Control
 		get => _tileIndex;
 		set
 		{
-			_tileIndex = Mathf.Wrap(value, 0, TileSet.Tiles.Count - 1);
+			_tileIndex = Mathf.Wrap(value, 0, TileSet.Tiles.Count);
 			TileIndexChangedEvents?.Invoke();
 		}
 	}
@@ -52,8 +52,6 @@ public partial class CollisionEditorMain : Control
 
 	public override void _Process(double delta)
 	{
-		UpdateTileIndex();
-
 		ChangeActivity();
 	}
 
@@ -125,18 +123,6 @@ public partial class CollisionEditorMain : Control
 	{
 		AngleMap.Angles[TileIndex] = value;
 		AngleChangedEvents?.Invoke(value);
-	}
-
-	private void UpdateTileIndex()
-	{
-		if (Input.IsActionJustPressed("Plus"))
-		{
-			TileIndex++;
-		}
-		else if (Input.IsActionJustPressed("Minus"))
-		{
-			TileIndex--;
-		}
 	}
 
 	private void ChangeActivity()
