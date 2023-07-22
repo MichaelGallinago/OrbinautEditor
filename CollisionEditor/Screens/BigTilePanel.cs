@@ -12,7 +12,7 @@ public partial class BigTilePanel : Panel
 	public override void _Ready()
 	{
 		_screen = CollisionEditorMain.Screen;
-		_bigTile = (BigTile)(GetChild(0).GetChild(0));
+		_bigTile = (BigTile)GetChild(0).GetChild(0);
 		MinimumSizeChanged += () => _bigTile.CustomMinimumSize = CustomMinimumSize - PanelBorder;
 
 		_container = (CenterContainer)GetParent();
@@ -37,10 +37,11 @@ public partial class BigTilePanel : Panel
 		Vector2 targetSize = _container.Size - PanelBorder;
 		float textureMaxSize = Mathf.Max(textureSize.X, textureSize.Y);
 		float containerMinSize = Mathf.Min(targetSize.X, targetSize.Y);
-		var scale = (int)(containerMinSize / textureMaxSize);
+		int scale = Mathf.Max(4, (int)(containerMinSize / textureMaxSize));
 		
 		_bigTile.TileScale = scale;
 		_bigTile.UpdateTile(_screen.TileIndex);
+		((ShaderMaterial)_bigTile.Material).SetShaderParameter("Size",  scale);
 		CustomMinimumSize = textureSize * scale + PanelBorder;
 	}
 }

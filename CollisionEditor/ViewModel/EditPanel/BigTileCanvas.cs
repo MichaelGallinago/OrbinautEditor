@@ -9,10 +9,7 @@ public partial class BigTileCanvas : Control
 	public BigTileCanvas(BigTile bigTile)
 	{
 		_bigTile = bigTile;
-		_bigTile.MinimumSizeChanged += () =>
-		{
-			CustomMinimumSize = _bigTile.CustomMinimumSize;
-		};
+		_bigTile.MinimumSizeChanged += () => CustomMinimumSize = _bigTile.CustomMinimumSize;
 	}
 
 	public override void _Ready()

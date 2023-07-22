@@ -1,7 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbswm202gr4m3"]
 
-[ext_resource type="Shader" path="res://Shaders/colour.gdshader" id="1_co6tw"]
+[ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="1_ldt8l"]
 
 [resource]
-shader = ExtResource("1_co6tw")
+shader = ExtResource("1_ldt8l")
 shader_parameter/Colour = Vector3(224, 224, 224)
+shader_parameter/GridColour = Vector4(0.5, 0.5, 0.5, 1)
+shader_parameter/Size = null

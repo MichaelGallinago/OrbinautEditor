@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=39 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMain.cs" id="1_sw61k"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_octjv"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditFullAngle.cs" id="27_sibmg"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonsGrid.cs" id="28_vhqav"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileIndex.cs" id="29_2wosu"]
+[ext_resource type="Shader" path="res://Shaders/colour.gdshader" id="29_u5omp"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="30_nu577"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButtonAdd.cs" id="31_rvu86"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileButtonRemove.cs" id="32_472t3"]
@@ -46,6 +47,10 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuy6r"]
 bg_color = Color(0.145098, 0.168627, 0.203922, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p73b6"]
+shader = ExtResource("29_u5omp")
+shader_parameter/Colour = Vector3(224, 224, 224)
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -439,7 +444,7 @@ size_flags_vertical = 3
 horizontal_scroll_mode = 3
 
 [node name="TileButtonsGrid" type="GridContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/ScrollContainer"]
-material = ExtResource("9_wre5s")
+material = SubResource("ShaderMaterial_p73b6")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
