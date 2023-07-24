@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://gtxd7vso0cpw"]
+
+[ext_resource type="Shader" path="res://Shaders/colour.gdshader" id="1_ki3s8"]
+[ext_resource type="ButtonGroup" uid="uid://tg7s4df01xal" path="res://tile_button_group.tres" id="2_kaydb"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButton.cs" id="3_iao58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jb75e"]
+resource_local_to_scene = true
+shader = ExtResource("1_ki3s8")
+shader_parameter/IsPressed = null
+
+[node name="TileButton" type="TextureButton"]
+material = SubResource("ShaderMaterial_jb75e")
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("2_kaydb")
+stretch_mode = 0
+script = ExtResource("3_iao58")

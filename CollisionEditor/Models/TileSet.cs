@@ -158,7 +158,7 @@ public partial class TileSet : GodotObject
             var shaderColor = new Vector3(color.R, color.G, color.B);
             spriteContainer.Material = (Material)material.Duplicate();
             ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Colour", shaderColor);
-            
+
             int groupTileCount = Tiles.Count + groupOffset[group];
             for (var i = 0; i < groupTileCount; i++)
             {
