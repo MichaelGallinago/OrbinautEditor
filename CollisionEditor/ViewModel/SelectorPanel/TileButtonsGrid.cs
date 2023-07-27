@@ -70,7 +70,7 @@ public partial class TileButtonsGrid : GridContainer
 		return button;
 	}
 
-	private void ClearTileButtons()
+	public void ClearTileButtons()
 	{
 		foreach (TileButton tileButton in _tileButtons)
 		{

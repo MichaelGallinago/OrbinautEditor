@@ -6,6 +6,7 @@ public partial class BigTilePanel : Panel
 	private CollisionEditorMain _screen;
 	private CenterContainer _container;
 	private BigTile _bigTile;
+	private bool _isResetSize;
 
 	public Vector2 PanelBorder { get; } = new(8, 8);
 
@@ -17,24 +18,35 @@ public partial class BigTilePanel : Panel
 
 		_container = (CenterContainer)GetParent();
 		GetTree().Root.SizeChanged += ResetPanelSize;
-		_container.Resized += UpdatePanelSize;
-		_screen.ActivityChangedEvents += _ => UpdatePanelSize();
+		_screen.ActivityChangedEvents += UpdatePanelSize;
+	}
+
+	public override void _Process(double delta)
+	{
+		if (!_isResetSize) return;
+		_isResetSize = false;
+		UpdatePanelSize(true);
 	}
 	
 	private void ResetPanelSize()
 	{
-		Texture2D texture = _bigTile.Texture;
-		if (texture is null) return;
-		
+		if (_bigTile.Texture is null) return;
 		CustomMinimumSize = new Vector2();
+		_isResetSize = true;
 	}
 
-	private void UpdatePanelSize()
+	private void UpdatePanelSize(bool isActive)
 	{
-		Texture2D texture = _bigTile.Texture;
-		if (texture is null) return;
-		
-		Vector2 textureSize = texture.GetSize();
+		if (!isActive)
+		{
+			_bigTile.Texture = null;
+			CustomMinimumSize = new Vector2();
+			return;
+		}
+
+		if (_bigTile.Texture is null) return;
+
+		Vector2 textureSize = _bigTile.Texture.GetSize();
 		Vector2 targetSize = _container.Size - PanelBorder;
 		float textureMaxSize = Mathf.Max(textureSize.X, textureSize.Y);
 		float containerMinSize = Mathf.Min(targetSize.X, targetSize.Y);

@@ -33,6 +33,7 @@ public partial class PopupMenuUnload : PopupMenuHandler
     {
         _screen.TileSet.Tiles.Clear();
         _screen.AngleMap.Angles.Clear();
+        _screen.TileButtonsGrid.ClearTileButtons();
     }
     
     private void OnAngleMapPressed()
