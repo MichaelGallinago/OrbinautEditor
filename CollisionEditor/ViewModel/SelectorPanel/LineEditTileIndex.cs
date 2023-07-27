@@ -13,7 +13,6 @@ public partial class LineEditTileIndex : LineEditValidable
 	public override void _Ready()
 	{
 		TextValidated += OnTextValidated;
-
 		_screen = CollisionEditorMain.Screen;
 		_screen.ActivityChangedEvents += OnActivityChanged;
 		_screen.TileIndexChangedEvents += OnTileIndexChanged;
@@ -45,9 +44,7 @@ public partial class LineEditTileIndex : LineEditValidable
 
 	private void OnTileIndexChanged()
 	{
-		if (!int.TryParse(Text, out int value) || value != _screen.TileIndex)
-		{
-			Text = _screen.TileIndex.ToString();
-		}
+		if (int.TryParse(Text, out int value) && value == _screen.TileIndex) return;
+		Text = _screen.TileIndex.ToString();
 	}
 }

@@ -8,6 +8,9 @@ public abstract partial class LineEditValidable : LineEdit
 	private StyleBoxFlat _styleFocus;
 	private StyleBoxFlat _styleFocusError;
 	private bool _isTextValid = true;
+	private string _text;
+
+	private readonly TextChangedEventHandler _textUpdated;
 
 	protected Action<string> TextValidated;
 
@@ -15,12 +18,18 @@ public abstract partial class LineEditValidable : LineEdit
 
 	protected LineEditValidable()
 	{
-		TextChanged += OnTextChanged;
-		
+		_textUpdated += OnTextUpdated;
 		_styleNormal = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_normal.tres");
 		_styleFocus = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_focus.tres");
 		_styleNormalError = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_normal_error.tres");
 		_styleFocusError = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_focus_error.tres");
+	}
+
+	public override void _Process(double delta)
+	{
+		if (_text == Text) return;
+		_textUpdated?.Invoke(Text);
+		_text = Text;
 	}
 
 	private void UpdateStyle(bool isValid)
@@ -31,7 +40,7 @@ public abstract partial class LineEditValidable : LineEdit
 		AddThemeStyleboxOverride("focus", isValid ? _styleFocus : _styleFocusError);
 	}
 
-	private void OnTextChanged(string text)
+	private void OnTextUpdated(string text)
 	{
 		bool isValid = ValidateText();
 
