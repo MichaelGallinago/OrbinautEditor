@@ -30,11 +30,6 @@ public partial class BigTile : TextureRect
 
 	public void UpdateTile(int? tileIndex)
 	{
-		if (_screen.TileSet.Tiles.Count == 0)
-		{
-			tileIndex = null;
-		}
-		
 		Texture = tileIndex is null ? new Texture2D() : _screen.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
 	}
 }

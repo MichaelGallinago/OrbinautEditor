@@ -115,6 +115,7 @@ public partial class CollisionEditorMain : Control
 		AngleMap.RemoveAngle(TileIndex);
 		TileButtonsGrid.RemoveTileButton(TileIndex);
 
+		if (TileSet.Tiles.Count == 0) return;
 		if (TileIndex >= TileSet.Tiles.Count)
 		{
 			TileIndex = TileSet.Tiles.Count - 1;	
