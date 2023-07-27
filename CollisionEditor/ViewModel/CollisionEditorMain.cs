@@ -37,7 +37,12 @@ public partial class CollisionEditorMain : Control
 		TileSet = new TileSet(this);
 		AngleMap = new AngleMap();
 		_fileDialog = new FileDialog();
-		TileIndexChangedEvents += () => AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
+		
+		TileIndexChangedEvents += () =>
+		{
+			if (AngleMap.Angles.Count == 0) return;
+			AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
+		};
 	}
 
 	public override void _Ready()
@@ -109,6 +114,12 @@ public partial class CollisionEditorMain : Control
 		TileSet.RemoveTile(TileIndex);
 		AngleMap.RemoveAngle(TileIndex);
 		TileButtonsGrid.RemoveTileButton(TileIndex);
+
+		if (TileIndex >= TileSet.Tiles.Count)
+		{
+			TileIndex = TileSet.Tiles.Count - 1;	
+		}
+
 		TileIndexChangedEvents?.Invoke();
 	}
 
@@ -138,6 +149,7 @@ public partial class CollisionEditorMain : Control
 	{
 		if (_tileCount == TileSet.Tiles.Count || (_tileCount != 0 && TileSet.Tiles.Count != 0)) return;
 		_tileCount = TileSet.Tiles.Count;
+
 		ActivityChangedEvents?.Invoke(_tileCount != 0);
 	}
 }

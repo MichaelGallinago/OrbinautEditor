@@ -11,6 +11,13 @@ public partial class LineEditWidths : LineEdit
 	{
 		_screen = CollisionEditorMain.Screen;
 		_screen.TileIndexChangedEvents += () => Text = CreateString(_screen.TileSet.Tiles[_screen.TileIndex].Widths);
+		_screen.ActivityChangedEvents += OnActivityChanged;
+	}
+
+	private void OnActivityChanged(bool isActive)
+	{
+		if (isActive) return;
+		Text = string.Empty;
 	}
 
 	private static string CreateString(IEnumerable<byte> values)

@@ -11,7 +11,14 @@ public partial class LineEditHeights : LineEdit
 	{
 		_screen = CollisionEditorMain.Screen;
 		_screen.TileIndexChangedEvents += () => Text = CreateString(_screen.TileSet.Tiles[_screen.TileIndex].Heights);
-	}
+        _screen.ActivityChangedEvents += OnActivityChanged;
+    }
+
+    private void OnActivityChanged(bool isActive)
+    {
+        if (isActive) return;
+        Text = string.Empty;
+    }
 	
 	private static string CreateString(IEnumerable<byte> values)
 	{
