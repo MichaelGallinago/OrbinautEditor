@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class BigTileCanvas : Control
+public partial class BigTileCanvasLine : Control
 {
 	private CollisionEditorMain _screen;
 	private readonly BigTile _bigTile;
 
-	public BigTileCanvas(BigTile bigTile)
+	public BigTileCanvasLine(BigTile bigTile)
 	{
 		_bigTile = bigTile;
 		_bigTile.MinimumSizeChanged += () => CustomMinimumSize = _bigTile.CustomMinimumSize;
@@ -21,14 +21,13 @@ public partial class BigTileCanvas : Control
 	{
 		if (_screen.AngleMap.Angles.Count == 0) return;
 		Vector2 size = (Vector2)(_screen.TileSet.TileSize * _bigTile.TileScale) / 2f;
-		Vector2 position = GetLinePosition(size);
+		Vector2 position = GetLinePosition(size, _screen.AngleMap.Angles[_screen.TileIndex]);
 		
 		DrawLine(position + size, -position + size, Colors.Red, 2);
 	}
 	
-	private Vector2 GetLinePosition(Vector2 size)
+	private static Vector2 GetLinePosition(Vector2 size, byte realAngle)
 	{
-		byte realAngle = _screen.AngleMap.Angles[_screen.TileIndex];
 		float angle = Mathf.DegToRad((360 - (float)Angles.GetFullAngle(realAngle, false)) % 180);
 		float invertedAngle = Mathf.Pi / 2 - angle;
 		if (Mathf.Abs(invertedAngle) > Mathf.Atan2(size.Y, size.X))

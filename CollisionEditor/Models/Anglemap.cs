@@ -6,7 +6,7 @@ using System.Linq;
 
 public class AngleMap
 {
-    private const double ConvertRadiansToByte = 128 / Math.PI;
+    public const double ConvertRadiansToByte = 128 / Math.PI;
 
     public List<byte> Angles { get; private set; }
 
@@ -63,25 +63,7 @@ public class AngleMap
             }
         }
     }
-
-    public byte SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
-    {
-        return Angles[tileIndex] = (byte)(Math.Atan2(
-            positionBlue.Y - positionGreen.Y,
-            positionBlue.X - positionGreen.X)
-            * ConvertRadiansToByte);
-    }
-
-    public byte SetAngle(int tileIndex, byte value)
-    {
-        return Angles[tileIndex] = value;
-    }
-
-    public byte ChangeAngle(int tileIndex, int value)
-    {
-        return Angles[tileIndex] = (byte)(Angles[tileIndex] + value);
-    }
-
+    
     public void InsertAngle(int tileIndex)
     {
         Angles.Insert(tileIndex, 0);

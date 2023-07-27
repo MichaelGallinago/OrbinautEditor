@@ -124,6 +124,15 @@ public partial class CollisionEditorMain : Control
 		AngleMap.Angles[TileIndex] = value;
 		AngleChangedEvents?.Invoke(value);
 	}
+	
+	public void SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
+	{
+		double angle = Math.Atan2(positionBlue.Y - positionGreen.Y, positionBlue.X - positionGreen.X);
+		var value = (byte)(angle * AngleMap.ConvertRadiansToByte);
+		AngleMap.Angles[tileIndex] = value;
+		AngleChangedEvents?.Invoke(value);
+	}
+
 
 	private void ChangeActivity()
 	{

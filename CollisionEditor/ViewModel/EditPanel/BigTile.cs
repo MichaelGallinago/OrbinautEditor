@@ -4,25 +4,28 @@ using System;
 public partial class BigTile : TextureRect
 {
 	public int TileScale { get; set; }
-	private Control _canvas;
+	private BigTileCanvasLine _canvasLine;
+	private BigTileCanvasSquares _canvasSquares;
 	
 	private CollisionEditorMain _screen;
 
 	public BigTile()
 	{
-		_canvas = new BigTileCanvas(this);
+		_canvasLine = new BigTileCanvasLine(this);
+		_canvasSquares = new BigTileCanvasSquares(this);
 	}
 	
 	public override void _Ready()
 	{
-		AddChild(_canvas);
+		AddChild(_canvasSquares);
+		AddChild(_canvasLine);
 
 		_screen = CollisionEditorMain.Screen;
 		_screen.BigTile = this;
 		
 		_screen.ActivityChangedEvents += isActive => UpdateTile(isActive ? _screen.TileIndex : null);
 		_screen.TileIndexChangedEvents += () => UpdateTile(_screen.TileIndex);
-		_screen.AngleChangedEvents += _ => _canvas.QueueRedraw();
+		_screen.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
 	}
 
 	public void UpdateTile(int? tileIndex)
