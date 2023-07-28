@@ -66,6 +66,14 @@ public partial class TileButtonsGrid : GridContainer
 		_tileButtons[index].TextureNormal = tileSet.Tiles[index].Sprite.Texture;
 	}
 
+	public void UpdateTileButtons(TileSet tileSet)
+	{
+		for (var i = 0; i < tileSet.Tiles.Count; i++)
+		{
+			UpdateTileButton(i, tileSet);
+		}
+	}
+
 	private TileButton CreateTileButton(Tile tile)
 	{
 		var button = _packedButton.Instantiate<TileButton>();

@@ -8,9 +8,9 @@ void fragment()
 {
 	vec4 pixelColor = texture(TEXTURE, UV);
 	pixelColor.rgb = (IsPressed ? PressColor : BaseColor) / 255.;
-	if (pixelColor.a == 0.0 && IsPressed)
+	if (pixelColor.a == 0.0)
 	{
-		pixelColor.a = 0.2;
+		pixelColor.a = IsPressed ? 0.2 : 0.05;
 	}
 	COLOR = pixelColor;
 }

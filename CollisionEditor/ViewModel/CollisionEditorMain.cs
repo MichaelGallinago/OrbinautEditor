@@ -136,6 +136,13 @@ public partial class CollisionEditorMain : Control
 		AngleMap.CreateAngles(AngleMap.Angles.Count);
 		AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}
+	
+	public void ClearTiles()
+	{
+		TileSet.UnloadTiles();
+		TileButtonsGrid.UpdateTileButtons(TileSet);
+		TileIndexChangedEvents?.Invoke();
+	}
 
 	public void ChangeAngleBy(int value)
 	{
