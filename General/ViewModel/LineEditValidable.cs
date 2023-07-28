@@ -52,6 +52,6 @@ public abstract partial class LineEditValidable : LineEdit
 		if (isValid == _isTextValid) return;
 		
 		_isTextValid = isValid;
-		UpdateStyle(isValid);
+		UpdateStyle(isValid || !Editable);
 	}
 }

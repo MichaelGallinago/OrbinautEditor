@@ -24,8 +24,8 @@ public partial class PopupMenuUnload : PopupMenuHandler
         switch (id)
         {
             case 0: OnAllPressed(); break;
-            case 1: OnAngleMapPressed(); break;
-            case 2: OnTileSetPressed(); break;
+            case 1: OnTileSetPressed(); break;
+            case 2: OnAngleMapPressed(); break;
         }
     }
     
@@ -35,14 +35,14 @@ public partial class PopupMenuUnload : PopupMenuHandler
         _screen.AngleMap.Angles.Clear();
         _screen.TileButtonsGrid.ClearTileButtons();
     }
+
+    private void OnTileSetPressed()
+    {
+        _screen.ClearTiles();
+    }
     
     private void OnAngleMapPressed()
     {
         _screen.ClearAngles();
-    }
-    
-    private void OnTileSetPressed()
-    {
-        _screen.ClearTiles();
     }
 }
