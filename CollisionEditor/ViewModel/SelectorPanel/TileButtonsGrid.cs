@@ -60,6 +60,11 @@ public partial class TileButtonsGrid : GridContainer
 		AddChild(tileButton);
 		MoveChild(tileButton, index);
 	}
+	
+	public void UpdateTileButton(int index, TileSet tileSet)
+	{
+		_tileButtons[index].TextureNormal = tileSet.Tiles[index].Sprite.Texture;
+	}
 
 	private TileButton CreateTileButton(Tile tile)
 	{

@@ -44,9 +44,7 @@ public partial class TileSet : GodotObject
     public async Task<Image> CreateTileMap(int columnCount, Color[] groupColor,
         int[] groupOffset, Vector2I separation, Vector2I offset)
     {
-        var cell = new Vector2I(
-            TileSize.X + separation.X,
-            TileSize.Y + separation.Y);
+        var cell = new Vector2I(TileSize.X + separation.X, TileSize.Y + separation.Y);
 
         double tilesRowWidth = Tiles.Count * groupOffset.Length + groupOffset.Sum();
         int rowCount = Mathf.CeilToInt(tilesRowWidth / columnCount);
@@ -63,10 +61,7 @@ public partial class TileSet : GodotObject
     public void ChangeTile(int tileIndex, Vector2I pixelPosition, bool isLeftButtonPressed)
     {
         Image image = Tiles[tileIndex].GetImage();
-        
-        ChangeTileHeight(image, isLeftButtonPressed 
-            ? pixelPosition : new Vector2I(pixelPosition.X, image.GetHeight()));
-        
+        ChangeTileHeight(image, isLeftButtonPressed ? pixelPosition : new Vector2I(pixelPosition.X, int.MinValue));
         Tiles[tileIndex].SetImage(image);
     }
 
@@ -90,21 +85,20 @@ public partial class TileSet : GodotObject
 
     private void ChangeTileHeight(Image image, Vector2I pixelPosition)
     {
-        if (image.GetPixelv(pixelPosition) == Colors.Transparent || pixelPosition.Y != 0 
-            && image.GetPixel(pixelPosition.X, pixelPosition.Y - 1) != Colors.Transparent)
-        {
-            for (var y = 0; y < TileSize.Y; y++)
-            {
-                image.SetPixel(pixelPosition.X, y, y >= pixelPosition.Y 
-                    ? Colors.Black : Colors.Transparent);
-            }
-            return;
-        }
-        
+        Func<int, Color> getColor = CreateFuncGetColor(pixelPosition.Y);
         for (var y = 0; y < TileSize.Y; y++)
         {
-            image.SetPixel(pixelPosition.X, y, Colors.Transparent);
+            image.SetPixel(pixelPosition.X, y, getColor(y));
         }
+    }
+
+    private static Func<int, Color> CreateFuncGetColor(int pixelPositionY)
+    {
+        if (pixelPositionY == int.MinValue)
+        {
+           return _ => Colors.Transparent;
+        }
+        return positionY => positionY >= pixelPositionY ? Colors.Black : Colors.Transparent;
     }
 
     private void CreateTiles(Image tileMap, Vector2I separation, Vector2I offset)
@@ -175,7 +169,7 @@ public partial class TileSet : GodotObject
         return image;
     }
 
-    private void AddTileSprite(Node sprite, 
+    private static void AddTileSprite(Node sprite, 
         Node container, Vector2I tilePosition)
     {
         var duplicate = (Sprite2D)sprite.Duplicate();

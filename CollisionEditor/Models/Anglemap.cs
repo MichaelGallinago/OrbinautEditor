@@ -38,12 +38,12 @@ public class AngleMap
 
     public AngleMap(int tileCount = 0)
     {
-        Angles = new List<byte>(new byte[tileCount]);
+        CreateAngles(tileCount);
     }
 
-    public void UnloadAngles()
+    public void CreateAngles(int count)
     {
-        Angles = new List<byte>(Angles.Count);
+        Angles = new List<byte>(new byte[count]);
     }
 
     public void Save(string path)

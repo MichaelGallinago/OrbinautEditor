@@ -8,6 +8,8 @@ public partial class BigTileCanvasSquares : Control
     private BigTileSquare _squareGreen;
     private byte _transparency;
     private int _transparencyChangeSpeed = 15;
+    private Vector2I _lastMousePosition;
+    private bool _isTileEditReady;
     private readonly Vector2I _gridOffset = new(1, 1);
 
     private byte Transparency
@@ -35,9 +37,7 @@ public partial class BigTileCanvasSquares : Control
         _screen = CollisionEditorMain.Screen;
 
         _bigTile.MinimumSizeChanged += OnSizeChanged;
-
-        MouseExited += () => _transparencyChangeSpeed = -Mathf.Abs(_transparencyChangeSpeed);
-        MouseEntered += () => _transparencyChangeSpeed = Mathf.Abs(_transparencyChangeSpeed);
+        _screen.TileIndexChangedEvents += DisableSquares;
     }
 
     public override void _Process(double delta)
@@ -64,20 +64,54 @@ public partial class BigTileCanvasSquares : Control
     
     private void CheckClicks()
     {
-        if (_transparencyChangeSpeed < 0 || _bigTile.TileScale == 0) return;
+        if (_bigTile.TileScale == 0 || _transparencyChangeSpeed < 0) return;
         
-        Vector2I mousePosition = (Vector2I)GetLocalMousePosition()
-            / _bigTile.TileScale * _bigTile.TileScale + _gridOffset;
-        
-        bool isLeft = CheckClickOnSquare(mousePosition, "click_left", _squareBlue, _squareGreen);
-        bool isRight = CheckClickOnSquare(mousePosition, "click_right", _squareGreen, _squareBlue);
+        Vector2I mouseGridPosition = (Vector2I)GetLocalMousePosition() / _bigTile.TileScale;
 
-        if ((isLeft || isRight) && _squareBlue.IsActive && _squareGreen.IsActive)
+        if (_screen.IsTileMode)
+        {
+            DisableSquares();
+            CheckTileMode(mouseGridPosition);
+            return;
+        }
+
+        CheckAngleMode(mouseGridPosition * _bigTile.TileScale + _gridOffset);
+    }
+
+    private void CheckAngleMode(Vector2I mousePosition)
+    {
+        bool isLeftClick = CheckClickOnSquare(mousePosition, "click_left", _squareBlue, _squareGreen);
+        bool isRightClick = CheckClickOnSquare(mousePosition, "click_right", _squareGreen, _squareBlue);
+        
+        if ((isLeftClick || isRightClick) && _squareBlue.IsActive && _squareGreen.IsActive)
         {
             _screen.SetAngleFromLine(_screen.TileIndex, 
                 (Vector2I)_squareBlue.Rectangle.Position, 
                 (Vector2I)_squareGreen.Rectangle.Position);
         }
+    }
+
+    private void CheckTileMode(Vector2I mousePosition)
+    {
+        bool isLeftClick = Input.IsActionPressed("click_left");
+        bool isRightClick = Input.IsActionPressed("click_right");
+        
+        if (!isLeftClick && !isRightClick)
+        {
+            _isTileEditReady = true;
+            return;
+        }
+        
+        if (_lastMousePosition != mousePosition)
+        {
+            _lastMousePosition = mousePosition;
+            _isTileEditReady = true;
+        }
+        
+        if (!_isTileEditReady) return;
+        _screen.TileSet.ChangeTile(_screen.TileIndex, mousePosition, isLeftClick);
+        _screen.UpdateTile();
+        _isTileEditReady = false;
     }
 
     private static bool CheckClickOnSquare(Vector2I mousePosition, 
@@ -118,5 +152,11 @@ public partial class BigTileCanvasSquares : Control
         Vector2 squareSize = CustomMinimumSize / _screen.TileSet.TileSize - _gridOffset;
         _squareBlue.Rectangle.Size = squareSize;
         _squareGreen.Rectangle.Size = squareSize;
+    }
+
+    private void DisableSquares()
+    {
+        _squareBlue.IsActive = false;
+        _squareGreen.IsActive = false;
     }
 }

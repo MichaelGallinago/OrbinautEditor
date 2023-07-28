@@ -10,6 +10,7 @@ public partial class CollisionEditorMain : Control
 	public AngleMap AngleMap { get; private set; }
 	public TileButtonsGrid TileButtonsGrid { get; set; }
 	public BigTile BigTile { get; set; }
+	public bool IsTileMode { get; set; }
 	
 	public int TileIndex 
 	{
@@ -73,7 +74,7 @@ public partial class CollisionEditorMain : Control
 		_fileDialog.FileSelected += _fileDialogEvent;
 
 		_fileDialog.ClearFilters();
-		foreach (var filter in filters)
+		foreach (KeyValuePair<string, string> filter in filters)
 		{
 			_fileDialog.AddFilter(filter.Key, filter.Value);	
 		}
@@ -118,10 +119,22 @@ public partial class CollisionEditorMain : Control
 		if (TileSet.Tiles.Count == 0) return;
 		if (TileIndex >= TileSet.Tiles.Count)
 		{
-			TileIndex = TileSet.Tiles.Count - 1;	
+			TileIndex = TileSet.Tiles.Count - 1;
 		}
 
 		TileIndexChangedEvents?.Invoke();
+	}
+
+	public void UpdateTile()
+	{
+		TileButtonsGrid.UpdateTileButton(TileIndex, TileSet);
+		TileIndexChangedEvents?.Invoke();
+	}
+
+	public void ClearAngles()
+	{
+		AngleMap.CreateAngles(AngleMap.Angles.Count);
+		AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}
 
 	public void ChangeAngleBy(int value)

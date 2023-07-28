@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c3atrfvfc3i23"]
+[gd_scene load_steps=42 format=3 uid="uid://c3atrfvfc3i23"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/CollisionEditorMain.cs" id="1_sw61k"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_octjv"]
@@ -17,7 +17,9 @@
 [ext_resource type="ButtonGroup" uid="uid://c7lk7blubdbv2" path="res://collision_editor_group.tres" id="14_d5xad"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="15_mwdqh"]
 [ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="16_njgpk"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/AngleModeButton.cs" id="16_panvp"]
 [ext_resource type="StyleBox" uid="uid://crmexapr3te3j" path="res://Styles/Textbox/style_textbox_focus.tres" id="17_ilsvm"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileModeButton.cs" id="17_vyhe6"]
 [ext_resource type="StyleBox" uid="uid://h8my0eje2qlc" path="res://Styles/Textbox/style_textbox_read_only.tres" id="18_3gyig"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/EditPanel/LineEditHeights.cs" id="20_w7xtl"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/EditPanel/LineEditWidths.cs" id="21_qgk2a"]
@@ -232,7 +234,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
+[node name="AngleModeButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(96, 25)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -247,8 +249,9 @@ action_mode = 0
 button_group = ExtResource("14_d5xad")
 text = "AngleMode
 "
+script = ExtResource("16_panvp")
 
-[node name="Button2" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
+[node name="TileModeButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(96, 25)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -262,6 +265,7 @@ action_mode = 0
 button_group = ExtResource("14_d5xad")
 text = "TileMode
 "
+script = ExtResource("17_vyhe6")
 
 [node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 96)
