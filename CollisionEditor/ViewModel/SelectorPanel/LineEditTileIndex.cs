@@ -12,6 +12,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 	
 	public override void _Ready()
 	{
+		base._Ready();
 		TextValidated += OnTextValidated;
 		_screen = CollisionEditorMain.Screen;
 		_screen.ActivityChangedEvents += OnActivityChanged;
@@ -21,7 +22,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 
 	protected override bool ValidateText()
 	{
-		return int.TryParse(Text, out int value) && value < _screen.TileSet.Tiles.Count;
+		return uint.TryParse(Text, out uint value) && value < _screen.TileSet.Tiles.Count;
 	}
 
 	private void OnResized()

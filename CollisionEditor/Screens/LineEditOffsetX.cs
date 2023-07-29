@@ -5,7 +5,7 @@ public partial class LineEditOffsetX : LineEditValidableVector
 {
     protected override bool ValidateText()
     {
-        return int.TryParse(Text, out _);
+        return uint.TryParse(Text, out uint value) && value <= short.MaxValue;
     }
 
     protected override void OnTextValidated(string text)

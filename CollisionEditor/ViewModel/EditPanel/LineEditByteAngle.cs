@@ -8,6 +8,7 @@ public partial class LineEditByteAngle : LineEditValidableBase
 
 	public override void _Ready()
 	{
+		base._Ready();
 		_screen = CollisionEditorMain.Screen;
 		_screen.ActivityChangedEvents += OnActivityChanged;
 		_screen.AngleChangedEvents += OnAngleChanged;

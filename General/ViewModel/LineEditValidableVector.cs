@@ -4,7 +4,7 @@ using System;
 public abstract partial class LineEditValidableVector : LineEditValidable
 {
 	private const float LetterWidth = 9f;
-	private const int Offset = 4;
+	private const int Offset = 20;
 	protected OpenTileMapScreen Screen;
 
 	protected LineEditValidableVector()
