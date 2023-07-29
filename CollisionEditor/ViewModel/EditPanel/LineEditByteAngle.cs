@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public partial class LineEditByteAngle : LineEditValidableBase
 {
 	private CollisionEditorMain _screen;
@@ -35,6 +32,7 @@ public partial class LineEditByteAngle : LineEditValidableBase
 
 	private void OnAngleChanged(byte angle)
 	{
+		if (byte.TryParse(Text, out byte value) && value == _screen.AngleMap.Angles[_screen.TileIndex]) return;
 		Text = angle.ToString();
 	}
 }

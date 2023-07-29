@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7fsytcp3aerf"]
+[gd_scene load_steps=28 format=3 uid="uid://c7fsytcp3aerf"]
 
 [ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapScreen.cs" id="1_p2yby"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_uuhiv"]
@@ -8,13 +8,17 @@
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeX.cs" id="6_qifpw"]
 [ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_wb7vl"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeY.cs" id="8_8iunt"]
-[ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="8_v2j72"]
-[ext_resource type="StyleBox" uid="uid://crmexapr3te3j" path="res://Styles/Textbox/style_textbox_focus.tres" id="9_jtuj0"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationX.cs" id="9_rpupa"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="10_hp3u7"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationY.cs" id="10_vrjfm"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetX.cs" id="11_xhlo1"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetY.cs" id="12_8celt"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditNumber.cs" id="13_fedx3"]
+[ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="13_o525y"]
+[ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="14_sakqv"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonAdd.cs" id="15_8eg8l"]
+[ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="16_yx8ft"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="17_sebnu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -362,10 +366,42 @@ flat = true
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("8_v2j72")
-theme_override_styles/focus = ExtResource("9_jtuj0")
+theme_override_styles/normal = ExtResource("4_x8crs")
+theme_override_styles/focus = ExtResource("5_s813a")
 text = "0"
 context_menu_enabled = false
+script = ExtResource("13_fedx3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TileNumberButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/focus = ExtResource("13_o525y")
+icon = ExtResource("14_sakqv")
+flat = true
+script = ExtResource("15_8eg8l")
+
+[node name="TileNumberButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/outline_size = 0
+theme_override_styles/focus = ExtResource("13_o525y")
+icon = ExtResource("16_yx8ft")
+flat = true
+script = ExtResource("17_sebnu")
 
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(80, 28)

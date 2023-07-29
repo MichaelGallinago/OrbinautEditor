@@ -51,6 +51,10 @@ public partial class LineEditHexAngle : LineEditValidableBase
 
 	private void OnAngleChanged(byte angle)
 	{
+		if (Text.Length < 3) return;
+		if (byte.TryParse(Text[_prefixLength..], NumberStyles.HexNumber, null, out byte value) 
+		    && value == _screen.AngleMap.Angles[_screen.TileIndex]) return;
+		
 		Text = _prefixes[BasePrefixIndex] + $"{angle:X}".PadLeft(2, '0');
 	}
 }
