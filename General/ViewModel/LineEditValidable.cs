@@ -3,27 +3,26 @@ using System;
 
 public abstract partial class LineEditValidable : LineEdit
 {
-	private StyleBoxFlat _styleNormal;
-	private StyleBoxFlat _styleNormalError;
-	private StyleBoxFlat _styleFocus;
-	private StyleBoxFlat _styleFocusError;
+	protected StyleBoxFlat StyleNormal;
+	protected StyleBoxFlat StyleNormalError;
+	protected StyleBoxFlat StyleFocus;
+	protected StyleBoxFlat StyleFocusError;
 	private bool _isTextValid = true;
 	private string _text;
 
-	private readonly TextChangedEventHandler _textUpdated;
+	private TextChangedEventHandler _textUpdated;
 
 	protected Action<string> TextValidated;
 
 	protected abstract bool ValidateText();
 
-	protected LineEditValidable()
+	public override void _Ready()
 	{
+		LoadStyle();
 		_textUpdated += OnTextUpdated;
-		_styleNormal = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_normal.tres");
-		_styleFocus = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_focus.tres");
-		_styleNormalError = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_normal_error.tres");
-		_styleFocusError = (StyleBoxFlat)ResourceLoader.Load("res://Styles/Textbox/style_textbox_focus_error.tres");
 	}
+
+	protected abstract void LoadStyle();
 
 	public override void _Process(double delta)
 	{
@@ -36,8 +35,8 @@ public abstract partial class LineEditValidable : LineEdit
 	{
 		RemoveThemeStyleboxOverride("normal");
 		RemoveThemeStyleboxOverride("focus");
-		AddThemeStyleboxOverride("normal", isValid ? _styleNormal : _styleNormalError);
-		AddThemeStyleboxOverride("focus", isValid ? _styleFocus : _styleFocusError);
+		AddThemeStyleboxOverride("normal", isValid ? StyleNormal : StyleNormalError);
+		AddThemeStyleboxOverride("focus", isValid ? StyleFocus : StyleFocusError);
 	}
 
 	private void OnTextUpdated(string text)

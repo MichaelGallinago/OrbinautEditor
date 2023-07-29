@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class LineEditByteAngle : LineEditValidable
+public partial class LineEditByteAngle : LineEditValidableBase
 {
 	private CollisionEditorMain _screen;
 	private const string BaseText = "0";

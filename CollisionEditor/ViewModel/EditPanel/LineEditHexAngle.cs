@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-public partial class LineEditHexAngle : LineEditValidable
+public partial class LineEditHexAngle : LineEditValidableBase
 {
 	private CollisionEditorMain _screen;
 	private const string BaseText = "0x00";

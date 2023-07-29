@@ -16,13 +16,13 @@
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="13_nwl58"]
 [ext_resource type="ButtonGroup" uid="uid://c7lk7blubdbv2" path="res://collision_editor_group.tres" id="14_d5xad"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="15_mwdqh"]
-[ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="16_njgpk"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/AngleModeButton.cs" id="16_panvp"]
-[ext_resource type="StyleBox" uid="uid://crmexapr3te3j" path="res://Styles/Textbox/style_textbox_focus.tres" id="17_ilsvm"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileModeButton.cs" id="17_vyhe6"]
-[ext_resource type="StyleBox" uid="uid://h8my0eje2qlc" path="res://Styles/Textbox/style_textbox_read_only.tres" id="18_3gyig"]
+[ext_resource type="StyleBox" uid="uid://fb7hf045063k" path="res://Styles/Textbox/style_textbox_normal.tres" id="19_cp84i"]
+[ext_resource type="StyleBox" uid="uid://crmexapr3te3j" path="res://Styles/Textbox/style_textbox_focus.tres" id="20_iu626"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/EditPanel/LineEditHeights.cs" id="20_w7xtl"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/EditPanel/LineEditWidths.cs" id="21_qgk2a"]
+[ext_resource type="StyleBox" uid="uid://h8my0eje2qlc" path="res://Styles/Textbox/style_textbox_read_only.tres" id="21_tj8ji"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/EditPanel/LineEditByteAngle.cs" id="22_3wn4m"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="22_sgfg8"]
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="24_me1g3"]
@@ -98,6 +98,7 @@ layout_mode = 2
 [node name="MenuButton4" type="MenuButton" parent="ScreenContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("2_octjv")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
 theme_override_styles/normal = ExtResource("3_dylta")
 theme_override_styles/pressed = ExtResource("3_dylta")
 theme_override_styles/hover = ExtResource("3_dylta")
@@ -118,6 +119,7 @@ script = ExtResource("4_hs8tq")
 [node name="MenuButton5" type="MenuButton" parent="ScreenContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("2_octjv")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
 theme_override_styles/normal = ExtResource("3_dylta")
 theme_override_styles/pressed = ExtResource("3_dylta")
 theme_override_styles/hover = ExtResource("3_dylta")
@@ -131,6 +133,7 @@ script = ExtResource("5_bjay6")
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_octjv")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
 theme_override_styles/normal = ExtResource("3_dylta")
 theme_override_styles/pressed = ExtResource("3_dylta")
 theme_override_styles/hover = ExtResource("3_dylta")
@@ -146,10 +149,10 @@ script = ExtResource("6_ki8ou")
 [node name="MainPanelMarginContainer" type="MarginContainer" parent="ScreenContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer"]
 layout_mode = 2
@@ -289,9 +292,9 @@ theme_override_constants/separation = 4
 [node name="LineEditHeights" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 alignment = 1
 editable = false
 context_menu_enabled = false
@@ -300,9 +303,9 @@ script = ExtResource("20_w7xtl")
 [node name="LineEditWidths" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 alignment = 1
 editable = false
 context_menu_enabled = false
@@ -315,9 +318,9 @@ layout_mode = 2
 [node name="LineEditByteAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 placeholder_text = "Byte Angle"
 max_length = 3
 editable = false
@@ -361,9 +364,9 @@ script = ExtResource("26_mi1mg")
 [node name="LineEditHexAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 placeholder_text = "Hex Angle"
 max_length = 4
 editable = false
@@ -405,9 +408,9 @@ script = ExtResource("26_mi1mg")
 [node name="LineEditFullAngle" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/EditorPanelMarginContainer/Background/EditorPanel/VBoxContainer/Panel/MarginContainer/TileData/AngleLines"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 placeholder_text = "Full Angle"
 editable = false
 context_menu_enabled = false
@@ -478,9 +481,9 @@ theme_override_constants/separation = 0
 [node name="LineEditTileIndex" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("16_njgpk")
-theme_override_styles/focus = ExtResource("17_ilsvm")
-theme_override_styles/read_only = ExtResource("18_3gyig")
+theme_override_styles/normal = ExtResource("19_cp84i")
+theme_override_styles/focus = ExtResource("20_iu626")
+theme_override_styles/read_only = ExtResource("21_tj8ji")
 placeholder_text = "Tile Index"
 editable = false
 context_menu_enabled = false

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class LineEditTileIndex : LineEditValidable
+public partial class LineEditTileIndex : LineEditValidableBase
 {
 	private CollisionEditorMain _screen;
 	private const string BaseText = "0";
