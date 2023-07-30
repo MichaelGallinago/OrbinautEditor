@@ -1,14 +1,12 @@
 public partial class LineEditTileSizeX : LineEditValidableVector
 {
-    private const int TileSizeLimit = 512; 
-    
     protected override bool ValidateText()
     {
-        return uint.TryParse(Text, out uint value) && value <= TileSizeLimit;
+        return byte.TryParse(Text, out _);
     }
 
     protected override void OnTextValidated(string text)
     {
-        Screen.TileSize.X = int.Parse(Text);
+        Screen.Parameters.TileSize.X = int.Parse(Text);
     }
 }

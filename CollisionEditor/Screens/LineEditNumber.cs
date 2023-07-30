@@ -10,7 +10,7 @@ public partial class LineEditNumber : LineEditValidableBase
     {
         base._Ready();
         _screen = OpenTileMapScreen.Screen;
-        _screen.TileNumberChangedEvents += OnTileNumberChanged;
+        _screen.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
         TextValidated += OnTextValidated;
     }
     
@@ -29,12 +29,12 @@ public partial class LineEditNumber : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        _screen.TileNumber = int.Parse(Text);
+        _screen.Parameters.TileNumber = int.Parse(Text);
     }
 
     private void OnTileNumberChanged()
     {
-        if (int.TryParse(Text, out int value) && value == _screen.TileNumber) return;
-        Text = _screen.TileNumber.ToString();
+        if (int.TryParse(Text, out int value) && value == _screen.Parameters.TileNumber) return;
+        Text = _screen.Parameters.TileNumber.ToString();
     }
 }

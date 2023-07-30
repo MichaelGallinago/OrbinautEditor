@@ -12,28 +12,21 @@ public partial class TileSet : GodotObject
     
     private Control _screen;
 
-    public TileSet(Control screen, string imagePath, 
-        Vector2I tileSize, Vector2I separation, Vector2I offset)
+    public TileSet(Control screen, Image image, Vector2I tileSize, 
+        Vector2I separation, Vector2I offset, int tileLimit)
     {
         TileSize = tileSize;
         Tiles = new List<Tile>();
-        this._screen = screen;
-
-        var image = new Image();
-        Error loadError = image.Load(imagePath);
-        if (loadError != Error.Ok)
-        {
-            throw new FileLoadException("TileSet");
-        }
+        _screen = screen;
         
-        CreateTiles(image, separation, offset);
+        CreateTiles(image, separation, offset, tileLimit);
     }
 
     public TileSet(Control screen, int angleCount = 0, Vector2I tileSize = new())
     {
         TileSize = tileSize;
         Tiles = new List<Tile>(angleCount);
-        this._screen = screen;
+        _screen = screen;
 
         for (var i = 0; i < angleCount; i++)
         {
@@ -101,21 +94,19 @@ public partial class TileSet : GodotObject
         return positionY => positionY >= pixelPositionY ? Colors.Black : Colors.Transparent;
     }
 
-    private void CreateTiles(Image tileMap, Vector2I separation, Vector2I offset)
+    private void CreateTiles(Image tileMap, Vector2I separation, Vector2I offset, int tileLimit)
     {
         var cellCount = new Vector2I(
             (tileMap.GetWidth() - offset.X) / (TileSize.X + separation.X),
             (tileMap.GetHeight() - offset.Y) / (TileSize.Y + separation.Y));
 
+        var number = 0;
         for (var y = 0; y < cellCount.Y; y++)
         {
             for (var x = 0; x < cellCount.X; x++)
             {
-                var tilePosition = new Vector2I(
-                    x * (TileSize.X + separation.X) + offset.X,
-                    y * (TileSize.Y + separation.Y) + offset.Y);
-
-                CreateTileFromTileMap(tileMap, tilePosition);
+                if (tileLimit != 0 && ++number >= tileLimit) return;
+                CreateTileFromTileMap(tileMap, GetTilePosition(new Vector2I(x, y), separation, offset));
             }
         }
     }

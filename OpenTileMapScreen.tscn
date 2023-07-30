@@ -1,24 +1,26 @@
-[gd_scene load_steps=28 format=3 uid="uid://c7fsytcp3aerf"]
+[gd_scene load_steps=30 format=3 uid="uid://c7fsytcp3aerf"]
 
-[ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapScreen.cs" id="1_p2yby"]
-[ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_uuhiv"]
-[ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_eklej"]
-[ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_x8crs"]
-[ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="5_s813a"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeX.cs" id="6_qifpw"]
-[ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_wb7vl"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeY.cs" id="8_8iunt"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationX.cs" id="9_rpupa"]
-[ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="10_hp3u7"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationY.cs" id="10_vrjfm"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetX.cs" id="11_xhlo1"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetY.cs" id="12_8celt"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditNumber.cs" id="13_fedx3"]
-[ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="13_o525y"]
-[ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="14_sakqv"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonAdd.cs" id="15_8eg8l"]
-[ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="16_yx8ft"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="17_sebnu"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapScreen.cs" id="1_tqh4k"]
+[ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_wquh1"]
+[ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_b8xy4"]
+[ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_umisl"]
+[ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="5_bkg0p"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeX.cs" id="6_7u38n"]
+[ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_tclf5"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeY.cs" id="8_o8sdp"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationX.cs" id="9_4n1du"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationY.cs" id="10_by4j3"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetX.cs" id="11_cnefq"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetY.cs" id="12_sh4eb"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditNumber.cs" id="13_56r3u"]
+[ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="14_1iu31"]
+[ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="15_28bcp"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonAdd.cs" id="16_0xc6t"]
+[ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="17_sjkqu"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="18_ea7ps"]
+[ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="19_qgr7j"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LoadTileMapButton.cs" id="20_c7xje"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/TextureRectTileMap.cs" id="21_j1lf3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -81,7 +83,8 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="Control" type="Control"]
+[node name="OpenTileMapScreen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_p2yby")
+script = ExtResource("1_tqh4k")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -99,7 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("2_uuhiv")
+theme_override_styles/panel = ExtResource("2_wquh1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -116,7 +119,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("3_eklej")
+theme_override_styles/panel = ExtResource("3_b8xy4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -133,7 +136,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_uuhiv")
+theme_override_styles/panel = ExtResource("2_wquh1")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
@@ -189,11 +192,11 @@ flat = true
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "16"
 context_menu_enabled = false
-script = ExtResource("6_qifpw")
+script = ExtResource("6_7u38n")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerTileSize/LineEditTileSizeX"]
 layout_mode = 1
@@ -202,18 +205,18 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "X"
 
 [node name="LineEditTileSizeY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerTileSize"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "16"
 context_menu_enabled = false
-script = ExtResource("8_8iunt")
+script = ExtResource("8_o8sdp")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerTileSize/LineEditTileSizeY"]
 layout_mode = 1
@@ -222,7 +225,7 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.392157, 0.784314, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "Y"
 
 [node name="HBoxContainerSeparation" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -248,11 +251,11 @@ flat = true
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("9_rpupa")
+script = ExtResource("9_4n1du")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationX"]
 layout_mode = 1
@@ -261,18 +264,18 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "X"
 
 [node name="LineEditSeparationY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("10_vrjfm")
+script = ExtResource("10_by4j3")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationY"]
 layout_mode = 1
@@ -281,7 +284,7 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.392157, 0.784314, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "Y"
 
 [node name="HBoxContainerOffset" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -307,11 +310,11 @@ flat = true
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("11_xhlo1")
+script = ExtResource("11_cnefq")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetX"]
 layout_mode = 1
@@ -320,18 +323,18 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "X"
 
 [node name="LineEditOffsetY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("12_8celt")
+script = ExtResource("12_sh4eb")
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetY"]
 layout_mode = 1
@@ -340,7 +343,7 @@ anchor_bottom = 1.0
 offset_right = 15.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.392157, 0.784314, 0.392157, 1)
-theme_override_styles/normal = ExtResource("7_wb7vl")
+theme_override_styles/normal = ExtResource("7_tclf5")
 text = "Y"
 
 [node name="HBoxContainerNumber" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -366,11 +369,11 @@ flat = true
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = ExtResource("4_x8crs")
-theme_override_styles/focus = ExtResource("5_s813a")
+theme_override_styles/normal = ExtResource("4_umisl")
+theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("13_fedx3")
+script = ExtResource("13_56r3u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber"]
 layout_mode = 1
@@ -384,26 +387,27 @@ offset_top = -14.0
 offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(1, 1.01663)
 theme_override_constants/separation = 0
 
 [node name="TileNumberButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_styles/focus = ExtResource("13_o525y")
-icon = ExtResource("14_sakqv")
+theme_override_styles/focus = ExtResource("14_1iu31")
+icon = ExtResource("15_28bcp")
 flat = true
-script = ExtResource("15_8eg8l")
+script = ExtResource("16_0xc6t")
 
 [node name="TileNumberButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber/LineEditNumber/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/outline_size = 0
-theme_override_styles/focus = ExtResource("13_o525y")
-icon = ExtResource("16_yx8ft")
+theme_override_styles/focus = ExtResource("14_1iu31")
+icon = ExtResource("17_sjkqu")
 flat = true
-script = ExtResource("17_sebnu")
+script = ExtResource("18_ea7ps")
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="LoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(80, 28)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -415,7 +419,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ke3nn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mgevu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "Load"
-icon = ExtResource("10_hp3u7")
+icon = ExtResource("19_qgr7j")
+script = ExtResource("20_c7xje")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -427,9 +432,16 @@ theme_override_constants/margin_bottom = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_uuhiv")
+theme_override_styles/panel = ExtResource("2_wquh1")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer2/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TextureRectTileMap" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer2/ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 2
+script = ExtResource("21_j1lf3")

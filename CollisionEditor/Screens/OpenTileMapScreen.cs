@@ -1,29 +1,29 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class OpenTileMapScreen : Control
 {
     public static OpenTileMapScreen Screen { get; private set; }
-
-    public Vector2I TileSize = new();
-    public Vector2I Separation = new();
-    public Vector2I Offset = new();
-
-    private int _tileNumber;
-    public int TileNumber
-    {
-        get => _tileNumber;
-        set
-        {
-            _tileNumber = value; 
-            TileNumberChangedEvents?.Invoke();
-        }
-    }
+    public OpenTilemapParameters Parameters { get; }
+    public bool IsLoadPressed { get; set; }
+    public Image Image { set; get; }
     
-    public event Action TileNumberChangedEvents;
     
     public OpenTileMapScreen()
     {
+        Parameters = new OpenTilemapParameters();
         Screen = this;
+    }
+
+    public OpenTilemapParameters GetParameters()
+    {
+        while (true)
+        {
+            if (IsLoadPressed)
+            {
+                return Parameters;    
+            }
+        }
     }
 }

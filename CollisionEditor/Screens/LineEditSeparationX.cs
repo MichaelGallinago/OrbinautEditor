@@ -2,11 +2,11 @@ public partial class LineEditSeparationX : LineEditValidableVector
 {
     protected override bool ValidateText()
     {
-        return uint.TryParse(Text, out uint value) && value <= short.MaxValue;
+        return ushort.TryParse(Text, out _);
     }
 
     protected override void OnTextValidated(string text)
     {
-        Screen.Separation.X = int.Parse(Text);
+        Screen.Parameters.Separation.X = int.Parse(Text);
     }
 }

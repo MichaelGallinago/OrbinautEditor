@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class CollisionEditorMain : Control
 {
@@ -81,10 +82,21 @@ public partial class CollisionEditorMain : Control
 		_fileDialog.Show();
 	}
 
-	public void CreateTileSet(string imagePath)
+	public async void CreateTileSet(string imagePath)
 	{
-		TileSet = new TileSet(this, imagePath, _tileSize, 
-			new Vector2I(), new Vector2I());
+		Image image = ImageLoader.Load(imagePath);
+		var packedScreen = GD.Load<PackedScene>("res://OpenTileMapScreen.tscn");
+		var screen = packedScreen.Instantiate<OpenTileMapScreen>();
+		screen.Image = image;
+		
+		AddChild(screen);
+		GetTree().Paused = true;
+		OpenTilemapParameters parameters = await Task.Run(() => screen.GetParameters());
+		GetTree().Paused = false;
+		RemoveChild(screen);
+
+		TileSet = new TileSet(this, image, parameters.TileSize, 
+			parameters.Separation, parameters.Offset, parameters.TileNumber);
 		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
 		TileButtonsGrid.CreateTileButtons(TileSet);
 		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
