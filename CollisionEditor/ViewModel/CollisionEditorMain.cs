@@ -114,6 +114,21 @@ public partial class CollisionEditorMain : Control
 		TileButtonsGrid.CreateTileButtons(TileSet);
 	}
 
+	public async Task<Image> CreateTileMap()
+	{
+		var packedScreen = GD.Load<PackedScene>("res://SaveTileMapScreen.tscn");
+		var screen = packedScreen.Instantiate<SaveTileMapScreen>();
+
+		AddChild(screen);
+		GetTree().Paused = true;
+		SaveTilemapParameters parameters = await Task.Run(() => screen.GetParameters());
+		GetTree().Paused = false;
+		RemoveChild(screen);
+
+		return await TileSet.CreateTileMap(parameters.Columns, new[] { Colors.Yellow, Colors.Black, Colors.White },
+			parameters.GroupOffset, parameters.Separation, parameters.Offset);
+	}
+
 	public void AddTile()
 	{
 		TileSet.InsertTile(TileIndex);

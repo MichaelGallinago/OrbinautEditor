@@ -81,13 +81,8 @@ public partial class PopupMenuSave : PopupMenuHandler
         {
             { "*.png", "PNG" }
         };
-
-        // TODO: no more constants
-        Image tileMap = await _screen.TileSet.CreateTileMap(
-            8, new Color[] { Colors.Yellow, Colors.Black, Colors.White },
-            new[] { 6, 6, 0 }, new Vector2I(2, 2), new Vector2I());
-
-        _screen.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveTileMap(path, tileMap));
+        
+        Image tileMap = await _screen.CreateTileMap();
+        _screen.OpenFileDialog(filters, FileMode, path => TileUtilities.SaveTileMap(path, tileMap));
     }
 }

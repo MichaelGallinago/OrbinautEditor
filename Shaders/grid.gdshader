@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform vec3 Colour;
-uniform vec4 GridColour;
+uniform vec3 Color;
+uniform vec4 GridColor;
 uniform int Size;
 
 void fragment() 
@@ -11,11 +11,11 @@ void fragment()
 	
 	if (position.x % Size == 0 || position.y % Size == 0)
 	{
-		pixelColor = GridColour;
+		pixelColor = GridColor;
 	}
 	else
 	{
-		pixelColor.rgb = Colour;
+		pixelColor.rgb = Color;
 		pixelColor.rgb /= 255.0;
 	}
 	

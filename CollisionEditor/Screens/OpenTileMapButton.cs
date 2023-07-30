@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class LoadTileMapButton : Button
+public partial class OpenTileMapButton : Button
 {
     private OpenTileMapScreen _screen;
     

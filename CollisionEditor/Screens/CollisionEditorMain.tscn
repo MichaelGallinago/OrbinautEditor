@@ -50,8 +50,8 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ncx"]
 shader = ExtResource("10_bohk1")
-shader_parameter/Colour = Vector3(224, 224, 224)
-shader_parameter/GridColour = Vector4(0.5, 0.5, 0.5, 1)
+shader_parameter/Color = Vector3(224, 224, 224)
+shader_parameter/GridColor = Vector4(0.5, 0.5, 0.5, 1)
 shader_parameter/Size = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuy6r"]
@@ -93,7 +93,7 @@ theme_override_constants/separation = 0
 [node name="MarginContainer" type="MarginContainer" parent="ScreenContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
+theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 0
 

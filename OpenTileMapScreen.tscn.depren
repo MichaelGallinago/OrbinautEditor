@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="17_sjkqu"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="18_ea7ps"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="19_qgr7j"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapButton.cs" id="20_vdsfd"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapButton.cs" id="20_c7xje"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TextureRectTileMap.cs" id="21_j1lf3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
@@ -420,7 +420,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mgevu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "Load"
 icon = ExtResource("19_qgr7j")
-script = ExtResource("20_vdsfd")
+script = ExtResource("20_c7xje")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -35,11 +35,11 @@ public partial class TileSet : GodotObject
     }
 
     public async Task<Image> CreateTileMap(int columnCount, Color[] groupColor,
-        int[] groupOffset, Vector2I separation, Vector2I offset)
+        int groupOffset, Vector2I separation, Vector2I offset)
     {
         var cell = new Vector2I(TileSize.X + separation.X, TileSize.Y + separation.Y);
 
-        double tilesRowWidth = Tiles.Count * groupOffset.Length + groupOffset.Sum();
+        double tilesRowWidth = Tiles.Count + groupOffset;
         int rowCount = Mathf.CeilToInt(tilesRowWidth / columnCount);
 
         var tileMapSize = new Vector2I(
@@ -122,7 +122,7 @@ public partial class TileSet : GodotObject
         Tiles.Add(tile);
     }
 
-    private async Task<Image> DrawTiles(Vector2I tileMapSize, IReadOnlyList<int> groupOffset, 
+    private async Task<Image> DrawTiles(Vector2I tileMapSize, int groupOffset, 
         IReadOnlyList<Color> groupColor, Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
         var viewport = new SubViewport()
@@ -135,16 +135,16 @@ public partial class TileSet : GodotObject
         
         var position = new Vector2I();
         Sprite2D blankSprite = new Tile(TileSize).Sprite;
-        var material = (ShaderMaterial)GD.Load("res://Shaders/colour.tres");
+        var material = (ShaderMaterial)GD.Load("res://Shaders/color.tres");
+        int groupTileCount = Tiles.Count + groupOffset;
         for (var group = 0; group < groupCount; group++)
         {
             var spriteContainer = new Node2D();
             Color color = groupColor[group];
             var shaderColor = new Vector3(color.R, color.G, color.B);
             spriteContainer.Material = (Material)material.Duplicate();
-            ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Colour", shaderColor);
-
-            int groupTileCount = Tiles.Count + groupOffset[group];
+            ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Color", shaderColor);
+            
             for (var i = 0; i < groupTileCount; i++)
             {
                 Vector2I tilePosition = GetTilePosition(position, separation, offset);
