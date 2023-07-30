@@ -90,12 +90,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="TopPanel" type="HBoxContainer" parent="ScreenContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="TopPanel" type="HBoxContainer" parent="ScreenContainer/MarginContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="MenuButton4" type="MenuButton" parent="ScreenContainer/TopPanel"]
+[node name="MenuButton4" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("2_octjv")
 theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
@@ -116,7 +123,7 @@ popup/item_2/text = "Surfaces"
 popup/item_2/id = 2
 script = ExtResource("4_hs8tq")
 
-[node name="MenuButton5" type="MenuButton" parent="ScreenContainer/TopPanel"]
+[node name="MenuButton5" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("2_octjv")
 theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
@@ -129,7 +136,7 @@ text = "File"
 switch_on_hover = true
 script = ExtResource("5_bjay6")
 
-[node name="MenuButton" type="MenuButton" parent="ScreenContainer/TopPanel"]
+[node name="MenuButton" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_octjv")
