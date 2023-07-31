@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bksajhj3kt77l"]
+[gd_scene load_steps=32 format=3 uid="uid://bksajhj3kt77l"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMap.cs" id="1_4hgse"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_4hshf"]
@@ -19,7 +19,9 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditGroupOffset.cs" id="17_80e3r"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="18_pyvof"]
 [ext_resource type="Texture2D" uid="uid://iwd8pccx7frl" path="res://Resorses/Sprites/plus.png" id="20_fu1xb"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapNewGroup.cs" id="21_2b4e3"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="21_xklkv"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/GroupsContainer.cs" id="22_ocqu2"]
 [ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://PackedObjects/color_picker_container.tscn" id="22_yym33"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TextureRectTileMap.cs" id="23_uik13"]
 
@@ -448,7 +450,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "New Group
 "
 icon = ExtResource("20_fu1xb")
-script = ExtResource("21_xklkv")
+script = ExtResource("21_2b4e3")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -464,10 +466,11 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="GroupsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
+script = ExtResource("22_ocqu2")
 
-[node name="ColorPickerContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("22_yym33")]
+[node name="ColorPickerContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GroupsContainer" instance=ExtResource("22_yym33")]
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
