@@ -1,23 +1,15 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class PopupMenuLoad : PopupMenuHandler
 {
-    private CollisionEditorMain _screen;
-
     public PopupMenuLoad()
     {
         Name = "loadMenu";
         AddItem("TileMap", 0);
         AddItem("AngleMap", 1);
     }
-    
-    public override void _Ready()
-    {
-        _screen = CollisionEditorMain.Screen;
-    }
-    
+
     protected override void OnItemPressed(long id)
     {
         switch (id)
@@ -34,8 +26,8 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.png", "PNG" }
         };
             
-        _screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => _screen.CreateTileSet(path));
+        CollisionEditorMain.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => CollisionEditorMain.Object.CreateTileSet(path));
     }
 
     private void OnAngleMapPressed()
@@ -45,7 +37,7 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        _screen.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => _screen.CreateAngleMap(path));
+        CollisionEditorMain.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            CollisionEditorMain.CreateAngleMap);
     }
 }

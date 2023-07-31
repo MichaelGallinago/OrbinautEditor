@@ -9,9 +9,8 @@ public partial class LineEditFullAngle : LineEdit
 	
 	public override void _Ready()
 	{
-		CollisionEditorMain screen = CollisionEditorMain.Screen;
-		screen.ActivityChangedEvents += isActive => Text = isActive ? BaseText : string.Empty;
-		screen.AngleChangedEvents += OnAngleChanged;
+		CollisionEditorMain.ActivityChangedEvents += isActive => Text = isActive ? BaseText : string.Empty;
+		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
 	}
 	
 	private void OnAngleChanged(byte angle)

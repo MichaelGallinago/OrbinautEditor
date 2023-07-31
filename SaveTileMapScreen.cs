@@ -3,19 +3,20 @@ using System;
 
 public partial class SaveTileMapScreen : Control
 {
-    public static SaveTileMapScreen Screen { get; private set; }
-    public SaveTilemapParameters Parameters { get; }
-    public bool IsSavePressed { get; set; }
-    public Image Image { set; get; }
-    
+    public static SaveTileMapScreen Object { get; private set; }
+    public static SaveTilemapParameters Parameters { get; private set; } = new();
+    public static bool IsSavePressed { get; set; }
+    public static Image Image { set; get; }
     
     public SaveTileMapScreen()
     {
+        Object = this;
         Parameters = new SaveTilemapParameters();
-        Screen = this;
+        IsSavePressed = false;
+        Image = new Image();
     }
 
-    public SaveTilemapParameters GetParameters()
+    public static SaveTilemapParameters GetParameters()
     {
         while (true)
         {

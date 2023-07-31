@@ -1,13 +1,10 @@
 using Godot;
-using System;
 
 public partial class TileButtonAdd : Button
 {
 	public override void _Ready()
 	{
-		CollisionEditorMain screen = CollisionEditorMain.Screen;
-		screen.ActivityChangedEvents += isActive => Disabled = !isActive;
-		
-		Pressed += screen.AddTile;
+		CollisionEditorMain.ActivityChangedEvents += isActive => Disabled = !isActive;
+		Pressed += CollisionEditorMain.AddTile;
 	}
 }

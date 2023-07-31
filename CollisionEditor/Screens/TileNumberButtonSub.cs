@@ -5,7 +5,6 @@ public partial class TileNumberButtonSub : Button
 {
     public override void _Ready()
     {
-        OpenTileMapScreen screen = OpenTileMapScreen.Screen;
-        Pressed += () => screen.Parameters.TileNumber--;
+        Pressed += () => OpenTileMapScreen.Parameters.TileNumber--;
     }
 }

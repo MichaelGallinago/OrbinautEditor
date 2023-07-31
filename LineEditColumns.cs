@@ -1,13 +1,13 @@
 using Godot;
 
-public partial class LineEditNumber : LineEditValidableBase
+public partial class LineEditColumns : LineEditValidableBase
 {
     private const string StyleDirectory = "res://Styles/Textbox/Vector/";
     
     public override void _Ready()
     {
         base._Ready();
-        OpenTileMapScreen.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
+        SaveTileMapScreen.Parameters.ColumnsChangedEvents += OnColumnsChanged;
         TextValidated += OnTextValidated;
     }
     
@@ -26,12 +26,12 @@ public partial class LineEditNumber : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        OpenTileMapScreen.Parameters.TileNumber = int.Parse(Text);
+        SaveTileMapScreen.Parameters.Columns = int.Parse(Text);
     }
 
-    private void OnTileNumberChanged()
+    private void OnColumnsChanged()
     {
-        if (int.TryParse(Text, out int value) && value == OpenTileMapScreen.Parameters.TileNumber) return;
-        Text = OpenTileMapScreen.Parameters.TileNumber.ToString();
+        if (int.TryParse(Text, out int value) && value == SaveTileMapScreen.Parameters.Columns) return;
+        Text = SaveTileMapScreen.Parameters.Columns.ToString();
     }
 }

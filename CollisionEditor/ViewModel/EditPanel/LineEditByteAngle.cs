@@ -1,14 +1,12 @@
 public partial class LineEditByteAngle : LineEditValidableBase
 {
-	private CollisionEditorMain _screen;
 	private const string BaseText = "0";
 
 	public override void _Ready()
 	{
 		base._Ready();
-		_screen = CollisionEditorMain.Screen;
-		_screen.ActivityChangedEvents += OnActivityChanged;
-		_screen.AngleChangedEvents += OnAngleChanged;
+		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
 		TextValidated += OnTextValidated;
 	}
 
@@ -19,9 +17,9 @@ public partial class LineEditByteAngle : LineEditValidableBase
 	
 	private void OnTextValidated(string text)
 	{
-		_screen.AngleChangedEvents -= OnAngleChanged;
-		_screen.SetAngle(byte.Parse(text));
-		_screen.AngleChangedEvents += OnAngleChanged;
+		CollisionEditorMain.AngleChangedEvents -= OnAngleChanged;
+		CollisionEditorMain.SetAngle(byte.Parse(text));
+		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
 	}
 
 	private void OnActivityChanged(bool isActive)
@@ -32,7 +30,7 @@ public partial class LineEditByteAngle : LineEditValidableBase
 
 	private void OnAngleChanged(byte angle)
 	{
-		if (byte.TryParse(Text, out byte value) && value == _screen.AngleMap.Angles[_screen.TileIndex]) return;
+		if (byte.TryParse(Text, out byte value) && value == CollisionEditorMain.AngleMap.Angles[CollisionEditorMain.TileIndex]) return;
 		Text = angle.ToString();
 	}
 }

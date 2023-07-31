@@ -57,7 +57,7 @@ shader_parameter/Size = null
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuy6r"]
 bg_color = Color(0.145098, 0.168627, 0.203922, 1)
 
-[node name="Control" type="Control"]
+[node name="CollisionEditorMain" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15

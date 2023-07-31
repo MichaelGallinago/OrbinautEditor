@@ -1,22 +1,11 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public partial class PopupMenuUnload : PopupMenuHandler
 {
-    private CollisionEditorMain _screen;
-    
     public PopupMenuUnload()
     {
         Name = "unloadMenu";
         AddItem("All", 0); 
         AddItem("TileMap", 1);
         AddItem("AngleMap", 2);
-    }
-
-    public override void _Ready()
-    {
-        _screen = CollisionEditorMain.Screen;
     }
 
     protected override void OnItemPressed(long id)
@@ -31,18 +20,18 @@ public partial class PopupMenuUnload : PopupMenuHandler
     
     private void OnAllPressed()
     {
-        _screen.TileSet.Tiles.Clear();
-        _screen.AngleMap.Angles.Clear();
-        _screen.TileButtonsGrid.ClearTileButtons();
+        CollisionEditorMain.TileSet.Tiles.Clear();
+        CollisionEditorMain.AngleMap.Angles.Clear();
+        CollisionEditorMain.TileButtonsGrid.ClearTileButtons();
     }
 
     private void OnTileSetPressed()
     {
-        _screen.ClearTiles();
+        CollisionEditorMain.ClearTiles();
     }
     
     private void OnAngleMapPressed()
     {
-        _screen.ClearAngles();
+        CollisionEditorMain.ClearAngles();
     }
 }

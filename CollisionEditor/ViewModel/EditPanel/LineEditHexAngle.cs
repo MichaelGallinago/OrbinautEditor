@@ -5,7 +5,6 @@ using System.Globalization;
 
 public partial class LineEditHexAngle : LineEditValidableBase
 {
-	private CollisionEditorMain _screen;
 	private const string BaseText = "0x00";
 	private const int BasePrefixIndex = 0;
 	private const byte BaseLength = 2;
@@ -15,9 +14,8 @@ public partial class LineEditHexAngle : LineEditValidableBase
 	public override void _Ready()
 	{
 		base._Ready();
-		_screen = CollisionEditorMain.Screen;
-		_screen.ActivityChangedEvents += OnActivityChanged;
-		_screen.AngleChangedEvents += OnAngleChanged;
+		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
 		TextValidated += OnTextValidated;
 	}
 
@@ -38,9 +36,9 @@ public partial class LineEditHexAngle : LineEditValidableBase
 
 	private void OnTextValidated(string text)
 	{
-		_screen.AngleChangedEvents -= OnAngleChanged;
-		_screen.SetAngle(byte.Parse(text[_prefixLength..], NumberStyles.HexNumber, null));
-		_screen.AngleChangedEvents += OnAngleChanged;
+		CollisionEditorMain.AngleChangedEvents -= OnAngleChanged;
+		CollisionEditorMain.SetAngle(byte.Parse(text[_prefixLength..], NumberStyles.HexNumber, null));
+		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
 	}
 	
 	private void OnActivityChanged(bool isActive)
@@ -53,7 +51,7 @@ public partial class LineEditHexAngle : LineEditValidableBase
 	{
 		if (Text.Length < 3) return;
 		if (byte.TryParse(Text[_prefixLength..], NumberStyles.HexNumber, null, out byte value) 
-		    && value == _screen.AngleMap.Angles[_screen.TileIndex]) return;
+		    && value == CollisionEditorMain.AngleMap.Angles[CollisionEditorMain.TileIndex]) return;
 		
 		Text = _prefixes[BasePrefixIndex] + $"{angle:X}".PadLeft(2, '0');
 	}

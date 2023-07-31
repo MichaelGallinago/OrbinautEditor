@@ -1,10 +1,8 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class PopupMenuSave : PopupMenuHandler
 {
-    private CollisionEditorMain _screen;
     private const FileDialog.FileModeEnum FileMode = FileDialog.FileModeEnum.SaveFile;
     
     public PopupMenuSave()
@@ -16,12 +14,7 @@ public partial class PopupMenuSave : PopupMenuHandler
         AddItem("WidthMap", 3);
         AddItem("TileMap", 4);
     }
-    
-    public override void _Ready()
-    {
-        _screen = CollisionEditorMain.Screen;
-    }
-    
+
     protected override void OnItemPressed(long id)
     {
         switch (id)
@@ -49,8 +42,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        _screen.OpenFileDialog(filters, FileMode, 
-            path => _screen.AngleMap.Save(path));
+        CollisionEditorMain.OpenFileDialog(filters, FileMode, 
+            path => CollisionEditorMain.AngleMap.Save(path));
     }
     
     private void OnHeightMapPressed()
@@ -60,8 +53,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        _screen.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, _screen.TileSet.Tiles, false));
+        CollisionEditorMain.OpenFileDialog(filters, FileMode, 
+            path => TileUtilities.SaveCollisionMap(path, CollisionEditorMain.TileSet.Tiles, false));
     }
     
     private void OnWidthMapPressed()
@@ -71,8 +64,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        _screen.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, _screen.TileSet.Tiles, true));
+        CollisionEditorMain.OpenFileDialog(filters, FileMode, 
+            path => TileUtilities.SaveCollisionMap(path, CollisionEditorMain.TileSet.Tiles, true));
     }
 
     private async void OnTileMapPressed()
@@ -82,7 +75,7 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.png", "PNG" }
         };
         
-        Image tileMap = await _screen.CreateTileMap();
-        _screen.OpenFileDialog(filters, FileMode, path => TileUtilities.SaveTileMap(path, tileMap));
+        Image tileMap = await CollisionEditorMain.Object.CreateTileMap();
+        CollisionEditorMain.OpenFileDialog(filters, FileMode, path => TileUtilities.SaveTileMap(path, tileMap));
     }
 }

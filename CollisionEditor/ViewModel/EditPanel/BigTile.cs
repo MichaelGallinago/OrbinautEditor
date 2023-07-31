@@ -6,8 +6,6 @@ public partial class BigTile : TextureRect
 	public int TileScale { get; set; }
 	private BigTileCanvasLine _canvasLine;
 	private BigTileCanvasSquares _canvasSquares;
-	
-	private CollisionEditorMain _screen;
 
 	public BigTile()
 	{
@@ -19,17 +17,16 @@ public partial class BigTile : TextureRect
 	{
 		AddChild(_canvasSquares);
 		AddChild(_canvasLine);
-
-		_screen = CollisionEditorMain.Screen;
-		_screen.BigTile = this;
 		
-		_screen.ActivityChangedEvents += isActive => UpdateTile(isActive ? _screen.TileIndex : null);
-		_screen.TileIndexChangedEvents += () => UpdateTile(_screen.TileIndex);
-		_screen.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
+		CollisionEditorMain.BigTile = this;
+		
+		CollisionEditorMain.ActivityChangedEvents += isActive => UpdateTile(isActive ? CollisionEditorMain.TileIndex : null);
+		CollisionEditorMain.TileIndexChangedEvents += () => UpdateTile(CollisionEditorMain.TileIndex);
+		CollisionEditorMain.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
 	}
 
 	public void UpdateTile(int? tileIndex)
 	{
-		Texture = tileIndex is null ? new Texture2D() : _screen.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
+		Texture = tileIndex is null ? new Texture2D() : CollisionEditorMain.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
 	}
 }

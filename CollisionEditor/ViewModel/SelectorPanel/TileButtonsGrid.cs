@@ -7,7 +7,6 @@ public partial class TileButtonsGrid : GridContainer
 {
 	private readonly List<TileButton> _tileButtons = new();
 	private PackedScene _packedButton;
-	private CollisionEditorMain _screen;
 	private Vector2I _buttonSize;
 	private ImageTexture _frameTexture;
 	
@@ -18,9 +17,8 @@ public partial class TileButtonsGrid : GridContainer
 	{
 		_packedButton = GD.Load<PackedScene>("res://tile_button.tscn");
 		
-		_screen = CollisionEditorMain.Screen;
-		_screen.TileButtonsGrid = this;
-		_screen.TileIndexChangedEvents += () => _tileButtons[_screen.TileIndex].ButtonPressed = true;
+		CollisionEditorMain.TileButtonsGrid = this;
+		CollisionEditorMain.TileIndexChangedEvents += () => _tileButtons[CollisionEditorMain.TileIndex].ButtonPressed = true;
 
 		Resized += () =>
 		{
@@ -79,7 +77,7 @@ public partial class TileButtonsGrid : GridContainer
 		var button = _packedButton.Instantiate<TileButton>();
 		button.CustomMinimumSize = _buttonSize;
 		button.TextureNormal = tile.Sprite.Texture;
-		button.Pressed += () => _screen.TileIndex = _tileButtons.IndexOf(button);
+		button.Pressed += () => CollisionEditorMain.TileIndex = _tileButtons.IndexOf(button);
 		return button;
 	}
 

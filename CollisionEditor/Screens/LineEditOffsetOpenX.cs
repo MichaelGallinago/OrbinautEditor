@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class LineEditOffsetY : LineEditValidableVector
+public partial class LineEditOffsetOpenX : LineEditValidableVector
 {
     protected override bool ValidateText()
     {
@@ -10,6 +10,6 @@ public partial class LineEditOffsetY : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        Screen.Parameters.Offset.Y = int.Parse(Text);
+        OpenTileMapScreen.Parameters.Offset.X = int.Parse(Text);
     }
 }

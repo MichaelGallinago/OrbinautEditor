@@ -1,9 +1,7 @@
 using Godot;
-using System;
 
 public partial class BigTileCanvasLine : Control
 {
-	private CollisionEditorMain _screen;
 	private readonly BigTile _bigTile;
 
 	public BigTileCanvasLine(BigTile bigTile)
@@ -12,16 +10,11 @@ public partial class BigTileCanvasLine : Control
 		_bigTile.MinimumSizeChanged += () => CustomMinimumSize = _bigTile.CustomMinimumSize;
 	}
 
-	public override void _Ready()
-	{
-		_screen = CollisionEditorMain.Screen;
-	}
-
 	public override void _Draw()
 	{
-		if (_screen.AngleMap.Angles.Count == 0) return;
-		Vector2 size = (Vector2)(_screen.TileSet.TileSize * _bigTile.TileScale) / 2f;
-		Vector2 position = GetLinePosition(size, _screen.AngleMap.Angles[_screen.TileIndex]);
+		if (CollisionEditorMain.AngleMap.Angles.Count == 0) return;
+		Vector2 size = (Vector2)(CollisionEditorMain.TileSet.TileSize * _bigTile.TileScale) / 2f;
+		Vector2 position = GetLinePosition(size, CollisionEditorMain.AngleMap.Angles[CollisionEditorMain.TileIndex]);
 		
 		DrawLine(position + size, -position + size, Colors.Red, 2);
 	}

@@ -1,7 +1,4 @@
-using Godot;
-using System;
-
-public partial class LineEditOffsetX : LineEditValidableVector
+public partial class LineEditSeparationSaveY : LineEditValidableVector
 {
     protected override bool ValidateText()
     {
@@ -10,6 +7,6 @@ public partial class LineEditOffsetX : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        Screen.Parameters.Offset.X = int.Parse(Text);
+        SaveTileMapScreen.Parameters.Separation.Y = int.Parse(Text);
     }
 }

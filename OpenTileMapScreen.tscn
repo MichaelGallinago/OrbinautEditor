@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeX.cs" id="6_7u38n"]
 [ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_tclf5"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditTileSizeY.cs" id="8_o8sdp"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationX.cs" id="9_4n1du"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationY.cs" id="10_by4j3"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetX.cs" id="11_cnefq"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetY.cs" id="12_sh4eb"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationOpenX.cs" id="9_r1igm"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationOpenY.cs" id="10_7hl2m"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetOpenX.cs" id="11_ojxae"]
+[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetOpenY.cs" id="12_n73nt"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditNumber.cs" id="13_56r3u"]
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="14_1iu31"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="15_28bcp"]
@@ -247,7 +247,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditSeparationX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
+[node name="LineEditSeparationOpenX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -255,9 +255,9 @@ theme_override_styles/normal = ExtResource("4_umisl")
 theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("9_4n1du")
+script = ExtResource("9_r1igm")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationX"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationOpenX"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -267,7 +267,7 @@ theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
 theme_override_styles/normal = ExtResource("7_tclf5")
 text = "X"
 
-[node name="LineEditSeparationY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
+[node name="LineEditSeparationOpenY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -275,9 +275,9 @@ theme_override_styles/normal = ExtResource("4_umisl")
 theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("10_by4j3")
+script = ExtResource("10_7hl2m")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationY"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationOpenY"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -306,7 +306,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditOffsetX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset"]
+[node name="LineEditOffsetOpenX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -314,9 +314,9 @@ theme_override_styles/normal = ExtResource("4_umisl")
 theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("11_cnefq")
+script = ExtResource("11_ojxae")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetX"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetOpenX"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -326,7 +326,7 @@ theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
 theme_override_styles/normal = ExtResource("7_tclf5")
 text = "X"
 
-[node name="LineEditOffsetY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset"]
+[node name="LineEditOffsetOpenY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -334,9 +334,9 @@ theme_override_styles/normal = ExtResource("4_umisl")
 theme_override_styles/focus = ExtResource("5_bkg0p")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("12_sh4eb")
+script = ExtResource("12_n73nt")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetY"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetOpenY"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0

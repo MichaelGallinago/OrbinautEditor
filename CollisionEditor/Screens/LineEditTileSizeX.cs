@@ -7,6 +7,6 @@ public partial class LineEditTileSizeX : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        Screen.Parameters.TileSize.X = int.Parse(Text);
+        OpenTileMapScreen.Parameters.TileSize.X = int.Parse(Text);
     }
 }

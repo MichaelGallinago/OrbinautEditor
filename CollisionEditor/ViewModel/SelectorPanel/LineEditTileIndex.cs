@@ -1,9 +1,5 @@
-using Godot;
-using System;
-
 public partial class LineEditTileIndex : LineEditValidableBase
 {
-	private CollisionEditorMain _screen;
 	private const string BaseText = "0";
 	private int _tileCount;
 
@@ -14,15 +10,14 @@ public partial class LineEditTileIndex : LineEditValidableBase
 	{
 		base._Ready();
 		TextValidated += OnTextValidated;
-		_screen = CollisionEditorMain.Screen;
-		_screen.ActivityChangedEvents += OnActivityChanged;
-		_screen.TileIndexChangedEvents += OnTileIndexChanged;
+		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditorMain.TileIndexChangedEvents += OnTileIndexChanged;
 		Resized += OnResized;
 	}
 
 	protected override bool ValidateText()
 	{
-		return uint.TryParse(Text, out uint value) && value < _screen.TileSet.Tiles.Count;
+		return uint.TryParse(Text, out uint value) && value < CollisionEditorMain.TileSet.Tiles.Count;
 	}
 
 	private void OnResized()
@@ -34,7 +29,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 
 	private void OnTextValidated(string text)
 	{
-		_screen.TileIndex = int.Parse(text);
+		CollisionEditorMain.TileIndex = int.Parse(text);
 	}
 
 	private void OnActivityChanged(bool isActive)
@@ -45,7 +40,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 
 	private void OnTileIndexChanged()
 	{
-		if (int.TryParse(Text, out int value) && value == _screen.TileIndex) return;
-		Text = _screen.TileIndex.ToString();
+		if (int.TryParse(Text, out int value) && value == CollisionEditorMain.TileIndex) return;
+		Text = CollisionEditorMain.TileIndex.ToString();
 	}
 }

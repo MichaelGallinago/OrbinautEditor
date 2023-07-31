@@ -1,17 +1,13 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 public partial class LineEditWidths : LineEdit
 {
-	private CollisionEditorMain _screen;
-
 	public override void _Ready()
 	{
-		_screen = CollisionEditorMain.Screen;
-		_screen.TileIndexChangedEvents += () => Text = CreateString(_screen.TileSet.Tiles[_screen.TileIndex].Widths);
-		_screen.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditorMain.TileIndexChangedEvents += () => Text = CreateString(CollisionEditorMain.TileSet.Tiles[CollisionEditorMain.TileIndex].Widths);
+		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
 	}
 
 	private void OnActivityChanged(bool isActive)

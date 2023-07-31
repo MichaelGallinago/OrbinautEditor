@@ -7,7 +7,6 @@ public abstract partial class LineEditValidableVector : LineEditValidable
 	
 	private const float LetterWidth = 9f;
 	private const int Offset = 20;
-	protected OpenTileMapScreen Screen;
 
 	protected LineEditValidableVector()
 	{
@@ -18,7 +17,6 @@ public abstract partial class LineEditValidableVector : LineEditValidable
 	public override void _Ready()
 	{
 		base._Ready();
-		Screen = OpenTileMapScreen.Screen;
 		var label = GetChild<Label>(0);
 		FocusEntered += () => label.Visible = false;
 		FocusExited += () => label.Visible = true;

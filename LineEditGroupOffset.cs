@@ -1,19 +1,19 @@
 using Godot;
 
-public partial class LineEditNumber : LineEditValidableBase
+public partial class LineEditGroupOffset : LineEditValidableBase
 {
     private const string StyleDirectory = "res://Styles/Textbox/Vector/";
     
     public override void _Ready()
     {
         base._Ready();
-        OpenTileMapScreen.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
+        SaveTileMapScreen.Parameters.GroupOffsetChangedEvents += OnGroupOffsetChanged;
         TextValidated += OnTextValidated;
     }
     
     protected override bool ValidateText()
     {
-        return ushort.TryParse(Text, out _);
+        return uint.TryParse(Text, out _);
     }
     
     protected override void LoadStyle()
@@ -26,12 +26,13 @@ public partial class LineEditNumber : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        OpenTileMapScreen.Parameters.TileNumber = int.Parse(Text);
+        SaveTileMapScreen.Parameters.GroupOffset = int.Parse(Text);
     }
 
-    private void OnTileNumberChanged()
+    private void OnGroupOffsetChanged()
     {
-        if (int.TryParse(Text, out int value) && value == OpenTileMapScreen.Parameters.TileNumber) return;
-        Text = OpenTileMapScreen.Parameters.TileNumber.ToString();
+        if (int.TryParse(Text, out int value) && value == SaveTileMapScreen.Parameters.GroupOffset) return;
+        Text = SaveTileMapScreen.Parameters.GroupOffset.ToString();
     }
 }
+

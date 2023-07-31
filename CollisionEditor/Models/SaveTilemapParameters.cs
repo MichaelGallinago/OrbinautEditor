@@ -27,7 +27,7 @@ public class SaveTilemapParameters
         set
         {
             _groupOffset = value;
-            ColumnsChangedEvents?.Invoke();
+            GroupOffsetChangedEvents?.Invoke();
         }
     }
 

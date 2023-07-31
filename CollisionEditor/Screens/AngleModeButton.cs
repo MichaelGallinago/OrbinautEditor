@@ -3,11 +3,8 @@ using System;
 
 public partial class AngleModeButton : Button
 {
-    private CollisionEditorMain _screen;
-    
     public override void _Ready()
     {
-        _screen = CollisionEditorMain.Screen;
-        Pressed += () => _screen.IsTileMode = false;
+        Pressed += () => CollisionEditorMain.IsTileMode = false;
     }
 }

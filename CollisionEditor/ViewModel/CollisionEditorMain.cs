@@ -5,15 +5,14 @@ using System.Threading.Tasks;
 
 public partial class CollisionEditorMain : Control
 {
-	public static CollisionEditorMain Screen { get; private set; }
+	public static CollisionEditorMain Object { get; private set; }
+	public static TileSet TileSet { get; private set; }
+	public static AngleMap AngleMap { get; private set; }
+	public static TileButtonsGrid TileButtonsGrid { get; set; }
+	public static BigTile BigTile { get; set; }
+	public static bool IsTileMode { get; set; }
 	
-	public TileSet TileSet { get; private set; }
-	public AngleMap AngleMap { get; private set; }
-	public TileButtonsGrid TileButtonsGrid { get; set; }
-	public BigTile BigTile { get; set; }
-	public bool IsTileMode { get; set; }
-	
-	public int TileIndex 
+	public static int TileIndex 
 	{
 		get => _tileIndex;
 		set
@@ -23,19 +22,19 @@ public partial class CollisionEditorMain : Control
 		}
 	}
 	
-	public event Action<bool> ActivityChangedEvents;
-	public event Action TileIndexChangedEvents;
-	public event Action<byte> AngleChangedEvents;
+	public static event Action<bool> ActivityChangedEvents;
+	public static event Action TileIndexChangedEvents;
+	public static event Action<byte> AngleChangedEvents;
 
-	private FileDialog _fileDialog;
-	private FileDialog.FileSelectedEventHandler _fileDialogEvent;
-	private readonly Vector2I _tileSize = new(16, 16);
-	private int _tileCount;
-	private int _tileIndex;
+	private static FileDialog _fileDialog;
+	private static FileDialog.FileSelectedEventHandler _fileDialogEvent;
+	private static readonly Vector2I TileSize = new(16, 16);
+	private static int _tileCount;
+	private static int _tileIndex;
 
 	public CollisionEditorMain()
 	{
-		Screen = this;
+		Object = this;
 		TileSet = new TileSet(this);
 		AngleMap = new AngleMap();
 		_fileDialog = new FileDialog();
@@ -47,7 +46,7 @@ public partial class CollisionEditorMain : Control
 		};
 	}
 
-	public override void _Ready()
+	public  override void _Ready()
 	{
 		_fileDialog.Unresizable = true;
 		_fileDialog.Size = GetTree().Root.Size;
@@ -62,7 +61,7 @@ public partial class CollisionEditorMain : Control
 		ChangeActivity();
 	}
 
-	public void OpenFileDialog(Dictionary<string, string> filters, 
+	public static void OpenFileDialog(Dictionary<string, string> filters, 
 		FileDialog.FileModeEnum fileMode, FileDialog.FileSelectedEventHandler newEvent)
 	{
 		_fileDialog.FileMode = fileMode;
@@ -87,11 +86,11 @@ public partial class CollisionEditorMain : Control
 		Image image = ImageLoader.Load(imagePath);
 		var packedScreen = GD.Load<PackedScene>("res://OpenTileMapScreen.tscn");
 		var screen = packedScreen.Instantiate<OpenTileMapScreen>();
-		screen.Image = image;
+		OpenTileMapScreen.Image = image;
 		
 		AddChild(screen);
 		GetTree().Paused = true;
-		OpenTilemapParameters parameters = await Task.Run(() => screen.GetParameters());
+		OpenTilemapParameters parameters = await Task.Run(OpenTileMapScreen.GetParameters);
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
@@ -102,13 +101,13 @@ public partial class CollisionEditorMain : Control
 		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
 	}
 
-	public void CreateAngleMap(string binaryFilePath)
+	public static void CreateAngleMap(string binaryFilePath)
 	{
 		AngleMap = new AngleMap(binaryFilePath, TileSet.Tiles.Count);
 		
 		if (TileSet.Tiles.Count == 0)
 		{
-			TileSet = new TileSet(this, AngleMap.Angles.Count, _tileSize);
+			TileSet = new TileSet(Object, AngleMap.Angles.Count, TileSize);
 			TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
 		}
 		TileButtonsGrid.CreateTileButtons(TileSet);
@@ -121,7 +120,7 @@ public partial class CollisionEditorMain : Control
 
 		AddChild(screen);
 		GetTree().Paused = true;
-		SaveTilemapParameters parameters = await Task.Run(() => screen.GetParameters());
+		SaveTilemapParameters parameters = await Task.Run(() => SaveTileMapScreen.GetParameters());
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
@@ -129,7 +128,7 @@ public partial class CollisionEditorMain : Control
 			parameters.GroupOffset, parameters.Separation, parameters.Offset);
 	}
 
-	public void AddTile()
+	public static void AddTile()
 	{
 		TileSet.InsertTile(TileIndex);
 		AngleMap.InsertAngle(TileIndex);
@@ -137,7 +136,7 @@ public partial class CollisionEditorMain : Control
 		TileIndexChangedEvents?.Invoke();
 	}
 
-	public void RemoveTile()
+	public static void RemoveTile()
 	{
 		TileSet.RemoveTile(TileIndex);
 		AngleMap.RemoveAngle(TileIndex);
@@ -152,39 +151,39 @@ public partial class CollisionEditorMain : Control
 		TileIndexChangedEvents?.Invoke();
 	}
 
-	public void UpdateTile()
+	public static void UpdateTile()
 	{
 		TileButtonsGrid.UpdateTileButton(TileIndex, TileSet);
 		TileIndexChangedEvents?.Invoke();
 	}
 
-	public void ClearAngles()
+	public static void ClearAngles()
 	{
 		AngleMap.CreateAngles(AngleMap.Angles.Count);
 		AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}
 	
-	public void ClearTiles()
+	public static void ClearTiles()
 	{
 		TileSet.UnloadTiles();
 		TileButtonsGrid.UpdateTileButtons(TileSet);
 		TileIndexChangedEvents?.Invoke();
 	}
 
-	public void ChangeAngleBy(int value)
+	public static void ChangeAngleBy(int value)
 	{
 		var angle = (byte)(AngleMap.Angles[TileIndex] + value);
 		AngleMap.Angles[TileIndex] = angle;
 		AngleChangedEvents?.Invoke(angle);
 	}
 
-	public void SetAngle(byte value)
+	public static void SetAngle(byte value)
 	{
 		AngleMap.Angles[TileIndex] = value;
 		AngleChangedEvents?.Invoke(value);
 	}
 	
-	public void SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
+	public static void SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
 	{
 		double angle = Math.Atan2(positionBlue.Y - positionGreen.Y, positionBlue.X - positionGreen.X);
 		var value = (byte)(angle * AngleMap.ConvertRadiansToByte);
@@ -193,7 +192,7 @@ public partial class CollisionEditorMain : Control
 	}
 
 
-	private void ChangeActivity()
+	private static void ChangeActivity()
 	{
 		if (_tileCount == TileSet.Tiles.Count || (_tileCount != 0 && TileSet.Tiles.Count != 0)) return;
 		_tileCount = TileSet.Tiles.Count;

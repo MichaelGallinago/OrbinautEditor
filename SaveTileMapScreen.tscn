@@ -1,22 +1,24 @@
-[gd_scene load_steps=29 format=3 uid="uid://bksajhj3kt77l"]
+[gd_scene load_steps=31 format=3 uid="uid://bksajhj3kt77l"]
 
 [ext_resource type="Script" path="res://SaveTileMapScreen.cs" id="1_y57vj"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_3wddm"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_ihsk0"]
 [ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_w2h37"]
 [ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="5_t3klh"]
+[ext_resource type="Script" path="res://LineEditSeparationSaveX.cs" id="6_l0pfi"]
 [ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_6yq4c"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationX.cs" id="9_b1gd2"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditSeparationY.cs" id="10_chhy3"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetX.cs" id="11_iitgh"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditOffsetY.cs" id="12_o7xih"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LineEditNumber.cs" id="13_ed276"]
+[ext_resource type="Script" path="res://LineEditSeparationSaveY.cs" id="8_oawx7"]
+[ext_resource type="Script" path="res://LineEditOffsetSaveX.cs" id="9_5ltwh"]
+[ext_resource type="Script" path="res://LineEditOffsetSaveY.cs" id="10_icrir"]
+[ext_resource type="Script" path="res://LineEditColumns.cs" id="11_sbulm"]
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="14_mkor8"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="15_t5gyl"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonAdd.cs" id="16_fpr5f"]
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="17_1kayc"]
+[ext_resource type="Script" path="res://LineEditGroupOffset.cs" id="17_7n0c3"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/OpenTileMapButton.cs" id="18_q40hf"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="18_sbf65"]
+[ext_resource type="Script" path="res://SaveTileMapButton.cs" id="19_d4mbj"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="19_jmfoj"]
 [ext_resource type="Texture2D" uid="uid://iwd8pccx7frl" path="res://Resorses/Sprites/plus.png" id="19_vs2rs"]
 [ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://ColorPickerContainer.tscn" id="20_ha37h"]
@@ -193,7 +195,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditSeparationX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
+[node name="LineEditSeparationSaveX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -201,9 +203,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("9_b1gd2")
+script = ExtResource("6_l0pfi")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationX"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationSaveX"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -213,7 +215,7 @@ theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
 theme_override_styles/normal = ExtResource("7_6yq4c")
 text = "X"
 
-[node name="LineEditSeparationY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
+[node name="LineEditSeparationSaveY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -221,9 +223,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("10_chhy3")
+script = ExtResource("8_oawx7")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationY"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerSeparation/LineEditSeparationSaveY"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -252,7 +254,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditOffsetX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset"]
+[node name="LineEditOffsetSaveX" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -260,9 +262,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("11_iitgh")
+script = ExtResource("9_5ltwh")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetX"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetSaveX"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -272,7 +274,7 @@ theme_override_colors/font_color = Color(0.784314, 0.392157, 0.392157, 1)
 theme_override_styles/normal = ExtResource("7_6yq4c")
 text = "X"
 
-[node name="LineEditOffsetY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset"]
+[node name="LineEditOffsetSaveY" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -280,9 +282,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("12_o7xih")
+script = ExtResource("10_icrir")
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetY"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerOffset/LineEditOffsetSaveY"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -311,7 +313,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditNumber" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns"]
+[node name="LineEditColumns" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -319,9 +321,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("13_ed276")
+script = ExtResource("11_sbulm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditNumber"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditColumns"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -336,7 +338,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.01663)
 theme_override_constants/separation = 0
 
-[node name="TileNumberButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditNumber/VBoxContainer"]
+[node name="ColumnsButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditColumns/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/focus = ExtResource("14_mkor8")
@@ -344,7 +346,7 @@ icon = ExtResource("15_t5gyl")
 flat = true
 script = ExtResource("16_fpr5f")
 
-[node name="TileNumberButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditNumber/VBoxContainer"]
+[node name="ColumnsButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerColumns/LineEditColumns/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/outline_size = 0
@@ -363,7 +365,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_selected_color = Color(0.439216, 0.729412, 0.980392, 1)
 theme_override_colors/font_uneditable_color = Color(0.705882, 0.705882, 0.705882, 1)
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_mcflx")
-text = "groupOffset"
+text = "GroupOffset"
 editable = false
 context_menu_enabled = false
 virtual_keyboard_enabled = false
@@ -372,7 +374,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 
-[node name="LineEditNumber" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset"]
+[node name="LineEditGroupOffest" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset"]
 custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -380,9 +382,9 @@ theme_override_styles/normal = ExtResource("4_w2h37")
 theme_override_styles/focus = ExtResource("5_t3klh")
 text = "0"
 context_menu_enabled = false
-script = ExtResource("13_ed276")
+script = ExtResource("17_7n0c3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditNumber"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditGroupOffest"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -397,7 +399,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.01663)
 theme_override_constants/separation = 0
 
-[node name="TileNumberButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditNumber/VBoxContainer"]
+[node name="GroupOffsetButtonAdd" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditGroupOffest/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/focus = ExtResource("14_mkor8")
@@ -405,7 +407,7 @@ icon = ExtResource("15_t5gyl")
 flat = true
 script = ExtResource("16_fpr5f")
 
-[node name="TileNumberButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditNumber/VBoxContainer"]
+[node name="GroupOffsetButtonSub" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainerGroupOffset/LineEditGroupOffest/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/outline_size = 0
@@ -417,7 +419,7 @@ script = ExtResource("18_sbf65")
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SaveTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 28)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -431,9 +433,9 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "Save
 "
 icon = ExtResource("19_jmfoj")
-script = ExtResource("18_q40hf")
+script = ExtResource("19_d4mbj")
 
-[node name="LoadTileMapNewGroup" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SaveTileMapNewGroup" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 28)
 layout_mode = 2
 size_flags_horizontal = 10
