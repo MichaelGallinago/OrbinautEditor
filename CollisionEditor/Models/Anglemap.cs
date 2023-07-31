@@ -5,15 +5,10 @@ using System.Linq;
 
 public class AngleMap
 {
-    public const double ConvertRadiansToByte = 128 / Math.PI;
-
     public List<byte> Angles { get; private set; }
 
     public AngleMap(string binaryFilePath, int tileCount = 0)
     {
-        //TODO: Check loading angles
-        //var reader = new BinaryReader(File.Open(path, FileMode.Open));
-        //Angles = reader.ReadBytes((int)Math.Min(int.MaxValue, reader.BaseStream.Length)).ToList();
         Angles = File.ReadAllBytes(binaryFilePath).ToList();
 
         if (tileCount != 0)
@@ -55,13 +50,7 @@ public class AngleMap
             File.Delete(path);
         }
         
-        using BinaryWriter writer = new(File.Open(path, FileMode.CreateNew));
-        {
-            foreach (byte angle in Angles)
-            {
-                writer.Write(angle);
-            }
-        }
+        File.WriteAllBytes(path, Angles.ToArray());
     }
     
     public void InsertAngle(int tileIndex)

@@ -4,6 +4,7 @@ using System.Globalization;
 
 public class Angles
 {
+    private const double ConvertRadiansToByte = 128 / Math.PI;
     private const double ConvertByteToFull = 1.40625d;
     public static readonly IReadOnlyList<string> HexPrefixes = new[] { "0x", "0X", "0", "$" };
 
@@ -18,8 +19,8 @@ public class Angles
         return round ? Math.Round(fullAngle, 2) : fullAngle;
     }
 
-    public static byte GetByteAngle(string hexAngle, byte prefixLength)
+    public static byte GetByteAngle(double radiansAngle)
     {
-        return byte.Parse(hexAngle[prefixLength..], NumberStyles.HexNumber);
+        return (byte)(radiansAngle * ConvertRadiansToByte);
     }
 }

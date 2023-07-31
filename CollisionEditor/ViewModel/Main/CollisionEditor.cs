@@ -110,13 +110,12 @@ public partial class CollisionEditor : Control
 	public static void CreateAngleMap(string binaryFilePath)
 	{
 		AngleMap = new AngleMap(binaryFilePath, TileSet.Tiles.Count);
-		
-		if (TileSet.Tiles.Count == 0)
-		{
-			TileSet = new TileSet(Object, AngleMap.Angles.Count, BaseTileSize);
-			TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
-		}
+
+		if (TileSet.Tiles.Count != 0) return;
+		TileSet = new TileSet(Object, AngleMap.Angles.Count, BaseTileSize);
 		TileButtonsGrid.CreateTileButtons(TileSet);
+		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
+		_tileCount = 0;
 	}
 
 	public async Task<Image> CreateTileMap()
@@ -192,7 +191,7 @@ public partial class CollisionEditor : Control
 	public static void SetAngleFromLine(int tileIndex, Vector2I positionGreen, Vector2I positionBlue)
 	{
 		double angle = Math.Atan2(positionBlue.Y - positionGreen.Y, positionBlue.X - positionGreen.X);
-		var value = (byte)(angle * AngleMap.ConvertRadiansToByte);
+		byte value = Angles.GetByteAngle(angle);
 		AngleMap.Angles[tileIndex] = value;
 		AngleChangedEvents?.Invoke(value);
 	}

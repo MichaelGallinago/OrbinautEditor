@@ -41,7 +41,7 @@ public static class TileUtilities
         {
             File.Delete(path);
         }
-        
+
         using var writer = new BinaryWriter(File.Open(path, FileMode.CreateNew));
         {
             foreach (byte value in tiles.SelectMany(tile => isWidths ? tile.Widths : tile.Heights))
