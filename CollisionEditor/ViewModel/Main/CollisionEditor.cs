@@ -84,7 +84,7 @@ public partial class CollisionEditor : Control
 	public async void CreateTileSet(string imagePath)
 	{
 		Image image = ImageLoader.Load(imagePath);
-		var packedScreen = GD.Load<PackedScene>("res://LoadTileMapScreen.tscn");
+		var packedScreen = GD.Load<PackedScene>("res://CollisionEditor/Screens/LoadTileMap.tscn");
 		var screen = packedScreen.Instantiate<LoadTileMap>();
 		LoadTileMap.Image = image;
 		
@@ -115,7 +115,7 @@ public partial class CollisionEditor : Control
 
 	public async Task<Image> CreateTileMap()
 	{
-		var packedScreen = GD.Load<PackedScene>("res://SaveTileMapScreen.tscn");
+		var packedScreen = GD.Load<PackedScene>("res://CollisionEditor/Screens/SaveTileMap.tscn");
 		var screen = packedScreen.Instantiate<SaveTileMap>();
 
 		AddChild(screen);

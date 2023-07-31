@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://bksajhj3kt77l"]
 
-[ext_resource type="Script" path="res://SaveTileMapScreen.cs" id="1_4hgse"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMap.cs" id="1_4hgse"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_4hshf"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_8lsmr"]
 [ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_fadmp"]
@@ -18,10 +18,10 @@
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="16_a1xoi"]
 [ext_resource type="Script" path="res://LineEditGroupOffset.cs" id="17_80e3r"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="18_pyvof"]
-[ext_resource type="Script" path="res://SaveTileMapButton.cs" id="19_cca5l"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="19_cca5l"]
 [ext_resource type="Texture2D" uid="uid://iwd8pccx7frl" path="res://Resorses/Sprites/plus.png" id="20_fu1xb"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/LoadTileMapButton.cs" id="21_xklkv"]
-[ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://ColorPickerContainer.tscn" id="22_yym33"]
+[ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://PackedObjects/color_picker_container.tscn" id="22_yym33"]
 [ext_resource type="Script" path="res://CollisionEditor/Screens/TextureRectTileMap.cs" id="23_uik13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]

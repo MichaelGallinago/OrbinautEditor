@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_nkla8"]
 [ext_resource type="ButtonGroup" uid="uid://tg7s4df01xal" path="res://ButtonGroups/tile_button_group.tres" id="2_kaydb"]
-[ext_resource type="Script" path="res://CollisionEditor/ViewModel/SelectorPanel/TileButton.cs" id="3_iao58"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/SelectorPanel/TileButton.cs" id="3_iao58"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jb75e"]
 resource_local_to_scene = true

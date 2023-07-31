@@ -15,7 +15,7 @@ public partial class TileButtonsGrid : GridContainer
 
 	public override void _Ready()
 	{
-		_packedButton = GD.Load<PackedScene>("res://tile_button.tscn");
+		_packedButton = GD.Load<PackedScene>("res://PackedObjects/tile_button.tscn");
 		
 		CollisionEditor.TileButtonsGrid = this;
 		CollisionEditor.TileIndexChangedEvents += () => _tileButtons[CollisionEditor.TileIndex].ButtonPressed = true;
