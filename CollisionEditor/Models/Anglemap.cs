@@ -1,4 +1,3 @@
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +11,7 @@ public class AngleMap
 
     public AngleMap(string binaryFilePath, int tileCount = 0)
     {
+        //TODO: Check loading angles
         //var reader = new BinaryReader(File.Open(path, FileMode.Open));
         //Angles = reader.ReadBytes((int)Math.Min(int.MaxValue, reader.BaseStream.Length)).ToList();
         Angles = File.ReadAllBytes(binaryFilePath).ToList();

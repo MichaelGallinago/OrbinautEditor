@@ -1,4 +1,3 @@
-using Godot;
 using System.Diagnostics;
 
 public partial class MenuButtonHelp : MenuButtonHandler
