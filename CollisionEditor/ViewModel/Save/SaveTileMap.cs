@@ -23,6 +23,8 @@ public partial class SaveTileMap : Control
     {
         GroupsContainer.ChildEnteredTree += AddGroup;
         GroupsContainer.ChildExitingTree += RemoveGroup;
+        
+        AddGroup(GroupsContainer.GetChild(0));
     }
 
     public static SaveTileMapParameters GetParameters()

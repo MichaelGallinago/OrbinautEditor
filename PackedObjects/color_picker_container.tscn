@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5s0oir3w2xm"]
+[gd_scene load_steps=8 format=3 uid="uid://c5s0oir3w2xm"]
 
+[ext_resource type="Script" path="res://PackedObjects/ColorPicker.cs" id="1_hrks4"]
 [ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="1_vppxo"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/DeleteContainerButton.cs" id="2_oj6vc"]
 
@@ -54,9 +55,10 @@ offset_bottom = 40.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+[node name="ColorPicker" type="ColorPickerButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("1_hrks4")
 
 [node name="DeleteContainerButton" type="Button" parent="."]
 custom_minimum_size = Vector2(24, 24)
