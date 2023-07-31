@@ -1,4 +1,4 @@
-public partial class LineEditSeparationOpenY : LineEditValidableVector
+public partial class LineEditOffsetLoadY : LineEditValidableVector
 {
     protected override bool ValidateText()
     {
@@ -7,6 +7,6 @@ public partial class LineEditSeparationOpenY : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        OpenTileMapScreen.Parameters.Separation.Y = int.Parse(Text);
+        LoadTileMap.Parameters.Offset.Y = int.Parse(Text);
     }
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class OpenTilemapParameters
+public class LoadTileMapParameters
 {
     public Vector2I TileSize = new();
     public Vector2I Separation = new();

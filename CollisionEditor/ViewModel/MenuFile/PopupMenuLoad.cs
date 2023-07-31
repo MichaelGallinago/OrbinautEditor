@@ -26,8 +26,8 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.png", "PNG" }
         };
             
-        CollisionEditorMain.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => CollisionEditorMain.Object.CreateTileSet(path));
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            path => CollisionEditor.Object.CreateTileSet(path));
     }
 
     private void OnAngleMapPressed()
@@ -37,7 +37,7 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        CollisionEditorMain.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            CollisionEditorMain.CreateAngleMap);
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            CollisionEditor.CreateAngleMap);
     }
 }

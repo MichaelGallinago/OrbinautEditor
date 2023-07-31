@@ -10,14 +10,14 @@ public partial class LineEditTileIndex : LineEditValidableBase
 	{
 		base._Ready();
 		TextValidated += OnTextValidated;
-		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
-		CollisionEditorMain.TileIndexChangedEvents += OnTileIndexChanged;
+		CollisionEditor.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditor.TileIndexChangedEvents += OnTileIndexChanged;
 		Resized += OnResized;
 	}
 
 	protected override bool ValidateText()
 	{
-		return uint.TryParse(Text, out uint value) && value < CollisionEditorMain.TileSet.Tiles.Count;
+		return uint.TryParse(Text, out uint value) && value < CollisionEditor.TileSet.Tiles.Count;
 	}
 
 	private void OnResized()
@@ -29,7 +29,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 
 	private void OnTextValidated(string text)
 	{
-		CollisionEditorMain.TileIndex = int.Parse(text);
+		CollisionEditor.TileIndex = int.Parse(text);
 	}
 
 	private void OnActivityChanged(bool isActive)
@@ -40,7 +40,7 @@ public partial class LineEditTileIndex : LineEditValidableBase
 
 	private void OnTileIndexChanged()
 	{
-		if (int.TryParse(Text, out int value) && value == CollisionEditorMain.TileIndex) return;
-		Text = CollisionEditorMain.TileIndex.ToString();
+		if (int.TryParse(Text, out int value) && value == CollisionEditor.TileIndex) return;
+		Text = CollisionEditor.TileIndex.ToString();
 	}
 }

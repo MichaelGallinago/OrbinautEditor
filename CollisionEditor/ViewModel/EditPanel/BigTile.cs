@@ -17,15 +17,15 @@ public partial class BigTile : TextureRect
 		AddChild(_canvasSquares);
 		AddChild(_canvasLine);
 		
-		CollisionEditorMain.BigTile = this;
+		CollisionEditor.BigTile = this;
 		
-		CollisionEditorMain.ActivityChangedEvents += isActive => UpdateTile(isActive ? CollisionEditorMain.TileIndex : null);
-		CollisionEditorMain.TileIndexChangedEvents += () => UpdateTile(CollisionEditorMain.TileIndex);
-		CollisionEditorMain.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
+		CollisionEditor.ActivityChangedEvents += isActive => UpdateTile(isActive ? CollisionEditor.TileIndex : null);
+		CollisionEditor.TileIndexChangedEvents += () => UpdateTile(CollisionEditor.TileIndex);
+		CollisionEditor.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
 	}
 
 	public void UpdateTile(int? tileIndex)
 	{
-		Texture = tileIndex is null ? new Texture2D() : CollisionEditorMain.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
+		Texture = tileIndex is null ? new Texture2D() : CollisionEditor.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
 	}
 }

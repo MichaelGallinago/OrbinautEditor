@@ -7,6 +7,6 @@ public partial class LineEditSeparationSaveY : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        SaveTileMapScreen.Parameters.Separation.Y = int.Parse(Text);
+        SaveTileMap.Parameters.Separation.Y = int.Parse(Text);
     }
 }

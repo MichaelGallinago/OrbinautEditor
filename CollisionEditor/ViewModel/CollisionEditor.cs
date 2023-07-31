@@ -3,9 +3,9 @@ using Godot;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public partial class CollisionEditorMain : Control
+public partial class CollisionEditor : Control
 {
-	public static CollisionEditorMain Object { get; private set; }
+	public static CollisionEditor Object { get; private set; }
 	public static TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
@@ -32,7 +32,7 @@ public partial class CollisionEditorMain : Control
 	private static int _tileCount;
 	private static int _tileIndex;
 
-	public CollisionEditorMain()
+	public CollisionEditor()
 	{
 		Object = this;
 		TileSet = new TileSet(this);
@@ -84,13 +84,13 @@ public partial class CollisionEditorMain : Control
 	public async void CreateTileSet(string imagePath)
 	{
 		Image image = ImageLoader.Load(imagePath);
-		var packedScreen = GD.Load<PackedScene>("res://OpenTileMapScreen.tscn");
-		var screen = packedScreen.Instantiate<OpenTileMapScreen>();
-		OpenTileMapScreen.Image = image;
+		var packedScreen = GD.Load<PackedScene>("res://LoadTileMapScreen.tscn");
+		var screen = packedScreen.Instantiate<LoadTileMap>();
+		LoadTileMap.Image = image;
 		
 		AddChild(screen);
 		GetTree().Paused = true;
-		OpenTilemapParameters parameters = await Task.Run(OpenTileMapScreen.GetParameters);
+		LoadTileMapParameters parameters = await Task.Run(LoadTileMap.GetParameters);
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
@@ -116,11 +116,11 @@ public partial class CollisionEditorMain : Control
 	public async Task<Image> CreateTileMap()
 	{
 		var packedScreen = GD.Load<PackedScene>("res://SaveTileMapScreen.tscn");
-		var screen = packedScreen.Instantiate<SaveTileMapScreen>();
+		var screen = packedScreen.Instantiate<SaveTileMap>();
 
 		AddChild(screen);
 		GetTree().Paused = true;
-		SaveTilemapParameters parameters = await Task.Run(() => SaveTileMapScreen.GetParameters());
+		SaveTileMapParameters parameters = await Task.Run(SaveTileMap.GetParameters);
 		GetTree().Paused = false;
 		RemoveChild(screen);
 

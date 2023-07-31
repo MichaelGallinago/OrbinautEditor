@@ -20,18 +20,18 @@ public partial class PopupMenuUnload : PopupMenuHandler
     
     private void OnAllPressed()
     {
-        CollisionEditorMain.TileSet.Tiles.Clear();
-        CollisionEditorMain.AngleMap.Angles.Clear();
-        CollisionEditorMain.TileButtonsGrid.ClearTileButtons();
+        CollisionEditor.TileSet.Tiles.Clear();
+        CollisionEditor.AngleMap.Angles.Clear();
+        CollisionEditor.TileButtonsGrid.ClearTileButtons();
     }
 
     private void OnTileSetPressed()
     {
-        CollisionEditorMain.ClearTiles();
+        CollisionEditor.ClearTiles();
     }
     
     private void OnAngleMapPressed()
     {
-        CollisionEditorMain.ClearAngles();
+        CollisionEditor.ClearAngles();
     }
 }

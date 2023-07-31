@@ -4,6 +4,6 @@ public partial class AngleModeButton : Button
 {
     public override void _Ready()
     {
-        Pressed += () => CollisionEditorMain.IsTileMode = false;
+        Pressed += () => CollisionEditor.IsTileMode = false;
     }
 }

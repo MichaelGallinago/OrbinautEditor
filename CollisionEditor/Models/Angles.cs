@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 public class Angles
 {
-    const double ConvertByteToFull = 1.40625d;
+    private const double ConvertByteToFull = 1.40625d;
+    public static readonly IReadOnlyList<string> HexPrefixes = new[] { "0x", "0X", "0", "$" };
 
-    public static string GetHexAngle(byte byteAngle, byte maxLength)
+    public static string GetHexAngle(byte byteAngle, byte maxLength, byte prefixIndex)
     {
-        return "0x" + $"{byteAngle:X}".PadLeft(maxLength, '0');
+        return HexPrefixes[prefixIndex] + $"{byteAngle:X}".PadLeft(maxLength, '0');
     }
 
     public static double GetFullAngle(byte byteAngle, bool round)
     {
-        if (round)
-        {
-            return Math.Round((byte.MaxValue + 1 - byteAngle) * ConvertByteToFull, 2);
-        }
-        return (byte.MaxValue + 1 - byteAngle) * ConvertByteToFull;
+        double fullAngle = (byte.MaxValue + 1 - byteAngle) * ConvertByteToFull;
+        return round ? Math.Round(fullAngle, 2) : fullAngle;
     }
 
     public static byte GetByteAngle(string hexAngle, byte prefixLength)

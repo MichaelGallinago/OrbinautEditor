@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class SaveTilemapParameters
+public class SaveTileMapParameters
 {
     public Vector2I Separation = new();
     public Vector2I Offset = new();

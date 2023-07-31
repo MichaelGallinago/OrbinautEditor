@@ -7,7 +7,7 @@ public partial class LineEditGroupOffset : LineEditValidableBase
     public override void _Ready()
     {
         base._Ready();
-        SaveTileMapScreen.Parameters.GroupOffsetChangedEvents += OnGroupOffsetChanged;
+        SaveTileMap.Parameters.GroupOffsetChangedEvents += OnGroupOffsetChanged;
         TextValidated += OnTextValidated;
     }
     
@@ -26,13 +26,13 @@ public partial class LineEditGroupOffset : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        SaveTileMapScreen.Parameters.GroupOffset = int.Parse(Text);
+        SaveTileMap.Parameters.GroupOffset = int.Parse(Text);
     }
 
     private void OnGroupOffsetChanged()
     {
-        if (int.TryParse(Text, out int value) && value == SaveTileMapScreen.Parameters.GroupOffset) return;
-        Text = SaveTileMapScreen.Parameters.GroupOffset.ToString();
+        if (int.TryParse(Text, out int value) && value == SaveTileMap.Parameters.GroupOffset) return;
+        Text = SaveTileMap.Parameters.GroupOffset.ToString();
     }
 }
 

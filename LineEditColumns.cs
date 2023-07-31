@@ -7,7 +7,7 @@ public partial class LineEditColumns : LineEditValidableBase
     public override void _Ready()
     {
         base._Ready();
-        SaveTileMapScreen.Parameters.ColumnsChangedEvents += OnColumnsChanged;
+        SaveTileMap.Parameters.ColumnsChangedEvents += OnColumnsChanged;
         TextValidated += OnTextValidated;
     }
     
@@ -26,12 +26,12 @@ public partial class LineEditColumns : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        SaveTileMapScreen.Parameters.Columns = int.Parse(Text);
+        SaveTileMap.Parameters.Columns = int.Parse(Text);
     }
 
     private void OnColumnsChanged()
     {
-        if (int.TryParse(Text, out int value) && value == SaveTileMapScreen.Parameters.Columns) return;
-        Text = SaveTileMapScreen.Parameters.Columns.ToString();
+        if (int.TryParse(Text, out int value) && value == SaveTileMap.Parameters.Columns) return;
+        Text = SaveTileMap.Parameters.Columns.ToString();
     }
 }

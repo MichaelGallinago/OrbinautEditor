@@ -1,21 +1,19 @@
-using Godot;
-using System;
 using System.Globalization;
+using Godot;
 
 public partial class LineEditFullAngle : LineEdit
 {
 	private const string BaseText = "360°";
-	private const double ConvertByteToFull = 1.40625d;
+	private const char Postfix = '°';
 	
 	public override void _Ready()
 	{
-		CollisionEditorMain.ActivityChangedEvents += isActive => Text = isActive ? BaseText : string.Empty;
-		CollisionEditorMain.AngleChangedEvents += OnAngleChanged;
+		CollisionEditor.ActivityChangedEvents += isActive => Text = isActive ? BaseText : string.Empty;
+		CollisionEditor.AngleChangedEvents += OnAngleChanged;
 	}
 	
 	private void OnAngleChanged(byte angle)
 	{
-		double value = Math.Round((byte.MaxValue + 1 - angle) * ConvertByteToFull, 2);
-		Text = value.ToString(CultureInfo.InvariantCulture) + '°';
+		Text = Angles.GetFullAngle(angle, true).ToString(CultureInfo.InvariantCulture) + Postfix;
 	}
 }

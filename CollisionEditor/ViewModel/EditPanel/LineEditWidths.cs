@@ -6,8 +6,8 @@ public partial class LineEditWidths : LineEdit
 {
 	public override void _Ready()
 	{
-		CollisionEditorMain.TileIndexChangedEvents += () => Text = CreateString(CollisionEditorMain.TileSet.Tiles[CollisionEditorMain.TileIndex].Widths);
-		CollisionEditorMain.ActivityChangedEvents += OnActivityChanged;
+		CollisionEditor.TileIndexChangedEvents += () => Text = CreateString(CollisionEditor.TileSet.Tiles[CollisionEditor.TileIndex].Widths);
+		CollisionEditor.ActivityChangedEvents += OnActivityChanged;
 	}
 
 	private void OnActivityChanged(bool isActive)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="OrbinautEditor"
-run/main_scene="res://CollisionEditor/Screens/CollisionEditorMain.tscn"
+run/main_scene="res://CollisionEditor/Screens/CollisionEditor.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0.113725, 0.133333, 0.160784, 1)
 boot_splash/show_image=false

@@ -34,7 +34,7 @@ public partial class BigTileCanvasSquares : Control
         _squareGreen = new BigTileSquare(Colors.Green);
 
         _bigTile.MinimumSizeChanged += OnSizeChanged;
-        CollisionEditorMain.TileIndexChangedEvents += DisableSquares;
+        CollisionEditor.TileIndexChangedEvents += DisableSquares;
     }
 
     public override void _Process(double delta)
@@ -65,7 +65,7 @@ public partial class BigTileCanvasSquares : Control
         
         Vector2I mouseGridPosition = (Vector2I)GetLocalMousePosition() / _bigTile.TileScale;
 
-        if (CollisionEditorMain.IsTileMode)
+        if (CollisionEditor.IsTileMode)
         {
             DisableSquares();
             CheckTileMode(mouseGridPosition);
@@ -82,7 +82,7 @@ public partial class BigTileCanvasSquares : Control
         
         if ((isLeftClick || isRightClick) && _squareBlue.IsActive && _squareGreen.IsActive)
         {
-            CollisionEditorMain.SetAngleFromLine(CollisionEditorMain.TileIndex, 
+            CollisionEditor.SetAngleFromLine(CollisionEditor.TileIndex, 
                 (Vector2I)_squareBlue.Rectangle.Position, 
                 (Vector2I)_squareGreen.Rectangle.Position);
         }
@@ -106,8 +106,8 @@ public partial class BigTileCanvasSquares : Control
         }
         
         if (!_isTileEditReady) return;
-        CollisionEditorMain.TileSet.ChangeTile(CollisionEditorMain.TileIndex, mousePosition, isLeftClick);
-        CollisionEditorMain.UpdateTile();
+        CollisionEditor.TileSet.ChangeTile(CollisionEditor.TileIndex, mousePosition, isLeftClick);
+        CollisionEditor.UpdateTile();
         _isTileEditReady = false;
     }
 
@@ -146,7 +146,7 @@ public partial class BigTileCanvasSquares : Control
         _squareBlue.Rectangle.Position = _squareBlue.Rectangle.Position * CustomMinimumSize + _gridOffset;
         _squareGreen.Rectangle.Position = _squareGreen.Rectangle.Position * CustomMinimumSize + _gridOffset;
         
-        Vector2 squareSize = CustomMinimumSize / CollisionEditorMain.TileSet.TileSize - _gridOffset;
+        Vector2 squareSize = CustomMinimumSize / CollisionEditor.TileSet.TileSize - _gridOffset;
         _squareBlue.Rectangle.Size = squareSize;
         _squareGreen.Rectangle.Size = squareSize;
     }

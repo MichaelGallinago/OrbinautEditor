@@ -1,22 +1,22 @@
 using Godot;
 
-public partial class OpenTileMapScreen : Control
+public partial class LoadTileMap : Control
 {
-    public static OpenTileMapScreen Object { get; private set; }
-    public static OpenTilemapParameters Parameters { private set; get; }
+    public static LoadTileMap Object { get; private set; }
+    public static LoadTileMapParameters Parameters { private set; get; }
     public static bool IsLoadPressed { get; set; }
     public static Image Image { set; get; }
     
     
-    public OpenTileMapScreen()
+    public LoadTileMap()
     {
         Object = this;
-        Parameters = new OpenTilemapParameters();
+        Parameters = new LoadTileMapParameters();
         IsLoadPressed = false;
         Image = new Image();
     }
 
-    public static OpenTilemapParameters GetParameters()
+    public static LoadTileMapParameters GetParameters()
     {
         while (true)
         {

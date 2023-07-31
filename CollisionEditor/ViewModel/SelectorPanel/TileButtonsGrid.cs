@@ -17,8 +17,8 @@ public partial class TileButtonsGrid : GridContainer
 	{
 		_packedButton = GD.Load<PackedScene>("res://tile_button.tscn");
 		
-		CollisionEditorMain.TileButtonsGrid = this;
-		CollisionEditorMain.TileIndexChangedEvents += () => _tileButtons[CollisionEditorMain.TileIndex].ButtonPressed = true;
+		CollisionEditor.TileButtonsGrid = this;
+		CollisionEditor.TileIndexChangedEvents += () => _tileButtons[CollisionEditor.TileIndex].ButtonPressed = true;
 
 		Resized += () =>
 		{
@@ -77,7 +77,7 @@ public partial class TileButtonsGrid : GridContainer
 		var button = _packedButton.Instantiate<TileButton>();
 		button.CustomMinimumSize = _buttonSize;
 		button.TextureNormal = tile.Sprite.Texture;
-		button.Pressed += () => CollisionEditorMain.TileIndex = _tileButtons.IndexOf(button);
+		button.Pressed += () => CollisionEditor.TileIndex = _tileButtons.IndexOf(button);
 		return button;
 	}
 

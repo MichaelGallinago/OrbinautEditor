@@ -1,21 +1,21 @@
 using Godot;
 
-public partial class SaveTileMapScreen : Control
+public partial class SaveTileMap : Control
 {
-    public static SaveTileMapScreen Object { get; private set; }
-    public static SaveTilemapParameters Parameters { get; private set; } = new();
+    public static SaveTileMap Object { get; private set; }
+    public static SaveTileMapParameters Parameters { get; private set; } = new();
     public static bool IsSavePressed { get; set; }
     public static Image Image { set; get; }
     
-    public SaveTileMapScreen()
+    public SaveTileMap()
     {
         Object = this;
-        Parameters = new SaveTilemapParameters();
+        Parameters = new SaveTileMapParameters();
         IsSavePressed = false;
         Image = new Image();
     }
 
-    public static SaveTilemapParameters GetParameters()
+    public static SaveTileMapParameters GetParameters()
     {
         while (true)
         {

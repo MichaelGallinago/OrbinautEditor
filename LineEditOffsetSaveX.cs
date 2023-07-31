@@ -7,6 +7,6 @@ public partial class LineEditOffsetSaveX : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        SaveTileMapScreen.Parameters.Offset.X = int.Parse(Text);
+        SaveTileMap.Parameters.Offset.X = int.Parse(Text);
     }
 }

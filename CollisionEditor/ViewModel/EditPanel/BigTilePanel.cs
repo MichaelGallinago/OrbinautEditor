@@ -15,7 +15,7 @@ public partial class BigTilePanel : Panel
 
 		_container = (CenterContainer)GetParent();
 		GetTree().Root.SizeChanged += ResetPanelSize;
-		CollisionEditorMain.ActivityChangedEvents += UpdatePanelSize;
+		CollisionEditor.ActivityChangedEvents += UpdatePanelSize;
 	}
 
 	public override void _Process(double delta)
@@ -50,7 +50,7 @@ public partial class BigTilePanel : Panel
 		int scale = Mathf.Max(4, (int)(containerMinSize / textureMaxSize));
 		
 		_bigTile.TileScale = scale;
-		_bigTile.UpdateTile(CollisionEditorMain.TileIndex);
+		_bigTile.UpdateTile(CollisionEditor.TileIndex);
 		((ShaderMaterial)_bigTile.Material).SetShaderParameter("Size",  scale);
 		CustomMinimumSize = textureSize * scale + _panelBorder;
 	}

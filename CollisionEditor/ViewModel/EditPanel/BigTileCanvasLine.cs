@@ -12,9 +12,9 @@ public partial class BigTileCanvasLine : Control
 
 	public override void _Draw()
 	{
-		if (CollisionEditorMain.AngleMap.Angles.Count == 0) return;
-		Vector2 size = (Vector2)(CollisionEditorMain.TileSet.TileSize * _bigTile.TileScale) / 2f;
-		Vector2 position = GetLinePosition(size, CollisionEditorMain.AngleMap.Angles[CollisionEditorMain.TileIndex]);
+		if (CollisionEditor.AngleMap.Angles.Count == 0) return;
+		Vector2 size = (Vector2)(CollisionEditor.TileSet.TileSize * _bigTile.TileScale) / 2f;
+		Vector2 position = GetLinePosition(size, CollisionEditor.AngleMap.Angles[CollisionEditor.TileIndex]);
 		
 		DrawLine(position + size, -position + size, Colors.Red, 2);
 	}

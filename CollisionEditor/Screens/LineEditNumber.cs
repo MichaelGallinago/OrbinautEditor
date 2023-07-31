@@ -7,7 +7,7 @@ public partial class LineEditNumber : LineEditValidableBase
     public override void _Ready()
     {
         base._Ready();
-        OpenTileMapScreen.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
+        LoadTileMap.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
         TextValidated += OnTextValidated;
     }
     
@@ -26,12 +26,12 @@ public partial class LineEditNumber : LineEditValidableBase
 
     private void OnTextValidated(string text)
     {
-        OpenTileMapScreen.Parameters.TileNumber = int.Parse(Text);
+        LoadTileMap.Parameters.TileNumber = int.Parse(Text);
     }
 
     private void OnTileNumberChanged()
     {
-        if (int.TryParse(Text, out int value) && value == OpenTileMapScreen.Parameters.TileNumber) return;
-        Text = OpenTileMapScreen.Parameters.TileNumber.ToString();
+        if (int.TryParse(Text, out int value) && value == LoadTileMap.Parameters.TileNumber) return;
+        Text = LoadTileMap.Parameters.TileNumber.ToString();
     }
 }
