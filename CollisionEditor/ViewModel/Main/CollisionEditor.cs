@@ -104,6 +104,7 @@ public partial class CollisionEditor : Control
 		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
 		TileButtonsGrid.CreateTileButtons(TileSet);
 		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
+		_tileCount = 0;
 	}
 
 	public static void CreateAngleMap(string binaryFilePath)

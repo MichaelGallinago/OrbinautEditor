@@ -23,7 +23,8 @@ public partial class BigTileCanvasLine : Control
 	{
 		float angle = Mathf.DegToRad((360 - (float)Angles.GetFullAngle(realAngle, false)) % 180);
 		float invertedAngle = Mathf.Pi / 2 - angle;
-		if (Mathf.Abs(invertedAngle) > Mathf.Atan2(size.Y, size.X))
+		
+		if (Mathf.Abs(invertedAngle) > Mathf.Atan2(size.X, size.Y))
 		{
 			size.Y = Mathf.Tan(angle) * size.X;
 		}

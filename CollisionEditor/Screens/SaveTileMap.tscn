@@ -1,28 +1,27 @@
-[gd_scene load_steps=31 format=3 uid="uid://bksajhj3kt77l"]
+[gd_scene load_steps=30 format=3 uid="uid://bksajhj3kt77l"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMap.cs" id="1_4hgse"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_4hshf"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_8lsmr"]
 [ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_fadmp"]
 [ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="5_0x8t8"]
-[ext_resource type="Script" path="res://LineEditSeparationSaveX.cs" id="6_fduc5"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditSeparationSaveX.cs" id="6_fduc5"]
 [ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="7_jik8n"]
-[ext_resource type="Script" path="res://LineEditSeparationSaveY.cs" id="8_7gq1s"]
-[ext_resource type="Script" path="res://LineEditOffsetSaveX.cs" id="9_tnhsm"]
-[ext_resource type="Script" path="res://LineEditOffsetSaveY.cs" id="10_4tvg7"]
-[ext_resource type="Script" path="res://LineEditColumns.cs" id="11_uqyoh"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditSeparationSaveY.cs" id="8_7gq1s"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditOffsetSaveX.cs" id="9_tnhsm"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditOffsetSaveY.cs" id="10_4tvg7"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditColumns.cs" id="11_uqyoh"]
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="12_6814x"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="13_8lssr"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonAdd.cs" id="14_rs33g"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TileNumberButtonAdd.cs" id="14_rs33g"]
 [ext_resource type="Texture2D" uid="uid://bgcfiplj86k3n" path="res://Resorses/Sprites/arrow_down_light.png" id="15_dew4l"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TileNumberButtonSub.cs" id="16_a1xoi"]
-[ext_resource type="Script" path="res://LineEditGroupOffset.cs" id="17_80e3r"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TileNumberButtonSub.cs" id="16_a1xoi"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditGroupOffset.cs" id="17_80e3r"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="18_pyvof"]
-[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="19_cca5l"]
 [ext_resource type="Texture2D" uid="uid://iwd8pccx7frl" path="res://Resorses/Sprites/plus.png" id="20_fu1xb"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/LoadTileMapButton.cs" id="21_xklkv"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="21_xklkv"]
 [ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://PackedObjects/color_picker_container.tscn" id="22_yym33"]
-[ext_resource type="Script" path="res://CollisionEditor/Screens/TextureRectTileMap.cs" id="23_uik13"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TextureRectTileMap.cs" id="23_uik13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -433,7 +432,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "Save
 "
 icon = ExtResource("18_pyvof")
-script = ExtResource("19_cca5l")
+script = ExtResource("21_xklkv")
 
 [node name="SaveTileMapNewGroup" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 28)
