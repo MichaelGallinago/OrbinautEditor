@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 public partial class CollisionEditor : Control
 {
+	private static readonly Vector2I BaseTileSize = new(16, 16);
+	
 	public static CollisionEditor Object { get; private set; }
 	public static TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
-	public static BigTile BigTile { get; set; }
 	public static bool IsTileMode { get; set; }
 	
 	public static int TileIndex 
@@ -28,7 +29,6 @@ public partial class CollisionEditor : Control
 
 	private static FileDialog _fileDialog;
 	private static FileDialog.FileSelectedEventHandler _fileDialogEvent;
-	private static readonly Vector2I TileSize = new(16, 16);
 	private static int _tileCount;
 	private static int _tileIndex;
 
@@ -37,6 +37,8 @@ public partial class CollisionEditor : Control
 		Object = this;
 		TileSet = new TileSet(this);
 		AngleMap = new AngleMap();
+		IsTileMode = false;
+		
 		_fileDialog = new FileDialog();
 		
 		TileIndexChangedEvents += () =>
@@ -107,7 +109,7 @@ public partial class CollisionEditor : Control
 		
 		if (TileSet.Tiles.Count == 0)
 		{
-			TileSet = new TileSet(Object, AngleMap.Angles.Count, TileSize);
+			TileSet = new TileSet(Object, AngleMap.Angles.Count, BaseTileSize);
 			TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
 		}
 		TileButtonsGrid.CreateTileButtons(TileSet);

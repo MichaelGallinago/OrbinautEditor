@@ -17,8 +17,6 @@ public partial class BigTile : TextureRect
 		AddChild(_canvasSquares);
 		AddChild(_canvasLine);
 		
-		CollisionEditor.BigTile = this;
-		
 		CollisionEditor.ActivityChangedEvents += isActive => UpdateTile(isActive ? CollisionEditor.TileIndex : null);
 		CollisionEditor.TileIndexChangedEvents += () => UpdateTile(CollisionEditor.TileIndex);
 		CollisionEditor.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
