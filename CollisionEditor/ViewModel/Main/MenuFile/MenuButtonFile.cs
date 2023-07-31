@@ -5,7 +5,7 @@ public partial class MenuButtonFile : MenuButtonHandler
 	public MenuButtonFile()
 	{
 		PopupMenu popup = GetPopup();
-
+		
 		popup.AddChild(new PopupMenuLoad());
 		popup.AddSubmenuItem("Load", "loadMenu", 0);
 		popup.AddChild(new PopupMenuSave());
@@ -14,8 +14,11 @@ public partial class MenuButtonFile : MenuButtonHandler
 		popup.AddSubmenuItem("Unload", "unloadMenu", 2);
 		popup.AddSeparator();
 		popup.AddItem("Exit", 3);
+
+		popup.SetItemDisabled(1, true);
+		CollisionEditor.ActivityChangedEvents += isActive => popup.SetItemDisabled(1, !isActive);
 	}
-	
+
 	protected override void OnItemPressed(long id)
 	{
 		switch (id)
@@ -23,7 +26,7 @@ public partial class MenuButtonFile : MenuButtonHandler
 			case 3: OnExitPressed(); break;
 		}
 	}
-
+	
 	private void OnExitPressed()
 	{
 		GetTree().Quit();
