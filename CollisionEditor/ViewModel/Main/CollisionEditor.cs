@@ -40,7 +40,10 @@ public partial class CollisionEditor : Control
 		IsTileMode = false;
 		
 		_fileDialog = new FileDialog();
-		
+		_fileDialogEvent = null;
+		_tileCount = 0;
+		_tileIndex = 0;
+
 		TileIndexChangedEvents += () =>
 		{
 			if (AngleMap.Angles.Count == 0) return;
@@ -48,7 +51,7 @@ public partial class CollisionEditor : Control
 		};
 	}
 
-	public  override void _Ready()
+	public override void _Ready()
 	{
 		_fileDialog.Unresizable = true;
 		_fileDialog.Size = GetTree().Root.Size;
@@ -126,7 +129,7 @@ public partial class CollisionEditor : Control
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
-		return await TileSet.CreateTileMap(parameters.Columns, new[] { Colors.Yellow, Colors.Black, Colors.White },
+		return await TileSet.CreateTileMap(parameters.Columns, parameters.Colors.ToArray(),
 			parameters.GroupOffset, parameters.Separation, parameters.Offset);
 	}
 
@@ -192,8 +195,7 @@ public partial class CollisionEditor : Control
 		AngleMap.Angles[tileIndex] = value;
 		AngleChangedEvents?.Invoke(value);
 	}
-
-
+	
 	private static void ChangeActivity()
 	{
 		if (_tileCount == TileSet.Tiles.Count || (_tileCount != 0 && TileSet.Tiles.Count != 0)) return;
