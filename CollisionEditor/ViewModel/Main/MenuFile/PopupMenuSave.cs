@@ -42,8 +42,7 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        CollisionEditor.OpenFileDialog(filters, FileMode, 
-            CollisionEditor.AngleMap.Save);
+        CollisionEditor.OpenFileDialog(filters, FileMode, CollisionEditor.AngleMap.Save);
     }
 
     private static void OnHeightMapPressed()
@@ -53,8 +52,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        CollisionEditor.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false));
+        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
+            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false));
     }
     
     private static void OnWidthMapPressed()
@@ -64,8 +63,8 @@ public partial class PopupMenuSave : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        CollisionEditor.OpenFileDialog(filters, FileMode, 
-            path => TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true));
+        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
+            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true));
     }
 
     private static async void OnTileMapPressed()
@@ -76,6 +75,7 @@ public partial class PopupMenuSave : PopupMenuHandler
         };
         
         Image tileMap = await CollisionEditor.Object.CreateTileMap();
-        CollisionEditor.OpenFileDialog(filters, FileMode, path => TileUtilities.SaveTileMap(path, tileMap));
+        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
+            TileUtilities.SaveTileMap(path, tileMap));
     }
 }

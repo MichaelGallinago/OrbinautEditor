@@ -19,15 +19,14 @@ public partial class PopupMenuLoad : PopupMenuHandler
         }
     }
     
-    private void OnTileMapPressed()
+    private static void OnTileMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
             { "*.png", "PNG" }
         };
             
-        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            path => CollisionEditor.Object.CreateTileSet(path));
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, CollisionEditor.Object.CreateTileSet);
     }
 
     private void OnAngleMapPressed()
@@ -37,7 +36,6 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.bin", "BIN" }
         };
         
-        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
-            CollisionEditor.CreateAngleMap);
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, CollisionEditor.CreateAngleMap);
     }
 }
