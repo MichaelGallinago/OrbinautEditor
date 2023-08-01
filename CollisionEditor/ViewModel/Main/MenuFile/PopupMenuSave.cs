@@ -27,7 +27,7 @@ public partial class PopupMenuSave : PopupMenuHandler
         }
     }
 
-    private void OnAllPressed()
+    private static void OnAllPressed()
     {
         OnAngleMapPressed();
         OnHeightMapPressed();
@@ -35,7 +35,7 @@ public partial class PopupMenuSave : PopupMenuHandler
         OnTileMapPressed();
     }
     
-    private void OnAngleMapPressed()
+    private static void OnAngleMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
@@ -43,10 +43,10 @@ public partial class PopupMenuSave : PopupMenuHandler
         };
         
         CollisionEditor.OpenFileDialog(filters, FileMode, 
-            path => CollisionEditor.AngleMap.Save(path));
+            CollisionEditor.AngleMap.Save);
     }
-    
-    private void OnHeightMapPressed()
+
+    private static void OnHeightMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
@@ -57,7 +57,7 @@ public partial class PopupMenuSave : PopupMenuHandler
             path => TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false));
     }
     
-    private void OnWidthMapPressed()
+    private static void OnWidthMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
@@ -68,7 +68,7 @@ public partial class PopupMenuSave : PopupMenuHandler
             path => TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true));
     }
 
-    private async void OnTileMapPressed()
+    private static async void OnTileMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
