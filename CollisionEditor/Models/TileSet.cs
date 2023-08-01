@@ -7,24 +7,20 @@ public partial class TileSet : GodotObject
 {
     public Vector2I TileSize { get; private set; }
     public List<Tile> Tiles { get; }
-    
-    private Control _viewportContainer;
 
-    public TileSet(Control screen, Image image, Vector2I tileSize, 
+    public TileSet(Image image, Vector2I tileSize, 
         Vector2I separation, Vector2I offset, int tileLimit)
     {
         TileSize = tileSize;
         Tiles = new List<Tile>();
-        _viewportContainer = screen;
-        
+
         CreateTiles(image, separation, offset, tileLimit);
     }
 
-    public TileSet(Control screen, int angleCount = 0, Vector2I tileSize = new())
+    public TileSet(int angleCount = 0, Vector2I tileSize = new())
     {
         TileSize = tileSize;
         Tiles = new List<Tile>(angleCount);
-        _viewportContainer = screen;
 
         for (var i = 0; i < angleCount; i++)
         {
@@ -32,21 +28,25 @@ public partial class TileSet : GodotObject
         }
     }
 
-    public async Task<Image> CreateTileMap(int columnCount, Color[] groupColor,
-        int groupOffset, Vector2I separation, Vector2I offset)
+    public async Task<Image> CreateTileMap(Node viewportContainer, int columnCount, 
+        Color[] groupColor, int groupOffset, Vector2I separation, Vector2I offset)
     {
         var cell = new Vector2I(TileSize.X + separation.X, TileSize.Y + separation.Y);
-
-        double tilesRowWidth = Tiles.Count + groupOffset;
-        int rowCount = Mathf.CeilToInt(tilesRowWidth / columnCount);
+        
+        int groupCount = groupColor.Length;
+        int tilesRowWidth = (Tiles.Count + groupOffset) * groupCount;
+        int rowCount = columnCount == 0 ? 1 : Mathf.CeilToInt((double)tilesRowWidth / columnCount);
+        if (columnCount == 0)
+        {
+            columnCount = tilesRowWidth;
+        }
 
         var tileMapSize = new Vector2I(
             offset.X + columnCount * cell.X - separation.X,
             offset.Y + rowCount * cell.Y - separation.Y);
         
-        int groupCount = groupColor.Length;
-
-        return await DrawTiles(tileMapSize, groupOffset, groupColor, separation, offset, columnCount, groupCount);
+        return await DrawTiles(viewportContainer, tileMapSize, groupOffset, 
+            groupColor, separation, offset, columnCount, groupCount);
     }
 
     public void ChangeTile(int tileIndex, Vector2I pixelPosition, bool isLeftButtonPressed)
@@ -120,7 +120,7 @@ public partial class TileSet : GodotObject
         Tiles.Add(tile);
     }
 
-    private async Task<Image> DrawTiles(Vector2I tileMapSize, int groupOffset, 
+    private async Task<Image> DrawTiles(GodotObject viewportContainer, Vector2I tileMapSize, int groupOffset, 
         IReadOnlyList<Color> groupColor, Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
         var viewport = new SubViewport()
@@ -129,11 +129,11 @@ public partial class TileSet : GodotObject
             TransparentBg = true,
             RenderTargetUpdateMode = SubViewport.UpdateMode.Always
         };
-        _viewportContainer.AddChild(viewport);
+        viewportContainer.CallDeferred("add_child", viewport);
         
         var position = new Vector2I();
         Sprite2D blankSprite = new Tile(TileSize).Sprite;
-        var material = (ShaderMaterial)GD.Load("res://Shaders/color.tres");
+        Resource material = GD.Load("res://Shaders/shader_material_color.tres");
         int groupTileCount = Tiles.Count + groupOffset;
         for (var group = 0; group < groupCount; group++)
         {

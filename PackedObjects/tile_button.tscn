@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://gtxd7vso0cpw"]
 
-[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_nkla8"]
+[ext_resource type="Shader" path="res://Shaders/button.gdshader" id="1_nkla8"]
 [ext_resource type="ButtonGroup" uid="uid://tg7s4df01xal" path="res://ButtonGroups/tile_button_group.tres" id="2_kaydb"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/SelectorPanel/TileButton.cs" id="3_iao58"]
 

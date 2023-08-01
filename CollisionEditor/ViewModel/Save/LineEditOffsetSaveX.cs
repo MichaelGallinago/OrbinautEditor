@@ -1,3 +1,5 @@
+using Godot;
+
 public partial class LineEditOffsetSaveX : LineEditValidableVector
 {
     protected override bool ValidateText()
@@ -7,6 +9,6 @@ public partial class LineEditOffsetSaveX : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        SaveTileMap.Parameters.Offset.X = int.Parse(Text);
+        SaveTileMap.Parameters.Offset = new Vector2I(int.Parse(Text), SaveTileMap.Parameters.Offset.Y);
     }
 }

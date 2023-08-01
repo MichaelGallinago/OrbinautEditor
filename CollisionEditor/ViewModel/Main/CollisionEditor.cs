@@ -35,7 +35,7 @@ public partial class CollisionEditor : Control
 	public CollisionEditor()
 	{
 		Object = this;
-		TileSet = new TileSet(this);
+		TileSet = new TileSet();
 		AngleMap = new AngleMap();
 		IsTileMode = false;
 		
@@ -99,7 +99,7 @@ public partial class CollisionEditor : Control
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
-		TileSet = new TileSet(this, image, parameters.TileSize, 
+		TileSet = new TileSet(image, parameters.TileSize, 
 			parameters.Separation, parameters.Offset, parameters.TileNumber);
 		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
 		TileButtonsGrid.CreateTileButtons(TileSet);
@@ -112,7 +112,7 @@ public partial class CollisionEditor : Control
 		AngleMap = new AngleMap(binaryFilePath, TileSet.Tiles.Count);
 
 		if (TileSet.Tiles.Count != 0) return;
-		TileSet = new TileSet(Object, AngleMap.Angles.Count, BaseTileSize);
+		TileSet = new TileSet(AngleMap.Angles.Count, BaseTileSize);
 		TileButtonsGrid.CreateTileButtons(TileSet);
 		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
 		_tileCount = 0;
@@ -125,12 +125,11 @@ public partial class CollisionEditor : Control
 
 		AddChild(screen);
 		GetTree().Paused = true;
-		SaveTileMapParameters parameters = await Task.Run(SaveTileMap.GetParameters);
+		Image image = await Task.Run(SaveTileMap.GetImage);
 		GetTree().Paused = false;
 		RemoveChild(screen);
 
-		return await TileSet.CreateTileMap(parameters.Columns, parameters.Colors.ToArray(),
-			parameters.GroupOffset, parameters.Separation, parameters.Offset);
+		return image;
 	}
 
 	public static void AddTile()

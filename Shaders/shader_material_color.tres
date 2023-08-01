@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://btwr53tbrg26w"]
+
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_onpgo"]
+
+[resource]
+shader = ExtResource("1_onpgo")
+shader_parameter/Color = null

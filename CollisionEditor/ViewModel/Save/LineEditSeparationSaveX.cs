@@ -1,3 +1,5 @@
+using Godot;
+
 public partial class LineEditSeparationSaveX : LineEditValidableVector
 {
     protected override bool ValidateText()
@@ -7,6 +9,6 @@ public partial class LineEditSeparationSaveX : LineEditValidableVector
 
     protected override void OnTextValidated(string text)
     {
-        SaveTileMap.Parameters.Separation.X = int.Parse(Text);
+        SaveTileMap.Parameters.Separation = new Vector2I(int.Parse(Text), SaveTileMap.Parameters.Separation.Y);
     }
 }

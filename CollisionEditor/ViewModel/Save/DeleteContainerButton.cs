@@ -4,6 +4,10 @@ public partial class DeleteContainerButton : Button
 {
     public override void _Ready()
     {
-        Pressed += GetParent().QueueFree;
+        Pressed += () =>
+        {
+            GetParent().QueueFree();
+            SaveTileMap.UpdateImage();
+        };
     }
 }

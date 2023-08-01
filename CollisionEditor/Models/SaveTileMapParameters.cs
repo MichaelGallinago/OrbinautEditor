@@ -5,9 +5,28 @@ using System.Collections.Generic;
 public class SaveTileMapParameters
 {
     public List<Color> Colors { get; } = new();
-    
-    public Vector2I Separation = new();
-    public Vector2I Offset = new();
+
+    private Vector2I _separation;
+    public Vector2I Separation
+    {
+        get => _separation;
+        set
+        {
+            _separation = value;
+            SaveTileMap.UpdateImage();
+        }
+    }
+
+    private Vector2I _offset;
+    public Vector2I Offset
+    {
+        get => _offset;
+        set
+        {
+            _offset = value;
+            SaveTileMap.UpdateImage();
+        }
+    }
 
     public event Action ColumnsChangedEvents;
     private int _columns;

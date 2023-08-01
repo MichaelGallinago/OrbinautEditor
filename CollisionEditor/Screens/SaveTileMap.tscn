@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="21_xklkv"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/GroupsContainer.cs" id="22_ocqu2"]
 [ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://PackedObjects/color_picker_container.tscn" id="22_yym33"]
-[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TextureRectTileMap.cs" id="23_uik13"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/TextureRectTileMapSave.cs" id="24_a5ptk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -490,9 +490,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRectTileMap" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer2/ScrollContainer/CenterContainer"]
+[node name="TextureRectTileMapSave" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer2/ScrollContainer/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch_mode = 2
-script = ExtResource("23_uik13")
+script = ExtResource("24_a5ptk")
