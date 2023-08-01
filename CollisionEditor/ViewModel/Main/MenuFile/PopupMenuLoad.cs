@@ -26,16 +26,18 @@ public partial class PopupMenuLoad : PopupMenuHandler
             { "*.png", "PNG" }
         };
             
-        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, CollisionEditor.Object.CreateTileSet);
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            CollisionEditor.Object.CreateTileSet, "Load TileMap", string.Empty);
     }
 
-    private void OnAngleMapPressed()
+    private static void OnAngleMapPressed()
     {
         var filters = new Dictionary<string, string>
         {
             { "*.bin", "BIN" }
         };
         
-        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, CollisionEditor.CreateAngleMap);
+        CollisionEditor.OpenFileDialog(filters, FileDialog.FileModeEnum.OpenFile, 
+            CollisionEditor.CreateAngleMap, "Load AngleMap", string.Empty);
     }
 }

@@ -12,6 +12,7 @@ public partial class CollisionEditor : Control
 	public static AngleMap AngleMap { get; private set; }
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
+	public static FileDialog FileDialog { get; private set; }
 	
 	public static int TileIndex 
 	{
@@ -26,8 +27,7 @@ public partial class CollisionEditor : Control
 	public static event Action<bool> ActivityChangedEvents;
 	public static event Action TileIndexChangedEvents;
 	public static event Action<byte> AngleChangedEvents;
-
-	private static FileDialog _fileDialog;
+	
 	private static FileDialog.FileSelectedEventHandler _fileDialogEvent;
 	private static int _tileCount;
 	private static int _tileIndex;
@@ -39,7 +39,7 @@ public partial class CollisionEditor : Control
 		AngleMap = new AngleMap();
 		IsTileMode = false;
 		
-		_fileDialog = new FileDialog();
+		FileDialog = new FileDialog();
 		_fileDialogEvent = null;
 		_tileCount = 0;
 		_tileIndex = 0;
@@ -53,12 +53,12 @@ public partial class CollisionEditor : Control
 
 	public override void _Ready()
 	{
-		_fileDialog.Unresizable = true;
-		_fileDialog.Size = GetTree().Root.Size;
-		_fileDialog.Access = FileDialog.AccessEnum.Filesystem;
-		_fileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
-		_fileDialog.InitialPosition = Window.WindowInitialPosition.CenterScreenWithKeyboardFocus;
-		AddChild(_fileDialog);
+		FileDialog.Unresizable = true;
+		FileDialog.Size = GetTree().Root.Size;
+		FileDialog.Access = FileDialog.AccessEnum.Filesystem;
+		FileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
+		FileDialog.InitialPosition = Window.WindowInitialPosition.CenterScreenWithKeyboardFocus;
+		AddChild(FileDialog);
 	}
 
 	public override void _Process(double delta)
@@ -66,24 +66,28 @@ public partial class CollisionEditor : Control
 		ChangeActivity();
 	}
 
-	public static void OpenFileDialog(Dictionary<string, string> filters, 
-		FileDialog.FileModeEnum fileMode, FileDialog.FileSelectedEventHandler newEvent)
+	public static void OpenFileDialog(Dictionary<string, string> filters, FileDialog.FileModeEnum fileMode, 
+		FileDialog.FileSelectedEventHandler newEvent, string title, string currentFile)
 	{
-		_fileDialog.FileMode = fileMode;
+		FileDialog.FileMode = fileMode;
 
 		if (_fileDialogEvent is not null)
 		{
-			_fileDialog.FileSelected -= _fileDialogEvent;	
+			FileDialog.FileSelected -= _fileDialogEvent;	
 		}
 		_fileDialogEvent = newEvent;
-		_fileDialog.FileSelected += _fileDialogEvent;
+		FileDialog.FileSelected += _fileDialogEvent;
 
-		_fileDialog.ClearFilters();
+		FileDialog.ClearFilters();
 		foreach (KeyValuePair<string, string> filter in filters)
 		{
-			_fileDialog.AddFilter(filter.Key, filter.Value);	
+			FileDialog.AddFilter(filter.Key, filter.Value);	
 		}
-		_fileDialog.Show();
+		
+		FileDialog.CurrentFile = currentFile;
+		FileDialog.Title = title;
+		
+		FileDialog.Show();
 	}
 
 	public async void CreateTileSet(string imagePath)
