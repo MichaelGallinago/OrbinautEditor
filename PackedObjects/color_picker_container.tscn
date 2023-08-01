@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5s0oir3w2xm"]
+
+[ext_resource type="Script" path="res://PackedObjects/ColorPicker.cs" id="1_hrks4"]
+[ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="1_vppxo"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/DeleteContainerButton.cs" id="2_oj6vc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06yf"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.188235, 0.207843, 0.239216, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce5e8"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.227451, 0.243137, 0.270588, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jls6h"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.129412, 0.145098, 0.176471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2n2o"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.729412, 0.980392, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="ColorPickerContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="ColorPicker" type="ColorPickerButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_hrks4")
+
+[node name="DeleteContainerButton" type="Button" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_b06yf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ce5e8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jls6h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_h2n2o")
+icon = ExtResource("1_vppxo")
+icon_alignment = 1
+script = ExtResource("2_oj6vc")
