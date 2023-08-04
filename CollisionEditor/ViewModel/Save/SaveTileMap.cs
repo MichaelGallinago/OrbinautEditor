@@ -34,14 +34,8 @@ public partial class SaveTileMap : Control
 
     public override void _Ready()
     {
-        GroupsContainer.ChildEnteredTree += AddGroup;
-        GroupsContainer.ChildExitingTree += RemoveGroup;
-
         Parameters.ColumnsChangedEvents += UpdateImage;
         Parameters.GroupOffsetChangedEvents += UpdateImage;
-        
-        AddGroup(GroupsContainer.GetChild(0));
-        UpdateImage();
     }
 
     public static Image GetImage()
@@ -63,13 +57,13 @@ public partial class SaveTileMap : Control
             Parameters.GroupOffset, Parameters.Separation, Parameters.Offset);
     }
 
-    private static void AddGroup(Node group)
+    public static void AddGroup(Node group)
     {
         Parameters.Colors.Add(group.GetChild<ColorPicker>(ColorPickerIndex).Color);
         UpdateImage();
     }
     
-    private static void RemoveGroup(Node group)
+    public static void RemoveGroup(Node group)
     {
         Parameters.Colors.RemoveAt(group.GetIndex());
         UpdateImage();
