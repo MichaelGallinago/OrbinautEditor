@@ -4,7 +4,7 @@ public partial class LoadTileMap : Control
 {
     public static LoadTileMap Object { get; private set; }
     public static LoadTileMapParameters Parameters { private set; get; }
-    public static bool IsLoadPressed { get; set; }
+    public static bool? IsLoadPressed { get; set; }
     public static Image Image { set; get; }
     
     
@@ -12,7 +12,7 @@ public partial class LoadTileMap : Control
     {
         Object = this;
         Parameters = new LoadTileMapParameters();
-        IsLoadPressed = false;
+        IsLoadPressed = null;
         Image = new Image();
     }
 
@@ -20,7 +20,7 @@ public partial class LoadTileMap : Control
     {
         while (true)
         {
-            if (IsLoadPressed)
+            if (IsLoadPressed is not null)
             {
                 return Parameters;    
             }

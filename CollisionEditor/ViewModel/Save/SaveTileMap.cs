@@ -7,7 +7,7 @@ public partial class SaveTileMap : Control
     
     public static SaveTileMap Object { get; private set; }
     public static SaveTileMapParameters Parameters { get; private set; }
-    public static bool IsSavePressed { get; set; }
+    public static bool? IsSavePressed { get; set; }
     public static GroupsContainer GroupsContainer { get; set; }
     public static TextureRectTileMapSave TextureContainer { get; set; }
 
@@ -26,7 +26,7 @@ public partial class SaveTileMap : Control
     {
         Object = this;
         Parameters = new SaveTileMapParameters();
-        IsSavePressed = false;
+        IsSavePressed = null;
         Image = null;
         GroupsContainer = null;
         TextureContainer = null;
@@ -34,21 +34,15 @@ public partial class SaveTileMap : Control
 
     public override void _Ready()
     {
-        GroupsContainer.ChildEnteredTree += AddGroup;
-        GroupsContainer.ChildExitingTree += RemoveGroup;
-
         Parameters.ColumnsChangedEvents += UpdateImage;
         Parameters.GroupOffsetChangedEvents += UpdateImage;
-        
-        AddGroup(GroupsContainer.GetChild(0));
-        UpdateImage();
     }
 
     public static Image GetImage()
     {
         while (true)
         {
-            if (IsSavePressed)
+            if (IsSavePressed is not null)
             {
                 return Image;    
             }
@@ -57,18 +51,19 @@ public partial class SaveTileMap : Control
 
     public static async void UpdateImage()
     {
+        if (IsSavePressed is false) return;
         Image = await CollisionEditor.TileSet.CreateTileMap(
             Object, Parameters.Columns, Parameters.Colors.ToArray(), 
             Parameters.GroupOffset, Parameters.Separation, Parameters.Offset);
     }
 
-    private static void AddGroup(Node group)
+    public static void AddGroup(Node group)
     {
         Parameters.Colors.Add(group.GetChild<ColorPicker>(ColorPickerIndex).Color);
         UpdateImage();
     }
     
-    private static void RemoveGroup(Node group)
+    public static void RemoveGroup(Node group)
     {
         Parameters.Colors.RemoveAt(group.GetIndex());
         UpdateImage();

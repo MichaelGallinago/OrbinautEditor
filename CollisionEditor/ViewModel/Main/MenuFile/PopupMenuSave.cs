@@ -43,17 +43,17 @@ public partial class PopupMenuSave : PopupMenuHandler
 
     private static async void OnAllPressed()
     {
-        await Task.Run(Wait);
+        await Task.Run(WaitFileDialogClose);
         OnAngleMapPressed();
-        await Task.Run(Wait);
+        await Task.Run(WaitFileDialogClose);
         OnHeightMapPressed();
-        await Task.Run(Wait);
+        await Task.Run(WaitFileDialogClose);
         OnWidthMapPressed();
-        await Task.Run(Wait);
+        await Task.Run(WaitFileDialogClose);
         OnTileMapPressed();
     }
 
-    private static void Wait()
+    private static void WaitFileDialogClose()
     {
         while (true)
         {
@@ -106,8 +106,10 @@ public partial class PopupMenuSave : PopupMenuHandler
         };
         
         Image tileMap = await CollisionEditor.Object.CreateTileMap();
+        
+        if (tileMap is null) return;
+        
         CollisionEditor.OpenFileDialog(filters, FileMode, path => 
-            TileUtilities.SaveTileMap(path, tileMap), 
-            "Save TileMap", "TileMap.png");
+            TileUtilities.SaveTileMap(path, tileMap), "Save TileMap", "TileMap.png");
     }
 }

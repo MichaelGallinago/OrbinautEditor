@@ -1,8 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5s0oir3w2xm"]
+[gd_scene load_steps=11 format=3 uid="uid://c5s0oir3w2xm"]
 
 [ext_resource type="Script" path="res://PackedObjects/ColorPicker.cs" id="1_hrks4"]
+[ext_resource type="Script" path="res://PackedObjects/ColorPickerContainer.cs" id="1_kctxx"]
 [ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="1_vppxo"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/DeleteContainerButton.cs" id="2_oj6vc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo7v4"]
+bg_color = Color(0.113725, 0.133333, 0.160784, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.113725, 0.133333, 0.160784, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihx00"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.729412, 0.980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06yf"]
 content_margin_left = 4.0
@@ -54,10 +75,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
+script = ExtResource("1_kctxx")
+_baseColor = Color(0, 0, 0, 1)
 
 [node name="ColorPicker" type="ColorPickerButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bo7v4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bo7v4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ihx00")
 script = ExtResource("1_hrks4")
 
 [node name="DeleteContainerButton" type="Button" parent="."]

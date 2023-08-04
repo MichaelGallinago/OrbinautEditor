@@ -9,6 +9,7 @@ public partial class LineEditNumber : LineEditValidableBase
         base._Ready();
         LoadTileMap.Parameters.TileNumberChangedEvents += OnTileNumberChanged;
         TextValidated += OnTextValidated;
+        OnTextValidated(Text);
     }
     
     protected override bool ValidateText()
