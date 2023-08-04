@@ -94,18 +94,24 @@ public partial class TileSet : GodotObject
 
     private void CreateTiles(Image tileMap, Vector2I separation, Vector2I offset, int tileLimit)
     {
+        Vector2I tileMapSize = tileMap.GetSize() - offset + separation;
         var cellCount = new Vector2I(
-            (tileMap.GetWidth() - offset.X) / (TileSize.X + separation.X),
-            (tileMap.GetHeight() - offset.Y) / (TileSize.Y + separation.Y));
+            tileMapSize.X / (TileSize.X + separation.X), 
+            tileMapSize.Y / (TileSize.Y + separation.Y));
 
         var number = 0;
         for (var y = 0; y < cellCount.Y; y++)
         {
             for (var x = 0; x < cellCount.X; x++)
             {
-                if (tileLimit != 0 && ++number >= tileLimit) return;
+                if (tileLimit != 0 && number++ >= tileLimit) return;
                 CreateTileFromTileMap(tileMap, GetTilePosition(new Vector2I(x, y), separation, offset));
             }
+        }
+
+        for (int i = number; i < tileLimit; i++)
+        {
+            Tiles.Add(new Tile(TileSize));
         }
     }
 

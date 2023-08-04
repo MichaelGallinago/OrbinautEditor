@@ -101,7 +101,9 @@ public partial class CollisionEditor : Control
 		GetTree().Paused = true;
 		LoadTileMapParameters parameters = await Task.Run(LoadTileMap.GetParameters);
 		GetTree().Paused = false;
-		RemoveChild(screen);
+		screen.QueueFree();
+
+		if (LoadTileMap.IsLoadPressed is null or false) return;
 
 		TileSet = new TileSet(image, parameters.TileSize, 
 			parameters.Separation, parameters.Offset, parameters.TileNumber);
@@ -131,9 +133,9 @@ public partial class CollisionEditor : Control
 		GetTree().Paused = true;
 		Image image = await Task.Run(SaveTileMap.GetImage);
 		GetTree().Paused = false;
-		RemoveChild(screen);
+		screen.QueueFree();
 
-		return image;
+		return SaveTileMap.IsSavePressed is null or false ? null : image;
 	}
 
 	public static void AddTile()

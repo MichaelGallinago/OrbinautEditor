@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7fsytcp3aerf"]
+[gd_scene load_steps=36 format=3 uid="uid://c7fsytcp3aerf"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LoadTileMap.cs" id="1_7buet"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_guwbt"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="19_u11nl"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LoadTileMapButton.cs" id="20_iat8b"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TextureRectTileMap.cs" id="21_p3yic"]
+[ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="21_whw7w"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/CancelLoadTileMapButton.cs" id="22_demkd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -69,6 +71,51 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgf45"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.729412, 0.980392, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t6bo"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.188235, 0.207843, 0.239216, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10vsl"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.227451, 0.243137, 0.270588, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at0jx"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.129412, 0.145098, 0.176471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdocl"]
 content_margin_left = 4.0
 content_margin_top = 1.0
 content_margin_right = 4.0
@@ -371,7 +418,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("4_kvvnq")
 theme_override_styles/focus = ExtResource("5_ie7ui")
-text = "0"
+text = "256"
 context_menu_enabled = false
 script = ExtResource("13_n3tbs")
 
@@ -407,7 +454,10 @@ icon = ExtResource("17_xoedi")
 flat = true
 script = ExtResource("18_0w0tt")
 
-[node name="LoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 28)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -421,6 +471,22 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
 text = "Load"
 icon = ExtResource("19_u11nl")
 script = ExtResource("20_iat8b")
+
+[node name="CancelLoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8t6bo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10vsl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_at0jx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mdocl")
+text = "Cancel
+"
+icon = ExtResource("21_whw7w")
+script = ExtResource("22_demkd")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

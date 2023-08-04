@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bksajhj3kt77l"]
+[gd_scene load_steps=34 format=3 uid="uid://bksajhj3kt77l"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMap.cs" id="1_4hgse"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_4hshf"]
@@ -18,8 +18,10 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TileNumberButtonSub.cs" id="16_a1xoi"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/LineEditGroupOffset.cs" id="17_80e3r"]
 [ext_resource type="Texture2D" uid="uid://bxy05wkf55idx" path="res://Resorses/Sprites/load.png" id="18_pyvof"]
+[ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="20_81csy"]
 [ext_resource type="Texture2D" uid="uid://iwd8pccx7frl" path="res://Resorses/Sprites/plus.png" id="20_fu1xb"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapNewGroup.cs" id="21_2b4e3"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/CancelSaveTileMapButton.cs" id="21_g127h"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/SaveTileMapButton.cs" id="21_xklkv"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Save/GroupsContainer.cs" id="22_ocqu2"]
 [ext_resource type="PackedScene" uid="uid://c5s0oir3w2xm" path="res://PackedObjects/color_picker_container.tscn" id="22_yym33"]
@@ -436,6 +438,22 @@ text = "Save
 icon = ExtResource("18_pyvof")
 script = ExtResource("21_xklkv")
 
+[node name="CancelSaveTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7miq8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ke3nn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mgevu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rgf45")
+text = "Cancel
+"
+icon = ExtResource("20_81csy")
+script = ExtResource("21_g127h")
+
 [node name="SaveTileMapNewGroup" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 28)
 layout_mode = 2
@@ -471,6 +489,12 @@ layout_mode = 2
 script = ExtResource("22_ocqu2")
 
 [node name="ColorPickerContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GroupsContainer" instance=ExtResource("22_yym33")]
+layout_mode = 2
+
+[node name="ColorPickerContainer2" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GroupsContainer" instance=ExtResource("22_yym33")]
+layout_mode = 2
+
+[node name="ColorPickerContainer3" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GroupsContainer" instance=ExtResource("22_yym33")]
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
