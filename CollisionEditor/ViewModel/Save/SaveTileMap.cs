@@ -16,7 +16,7 @@ public partial class SaveTileMap : Control
         get => TextureContainer.Texture.GetImage();
         set
         {
-            if (value is null) return;
+            if (value is null || IsSavePressed is not null) return;
             TextureContainer.Texture = ImageTexture.CreateFromImage(value);
             TextureContainer.QueueRedraw();
         }
