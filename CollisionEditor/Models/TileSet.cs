@@ -76,6 +76,13 @@ public partial class TileSet : GodotObject
         }
     }
 
+    public void MoveTile(int fromTileIndex, int toTileIndex)
+    {
+        Tile tile = Tiles[fromTileIndex];
+        Tiles.RemoveAt(fromTileIndex);
+        Tiles.Insert(toTileIndex, tile);
+    }
+
     private void ChangeTileHeight(Image image, Vector2I pixelPosition)
     {
         Func<int, Color> getColor = CreateFuncGetColor(pixelPosition.Y);

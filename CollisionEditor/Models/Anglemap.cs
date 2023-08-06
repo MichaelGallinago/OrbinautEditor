@@ -62,4 +62,11 @@ public class AngleMap
     {
         Angles.RemoveAt(tileIndex);
     }
+
+    public void MoveAngle(int fromTileIndex, int toTileIndex)
+    {
+        byte angle = Angles[fromTileIndex];
+        Angles.RemoveAt(fromTileIndex);
+        Angles.Insert(toTileIndex, angle);
+    }
 }

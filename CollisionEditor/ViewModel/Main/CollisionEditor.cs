@@ -13,7 +13,7 @@ public partial class CollisionEditor : Control
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
 	public static FileDialog FileDialog { get; private set; }
-	
+
 	public static int TileIndex 
 	{
 		get => _tileIndex;
@@ -158,6 +158,15 @@ public partial class CollisionEditor : Control
 			TileIndex = TileSet.Tiles.Count - 1;
 		}
 
+		TileIndexChangedEvents?.Invoke();
+	}
+
+	public static void MoveTile(int fromTileIndex, int toTileIndex)
+	{
+		TileSet.MoveTile(fromTileIndex, toTileIndex);
+		AngleMap.MoveAngle(fromTileIndex, toTileIndex);
+		TileButtonsGrid.MoveTileButton(fromTileIndex, toTileIndex);
+		TileIndex = toTileIndex;
 		TileIndexChangedEvents?.Invoke();
 	}
 
