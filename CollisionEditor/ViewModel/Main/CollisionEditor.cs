@@ -138,22 +138,22 @@ public partial class CollisionEditor : Control
 		return SaveTileMap.IsSavePressed is null or false ? null : image;
 	}
 
-	public static void AddTile()
+	public static void AddTile(int tileIndex)
 	{
-		TileSet.InsertTile(TileIndex);
-		AngleMap.InsertAngle(TileIndex);
-		TileButtonsGrid.InsertTileButton(TileIndex, TileSet);
+		TileSet.InsertTile(tileIndex);
+		AngleMap.InsertAngle(tileIndex);
+		TileButtonsGrid.InsertTileButton(tileIndex, TileSet);
 		TileIndexChangedEvents?.Invoke();
 	}
 
-	public static void RemoveTile()
+	public static void RemoveTile(int tileIndex)
 	{
-		TileSet.RemoveTile(TileIndex);
-		AngleMap.RemoveAngle(TileIndex);
-		TileButtonsGrid.RemoveTileButton(TileIndex);
+		TileSet.RemoveTile(tileIndex);
+		AngleMap.RemoveAngle(tileIndex);
+		TileButtonsGrid.RemoveTileButton(tileIndex);
 
 		if (TileSet.Tiles.Count == 0) return;
-		if (TileIndex >= TileSet.Tiles.Count)
+		if (tileIndex >= TileSet.Tiles.Count)
 		{
 			TileIndex = TileSet.Tiles.Count - 1;
 		}

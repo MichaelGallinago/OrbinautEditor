@@ -8,5 +8,6 @@ public partial class SaveTileMapNewGroup : Button
     {
         _packedGroup = GD.Load<PackedScene>("res://PackedObjects/color_picker_container.tscn");
         Pressed += () => SaveTileMap.GroupsContainer.AddChild(_packedGroup.Instantiate());
+        SaveTileMap.ExpertModeChangedEvents += isExpertMode => Visible = isExpertMode;
     }
 }

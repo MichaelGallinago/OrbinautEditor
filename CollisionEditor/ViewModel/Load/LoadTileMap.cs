@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class LoadTileMap : Control
@@ -6,6 +7,19 @@ public partial class LoadTileMap : Control
     public static LoadTileMapParameters Parameters { private set; get; }
     public static bool? IsLoadPressed { get; set; }
     public static Image Image { set; get; }
+    public static event Action<bool> ExpertModeChangedEvents;
+    
+    public static bool IsExpertMode
+    {
+        set
+        {
+            _isExpertMode = value;
+            ExpertModeChangedEvents?.Invoke(value);
+        }
+        get => _isExpertMode;
+    }
+
+    private static bool _isExpertMode;
     
     
     public LoadTileMap()
@@ -14,6 +28,11 @@ public partial class LoadTileMap : Control
         Parameters = new LoadTileMapParameters();
         IsLoadPressed = null;
         Image = new Image();
+    }
+
+    public override void _Ready()
+    {
+        IsExpertMode = false;
     }
 
     public static LoadTileMapParameters GetParameters()
