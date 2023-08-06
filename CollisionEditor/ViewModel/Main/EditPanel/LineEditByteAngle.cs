@@ -5,6 +5,7 @@ public partial class LineEditByteAngle : LineEditValidableBase
 	public override void _Ready()
 	{
 		base._Ready();
+		CollisionEditor.TileIndexChangedEvents += () => Editable = CollisionEditor.TileIndex != 0;
 		CollisionEditor.ActivityChangedEvents += OnActivityChanged;
 		CollisionEditor.AngleChangedEvents += OnAngleChanged;
 		TextValidated += OnTextValidated;
