@@ -28,6 +28,7 @@ public partial class LoadTileMap : Control
         Parameters = new LoadTileMapParameters();
         IsLoadPressed = null;
         Image = new Image();
+        ExpertModeChangedEvents = null;
     }
 
     public override void _Ready()

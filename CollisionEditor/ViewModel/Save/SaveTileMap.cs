@@ -43,6 +43,7 @@ public partial class SaveTileMap : Control
         Image = null;
         GroupsContainer = null;
         TextureContainer = null;
+        ExpertModeChangedEvents = null;
     }
 
     public override void _Ready()
