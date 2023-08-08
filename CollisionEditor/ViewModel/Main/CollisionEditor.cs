@@ -117,10 +117,10 @@ public partial class CollisionEditor : Control
 	}
 	
 	public static void OpenTileSetFromCollisionMap(string filePath, 
-		BinaryFile.Types fileType, Func<byte[], TileSet> creationFunc)
+		BinaryFile.Types fileType, bool isHeights)
 	{
 		if (!BinaryFile.TryOpen(filePath, fileType, out byte[] fileData)) return;
-		CreateCollisionMap(fileData, creationFunc);
+		CreateCollisionMap(fileData, isHeights);
 	}
 
 	public static void OpenAngleMap(string filePath)
@@ -240,9 +240,9 @@ public partial class CollisionEditor : Control
 		OnTileSetCreated();
 	}
 
-	private static void CreateCollisionMap(byte[] fileData, Func<byte[], TileSet> creationFunc)
+	private static void CreateCollisionMap(IReadOnlyList<byte> fileData, bool isHeights)
 	{
-		TileSet = creationFunc(fileData);
+		TileSet = TileSet.CreateFromCollisions(fileData, isHeights);
 		OnTileSetCreated();
 	}
 
@@ -257,10 +257,10 @@ public partial class CollisionEditor : Control
 			switch (type)
 			{
 				case BinaryFile.Types.Heights: 
-					CreateCollisionMap(fileData, TileSet.CreateFromHeights);
+					CreateCollisionMap(fileData, true);
 					return;
 				case BinaryFile.Types.Widths: 
-					CreateCollisionMap(fileData, TileSet.CreateFromWidths);
+					CreateCollisionMap(fileData, false);
 					return;
 				case BinaryFile.Types.Angles:
 				default: 

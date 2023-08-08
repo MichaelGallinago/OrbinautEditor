@@ -48,13 +48,11 @@ public partial class PopupMenuLoad : PopupMenuHandler
     
     private static void OnHeightMapSelected(string filePath)
     {
-        CollisionEditor.OpenTileSetFromCollisionMap(filePath, 
-            BinaryFile.Types.Heights, TileSet.CreateFromHeights);
+        CollisionEditor.OpenTileSetFromCollisionMap(filePath, BinaryFile.Types.Heights, true);
     }
 
     private static void OnWidthMapSelected(string filePath)
     {
-        CollisionEditor.OpenTileSetFromCollisionMap(filePath, 
-            BinaryFile.Types.Widths, TileSet.CreateFromWidths);
+        CollisionEditor.OpenTileSetFromCollisionMap(filePath, BinaryFile.Types.Widths, false);
     }
 }

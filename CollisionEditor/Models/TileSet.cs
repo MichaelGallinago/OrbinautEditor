@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 public partial class TileSet : GodotObject
 {
     private const string ShaderMaterialColorPath = "res://Shaders/shader_material_color.tres";
-    private const byte CollisionMapsMetadataBuffer = 3;
-    
+
     public Vector2I TileSize { get; private set; }
     public List<Tile> Tiles { get; private set; }
 
@@ -32,51 +31,18 @@ public partial class TileSet : GodotObject
         }
     }
     
-    public static TileSet CreateFromHeights(IReadOnlyList<byte> heights)
+    public static TileSet CreateFromCollisions(IReadOnlyList<byte> collisions, bool isHeights)
     {
-        var tileSize = new Vector2I(heights[1], heights[2]);
-        var tileSet = new TileSet(0, tileSize);
-        int count = heights.Count / tileSize.X;
-        for (var i = 0; i < count; i++)
+        byte tileSize = collisions.Max();
+        var tileSet = new TileSet(0, new Vector2I(tileSize, tileSize));
+        tileSet.Tiles.Add(new Tile(tileSet.TileSize));
+        Action<Image, int, int> setPixel = GetSetPixelAction(isHeights);
+        
+        int count = collisions.Count / tileSize;
+        for (var tileIndex = 1; tileIndex < count; tileIndex++)
         {
             var tile = new Tile(tileSet.TileSize);
-            Image image = tile.GetImage();
-            for (var x = 0; x < tileSize.X; x++)
-            {
-                int transparentHeight = tileSize.Y - heights[i * tileSize.X + x];
-                for (var y = 0; y < tileSize.Y; y++)
-                {
-                    if (y < transparentHeight) continue;
-                    image.SetPixel(x, y, Colors.Black);
-                }
-            }
-            tile.SetImage(image);
-            tileSet.Tiles.Add(tile);
-        }
-
-        return tileSet;
-    }
-    
-    public static TileSet CreateFromWidths(IReadOnlyList<byte> widths)
-    {
-        var tileSize = new Vector2I(widths[1], widths[2]);
-        widths = widths.Skip(CollisionMapsMetadataBuffer).ToArray();
-        var tileSet = new TileSet(0, tileSize);
-        int count = widths.Count / tileSize.Y;
-        for (var i = 0; i < count; i++)
-        {
-            var tile = new Tile(tileSet.TileSize);
-            Image image = tile.GetImage();
-            for (var y = 0; y < tileSize.X; y++)
-            {
-                int transparentWidth = tileSize.X - widths[i * tileSize.Y + y];
-                for (var x = 0; x < tileSize.Y; x++)
-                {
-                    if (x < transparentWidth) continue;
-                    image.SetPixel(x, y, Colors.Black);
-                }
-            }
-            tile.SetImage(image);
+            DrawTileFromCollisions(tileIndex * tileSize, tile, tileSize, collisions, setPixel);
             tileSet.Tiles.Add(tile);
         }
 
@@ -134,6 +100,32 @@ public partial class TileSet : GodotObject
         Tile tile = Tiles[fromTileIndex];
         Tiles.RemoveAt(fromTileIndex);
         Tiles.Insert(toTileIndex, tile);
+    }
+    
+    private static void DrawTileFromCollisions(int collisionIndex, Tile tile, byte tileSize, 
+        IReadOnlyList<byte> collisions, Action<Image, int, int> setPixel)
+    {
+        Image image = tile.GetImage();
+        for (var j = 0; j < tileSize; j++)
+        {
+            int transparentLength = tileSize - collisions[collisionIndex + j];
+            for (var k = 0; k < tileSize; k++)
+            {
+                if (k < transparentLength) continue;
+                setPixel(image, j, k);
+            }
+        }
+        tile.SetImage(image);
+    }
+    
+    private static Action<Image, int, int> GetSetPixelAction(bool isHeights)
+    {
+        if (isHeights)
+        {
+            return (image, j, k) => image.SetPixel(j, k, Colors.Black);
+        }
+
+        return (image, j, k) => image.SetPixel(k, j, Colors.Black);
     }
 
     private void ChangeTileHeight(Image image, Vector2I pixelPosition)
