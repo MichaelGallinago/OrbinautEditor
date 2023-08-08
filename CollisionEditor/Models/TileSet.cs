@@ -1,12 +1,15 @@
 ﻿using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 public partial class TileSet : GodotObject
 {
+    private const string ShaderMaterialColorPath = "res://Shaders/shader_material_color.tres";
+
     public Vector2I TileSize { get; private set; }
-    public List<Tile> Tiles { get; }
+    public List<Tile> Tiles { get; private set; }
 
     public TileSet(Image image, Vector2I tileSize, 
         Vector2I separation, Vector2I offset, int tileLimit)
@@ -26,6 +29,24 @@ public partial class TileSet : GodotObject
         {
             Tiles.Add(new Tile(TileSize));
         }
+    }
+    
+    public static TileSet CreateFromCollisions(IReadOnlyList<byte> collisions, bool isHeights)
+    {
+        byte tileSize = collisions.Max();
+        var tileSet = new TileSet(0, new Vector2I(tileSize, tileSize));
+        tileSet.Tiles.Add(new Tile(tileSet.TileSize));
+        Action<Image, int, int> setPixel = GetSetPixelAction(isHeights);
+        
+        int count = collisions.Count / tileSize;
+        for (var tileIndex = 1; tileIndex < count; tileIndex++)
+        {
+            var tile = new Tile(tileSet.TileSize);
+            DrawTileFromCollisions(tileIndex * tileSize, tile, tileSize, collisions, setPixel);
+            tileSet.Tiles.Add(tile);
+        }
+
+        return tileSet;
     }
 
     public async Task<Image> CreateTileMap(Node viewportContainer, int columnCount, 
@@ -74,6 +95,39 @@ public partial class TileSet : GodotObject
         }
     }
 
+    public void MoveTile(int fromTileIndex, int toTileIndex)
+    {
+        Tile tile = Tiles[fromTileIndex];
+        Tiles.RemoveAt(fromTileIndex);
+        Tiles.Insert(toTileIndex, tile);
+    }
+    
+    private static void DrawTileFromCollisions(int collisionIndex, Tile tile, byte tileSize, 
+        IReadOnlyList<byte> collisions, Action<Image, int, int> setPixel)
+    {
+        Image image = tile.GetImage();
+        for (var j = 0; j < tileSize; j++)
+        {
+            int transparentLength = tileSize - collisions[collisionIndex + j];
+            for (var k = 0; k < tileSize; k++)
+            {
+                if (k < transparentLength) continue;
+                setPixel(image, j, k);
+            }
+        }
+        tile.SetImage(image);
+    }
+    
+    private static Action<Image, int, int> GetSetPixelAction(bool isHeights)
+    {
+        if (isHeights)
+        {
+            return (image, j, k) => image.SetPixel(j, k, Colors.Black);
+        }
+
+        return (image, j, k) => image.SetPixel(k, j, Colors.Black);
+    }
+
     private void ChangeTileHeight(Image image, Vector2I pixelPosition)
     {
         Func<int, Color> getColor = CreateFuncGetColor(pixelPosition.Y);
@@ -113,6 +167,17 @@ public partial class TileSet : GodotObject
         {
             Tiles.Add(new Tile(TileSize));
         }
+
+        ClearFirstTile();
+    }
+
+    private void ClearFirstTile()
+    {
+        if (Tiles.Count >= 1)
+        {
+            Tiles.RemoveAt(0);
+        }
+        Tiles.Insert(0, new Tile(TileSize));
     }
 
     private void CreateTileFromTileMap(Image tileMap, Vector2I tilePosition)
@@ -129,6 +194,18 @@ public partial class TileSet : GodotObject
     private async Task<Image> DrawTiles(GodotObject viewportContainer, Vector2I tileMapSize, int groupOffset, 
         IReadOnlyList<Color> groupColor, Vector2I separation, Vector2I offset, int columnCount, int groupCount)
     {
+        SubViewport viewport = CreateViewport(tileMapSize, viewportContainer);
+        
+        AddTilesToViewport(groupCount, groupColor, separation, offset, 
+            columnCount, viewport, Tiles.Count + groupOffset);
+        
+        await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+        viewport.QueueFree();
+        return viewport.GetTexture().GetImage();
+    }
+    
+    private static SubViewport CreateViewport(Vector2I tileMapSize, GodotObject viewportContainer)
+    {
         var viewport = new SubViewport()
         {
             Size = tileMapSize,
@@ -136,18 +213,18 @@ public partial class TileSet : GodotObject
             RenderTargetUpdateMode = SubViewport.UpdateMode.Always
         };
         viewportContainer.CallDeferred("add_child", viewport);
-        
+        return viewport;
+    }
+
+    private void AddTilesToViewport(int groupCount, IReadOnlyList<Color> groupColor,
+        Vector2I separation, Vector2I offset, int columnCount, Node viewport, int groupTileCount)
+    {
         var position = new Vector2I();
         Sprite2D blankSprite = new Tile(TileSize).Sprite;
-        Resource material = GD.Load("res://Shaders/shader_material_color.tres");
-        int groupTileCount = Tiles.Count + groupOffset;
+        Resource material = GD.Load(ShaderMaterialColorPath);
         for (var group = 0; group < groupCount; group++)
         {
-            var spriteContainer = new Node2D();
-            Color color = groupColor[group];
-            var shaderColor = new Vector3(color.R, color.G, color.B);
-            spriteContainer.Material = (Material)material.Duplicate();
-            ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Color", shaderColor);
+            Node2D spriteContainer = CreateSpriteContainer(groupColor[group], material);
             
             for (var i = 0; i < groupTileCount; i++)
             {
@@ -157,15 +234,18 @@ public partial class TileSet : GodotObject
             }
             viewport.AddChild(spriteContainer);
         }
-        
-        await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
-        Image image = viewport.GetTexture().GetImage();
-        viewport.QueueFree();
-        return image;
     }
-
-    private static void AddTileSprite(Node sprite, 
-        Node container, Vector2I tilePosition)
+    
+    private static Node2D CreateSpriteContainer(Color color, Resource material)
+    {
+        var spriteContainer = new Node2D();
+        var shaderColor = new Vector3(color.R, color.G, color.B);
+        spriteContainer.Material = (Material)material.Duplicate();
+        ((ShaderMaterial)spriteContainer.Material).SetShaderParameter("Color", shaderColor);
+        return spriteContainer;
+    }
+    
+    private static void AddTileSprite(Node sprite, Node container, Vector2I tilePosition)
     {
         var duplicate = (Sprite2D)sprite.Duplicate();
         duplicate.Centered = false;
@@ -175,16 +255,9 @@ public partial class TileSet : GodotObject
 
     private static Vector2I GetNextPosition(int columnCount, Vector2I position)
     {
-        if (position.X + 1 >= columnCount)
-        {
-            position.X = 0;
-            position.Y++;
-        }
-        else
-        {
-            position.X++;   
-        }
-
+        if (++position.X < columnCount) return position;
+        position.X = 0;
+        position.Y++;
         return position;
     }
 

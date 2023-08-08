@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using Godot;
 
 public partial class SaveTileMap : Control
@@ -10,13 +10,26 @@ public partial class SaveTileMap : Control
     public static bool? IsSavePressed { get; set; }
     public static GroupsContainer GroupsContainer { get; set; }
     public static TextureRectTileMapSave TextureContainer { get; set; }
+    public static event Action<bool> ExpertModeChangedEvents;
+    
+    public static bool IsExpertMode
+    {
+        set
+        {
+            _isExpertMode = value;
+            ExpertModeChangedEvents?.Invoke(value);
+        }
+        get => _isExpertMode;
+    }
+
+    private static bool _isExpertMode;
 
     private static Image Image
     {
         get => TextureContainer.Texture.GetImage();
         set
         {
-            if (value is null) return;
+            if (value is null || IsSavePressed is not null) return;
             TextureContainer.Texture = ImageTexture.CreateFromImage(value);
             TextureContainer.QueueRedraw();
         }
@@ -30,12 +43,14 @@ public partial class SaveTileMap : Control
         Image = null;
         GroupsContainer = null;
         TextureContainer = null;
+        ExpertModeChangedEvents = null;
     }
 
     public override void _Ready()
     {
         Parameters.ColumnsChangedEvents += UpdateImage;
         Parameters.GroupOffsetChangedEvents += UpdateImage;
+        IsExpertMode = false;
     }
 
     public static Image GetImage()

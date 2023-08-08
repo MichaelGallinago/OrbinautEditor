@@ -79,6 +79,7 @@ script = ExtResource("1_kctxx")
 _baseColor = Color(0, 0, 0, 1)
 
 [node name="ColorPicker" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bo7v4")

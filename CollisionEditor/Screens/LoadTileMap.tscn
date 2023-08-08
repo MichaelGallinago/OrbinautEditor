@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://c7fsytcp3aerf"]
+[gd_scene load_steps=40 format=3 uid="uid://c7fsytcp3aerf"]
 
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LoadTileMap.cs" id="1_7buet"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="2_guwbt"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="3_gltf6"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/HBoxContainerTileSize.cs" id="4_an5ld"]
 [ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="4_kvvnq"]
 [ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="5_ie7ui"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LineEditTileSizeX.cs" id="6_mue1v"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LineEditOffsetLoadX.cs" id="11_2ftc3"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LineEditOffsetLoadY.cs" id="12_y7sch"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/LineEditNumber.cs" id="13_n3tbs"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/HBoxContainerNumber.cs" id="14_7lrsn"]
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="14_angvv"]
 [ext_resource type="Texture2D" uid="uid://c7c3l30fy8evm" path="res://Resorses/Sprites/arrow_up_light.png" id="15_38fj3"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TileNumberButtonAdd.cs" id="16_8ecbi"]
@@ -23,6 +25,8 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/TextureRectTileMap.cs" id="21_p3yic"]
 [ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="21_whw7w"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/CancelLoadTileMapButton.cs" id="22_demkd"]
+[ext_resource type="Texture2D" uid="uid://ugi5udngensi" path="res://Resorses/Sprites/expert.png" id="23_ott8j"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Load/ExpertModeLoadTileMapButton.cs" id="24_tdhta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mnpo"]
 bg_color = Color(0.25098, 0.266667, 0.298039, 1)
@@ -218,6 +222,7 @@ selecting_enabled = false
 
 [node name="HBoxContainerTileSize" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("4_an5ld")
 
 [node name="LineEditTileSize" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerTileSize"]
 custom_minimum_size = Vector2(112, 28)
@@ -395,6 +400,7 @@ text = "Y"
 
 [node name="HBoxContainerNumber" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("14_7lrsn")
 
 [node name="LineEditNumberText" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainerNumber"]
 custom_minimum_size = Vector2(112, 28)
@@ -473,7 +479,7 @@ icon = ExtResource("19_u11nl")
 script = ExtResource("20_iat8b")
 
 [node name="CancelLoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 28)
+custom_minimum_size = Vector2(84, 28)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -487,6 +493,21 @@ text = "Cancel
 "
 icon = ExtResource("21_whw7w")
 script = ExtResource("22_demkd")
+
+[node name="ExpertModeLoadTileMapButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(130, 28)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8t6bo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10vsl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_at0jx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mdocl")
+text = "Expert Mode"
+icon = ExtResource("23_ott8j")
+script = ExtResource("24_tdhta")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

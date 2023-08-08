@@ -1,20 +1,25 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Godot;
 
 public class AngleMap
 {
     public List<byte> Angles { get; private set; }
 
-    public AngleMap(string binaryFilePath, int tileCount = 0)
+    public AngleMap(IEnumerable<byte> angles, int tileCount = 0)
     {
-        Angles = File.ReadAllBytes(binaryFilePath).ToList();
+        Angles = angles.ToList();
 
         if (tileCount != 0)
         {
             SetAnglesCount(tileCount);
         }
+    }
+    
+    public AngleMap(int tileCount = 0)
+    {
+        CreateAngles(tileCount);
     }
 
     public void SetAnglesCount(int tileCount)
@@ -30,12 +35,7 @@ public class AngleMap
             Angles.Add(0);
         }
     }
-
-    public AngleMap(int tileCount = 0)
-    {
-        CreateAngles(tileCount);
-    }
-
+    
     public void CreateAngles(int count)
     {
         Angles = new List<byte>(new byte[count]);
@@ -49,8 +49,10 @@ public class AngleMap
         {
             File.Delete(path);
         }
-        
-        File.WriteAllBytes(path, Angles.ToArray());
+
+        byte[] fileData = Angles.ToArray();
+        fileData[BinaryFile.Metadata] = (byte)BinaryFile.Types.Angles;
+        File.WriteAllBytes(path, fileData);
     }
     
     public void InsertAngle(int tileIndex)
@@ -61,5 +63,12 @@ public class AngleMap
     public void RemoveAngle(int tileIndex)
     {
         Angles.RemoveAt(tileIndex);
+    }
+
+    public void MoveAngle(int fromTileIndex, int toTileIndex)
+    {
+        byte angle = Angles[fromTileIndex];
+        Angles.RemoveAt(fromTileIndex);
+        Angles.Insert(toTileIndex, angle);
     }
 }

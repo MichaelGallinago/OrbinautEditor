@@ -61,7 +61,7 @@ public partial class BigTileCanvasSquares : Control
     
     private void CheckClicks()
     {
-        if (_bigTile.TileScale == 0 || _transparencyChangeSpeed < 0) return;
+        if (CollisionEditor.TileIndex == 0 || _bigTile.TileScale == 0 || _transparencyChangeSpeed < 0) return;
         
         Vector2I mouseGridPosition = (Vector2I)GetLocalMousePosition() / _bigTile.TileScale;
 
