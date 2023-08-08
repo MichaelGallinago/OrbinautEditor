@@ -1,5 +1,4 @@
 using Godot;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class PopupMenuSave : PopupMenuHandler
@@ -65,51 +64,31 @@ public partial class PopupMenuSave : PopupMenuHandler
     
     private static void OnAngleMapPressed()
     {
-        var filters = new Dictionary<string, string>
-        {
-            { "*.bin", "BIN" }
-        };
-        
-        CollisionEditor.OpenFileDialog(filters, FileMode, CollisionEditor.AngleMap.Save, 
+        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, CollisionEditor.AngleMap.Save, 
             "Save AngleMap", "AngleMap.bin");
     }
 
     private static void OnHeightMapPressed()
     {
-        var filters = new Dictionary<string, string>
-        {
-            { "*.bin", "BIN" }
-        };
-        
-        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
-            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false),
-            "Save HeightMap", "HeightMap.bin");
+        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, path => 
+            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false, 
+                BinaryFile.Types.Heights), "Save HeightMap", "HeightMap.bin");
     }
     
     private static void OnWidthMapPressed()
     {
-        var filters = new Dictionary<string, string>
-        {
-            { "*.bin", "BIN" }
-        };
-        
-        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
-            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true), 
-            "Save WidthMap", "WidthMap.bin");
+        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, path => 
+            TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true, 
+                BinaryFile.Types.Widths), "Save WidthMap", "WidthMap.bin");
     }
 
     private static async void OnTileMapPressed()
     {
-        var filters = new Dictionary<string, string>
-        {
-            { "*.png", "PNG" }
-        };
-        
         Image tileMap = await CollisionEditor.Object.CreateTileMap();
         
         if (tileMap is null) return;
         
-        CollisionEditor.OpenFileDialog(filters, FileMode, path => 
+        CollisionEditor.OpenFileDialog(ImageFile.Filters, FileMode, path => 
             TileUtilities.SaveTileMap(path, tileMap), "Save TileMap", "TileMap.png");
     }
 }

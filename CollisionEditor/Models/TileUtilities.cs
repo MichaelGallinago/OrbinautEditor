@@ -33,7 +33,7 @@ public static class TileUtilities
         }
     }
 
-    public static void SaveCollisionMap(string path, IEnumerable<Tile> tiles, bool isWidths)
+    public static void SaveCollisionMap(string path, List<Tile> tiles, bool isWidths, BinaryFile.Types type)
     {
         if (path == null) return;
         
@@ -44,7 +44,13 @@ public static class TileUtilities
 
         using var writer = new BinaryWriter(File.Open(path, FileMode.CreateNew));
         {
-            foreach (byte value in tiles.SelectMany(tile => isWidths ? tile.Widths : tile.Heights))
+            Tile blankTile = tiles.First();
+            foreach (byte i in isWidths ? blankTile.Widths : blankTile.Heights)
+            {
+                writer.Write((byte)type);
+            }
+            
+            foreach (byte value in tiles.Skip(1).SelectMany(tile => isWidths ? tile.Widths : tile.Heights))
             {
                 writer.Write(value);
             }

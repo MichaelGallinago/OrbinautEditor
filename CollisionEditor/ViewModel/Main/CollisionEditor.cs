@@ -1,12 +1,14 @@
 using System;
 using Godot;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 public partial class CollisionEditor : Control
 {
 	private static readonly Vector2I BaseTileSize = new(16, 16);
-	
+
 	public static CollisionEditor Object { get; private set; }
 	public static TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
@@ -27,7 +29,7 @@ public partial class CollisionEditor : Control
 	public static event Action<bool> ActivityChangedEvents;
 	public static event Action TileIndexChangedEvents;
 	public static event Action<byte> AngleChangedEvents;
-	
+
 	private static FileDialog.FileSelectedEventHandler _fileDialogEvent;
 	private static int _tileCount;
 	private static int _tileIndex;
@@ -53,12 +55,16 @@ public partial class CollisionEditor : Control
 
 	public override void _Ready()
 	{
+		Window window = GetTree().Root;
+		
 		FileDialog.Unresizable = true;
-		FileDialog.Size = GetTree().Root.Size;
+		FileDialog.Size = window.Size;
 		FileDialog.Access = FileDialog.AccessEnum.Filesystem;
 		FileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
 		FileDialog.InitialPosition = Window.WindowInitialPosition.CenterScreenWithKeyboardFocus;
 		AddChild(FileDialog);
+
+		window.FilesDropped += OnFilesDropped;
 	}
 
 	public override void _Process(double delta)
@@ -92,7 +98,7 @@ public partial class CollisionEditor : Control
 
 	public async void CreateTileSet(string imagePath)
 	{
-		Image image = ImageLoader.Load(imagePath);
+		Image image = ImageFile.Open(imagePath);
 		var packedScreen = GD.Load<PackedScene>("res://CollisionEditor/Screens/LoadTileMap.tscn");
 		var screen = packedScreen.Instantiate<LoadTileMap>();
 		LoadTileMap.Image = image;
@@ -107,18 +113,25 @@ public partial class CollisionEditor : Control
 
 		TileSet = new TileSet(image, parameters.TileSize, 
 			parameters.Separation, parameters.Offset, parameters.TileNumber);
-		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
-		TileButtonsGrid.CreateTileButtons(TileSet);
-		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
-		_tileCount = 0;
+		OnTileSetCreated();
+	}
+	
+	public static void OpenTileSetFromCollisionMap(string filePath, 
+		BinaryFile.Types fileType, Func<byte[], TileSet> creationFunc)
+	{
+		if (!BinaryFile.TryOpen(filePath, fileType, out byte[] fileData)) return;
+		CreateCollisionMap(fileData, creationFunc);
 	}
 
-	public static void CreateAngleMap(string binaryFilePath)
+	public static void OpenAngleMap(string filePath)
 	{
-		AngleMap = new AngleMap(binaryFilePath, TileSet.Tiles.Count);
+		if (!BinaryFile.TryOpen(filePath, BinaryFile.Types.Angles, out byte[] fileData)) return;
+		CreateAngleMap(fileData);
+	}
 
-		if (TileSet.Tiles.Count != 0) return;
-		TileSet = new TileSet(AngleMap.Angles.Count, BaseTileSize);
+	private static void OnTileSetCreated()
+	{
+		AngleMap.SetAnglesCount(TileSet.Tiles.Count);
 		TileButtonsGrid.CreateTileButtons(TileSet);
 		TileIndex = TileIndex >= TileSet.Tiles.Count ? 0 : _tileIndex;
 		_tileCount = 0;
@@ -216,5 +229,47 @@ public partial class CollisionEditor : Control
 		_tileCount = TileSet.Tiles.Count;
 
 		ActivityChangedEvents?.Invoke(_tileCount != 0);
+	}
+
+	private static void CreateAngleMap(IEnumerable<byte> fileData)
+	{
+		AngleMap = new AngleMap(fileData, TileSet.Tiles.Count);
+
+		if (TileSet.Tiles.Count != 0) return;
+		TileSet = new TileSet(AngleMap.Angles.Count, BaseTileSize);
+		OnTileSetCreated();
+	}
+
+	private static void CreateCollisionMap(byte[] fileData, Func<byte[], TileSet> creationFunc)
+	{
+		TileSet = creationFunc(fileData);
+		OnTileSetCreated();
+	}
+
+	private void OnFilesDropped(string[] paths)
+	{
+		string path = paths[0];
+		string extension = '*' + Path.GetExtension(path);
+
+		if (BinaryFile.Filters.All(filter => extension != filter.Key))
+		{
+			BinaryFile.Types type = BinaryFile.Open(path, out byte[] fileData);
+			switch (type)
+			{
+				case BinaryFile.Types.Heights: 
+					CreateCollisionMap(fileData, TileSet.CreateFromHeights);
+					return;
+				case BinaryFile.Types.Widths: 
+					CreateCollisionMap(fileData, TileSet.CreateFromWidths);
+					return;
+				case BinaryFile.Types.Angles:
+				default: 
+					CreateAngleMap(fileData);
+					return;
+			}	
+		}
+
+		if (ImageFile.Filters.All(filter => extension != filter.Key)) return;
+		CreateTileSet(path);
 	}
 }

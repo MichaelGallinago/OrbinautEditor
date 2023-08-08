@@ -1,14 +1,16 @@
 ﻿using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 public partial class TileSet : GodotObject
 {
     private const string ShaderMaterialColorPath = "res://Shaders/shader_material_color.tres";
+    private const byte CollisionMapsMetadataBuffer = 3;
     
     public Vector2I TileSize { get; private set; }
-    public List<Tile> Tiles { get; }
+    public List<Tile> Tiles { get; private set; }
 
     public TileSet(Image image, Vector2I tileSize, 
         Vector2I separation, Vector2I offset, int tileLimit)
@@ -28,6 +30,57 @@ public partial class TileSet : GodotObject
         {
             Tiles.Add(new Tile(TileSize));
         }
+    }
+    
+    public static TileSet CreateFromHeights(IReadOnlyList<byte> heights)
+    {
+        var tileSize = new Vector2I(heights[1], heights[2]);
+        var tileSet = new TileSet(0, tileSize);
+        int count = heights.Count / tileSize.X;
+        for (var i = 0; i < count; i++)
+        {
+            var tile = new Tile(tileSet.TileSize);
+            Image image = tile.GetImage();
+            for (var x = 0; x < tileSize.X; x++)
+            {
+                int transparentHeight = tileSize.Y - heights[i * tileSize.X + x];
+                for (var y = 0; y < tileSize.Y; y++)
+                {
+                    if (y < transparentHeight) continue;
+                    image.SetPixel(x, y, Colors.Black);
+                }
+            }
+            tile.SetImage(image);
+            tileSet.Tiles.Add(tile);
+        }
+
+        return tileSet;
+    }
+    
+    public static TileSet CreateFromWidths(IReadOnlyList<byte> widths)
+    {
+        var tileSize = new Vector2I(widths[1], widths[2]);
+        widths = widths.Skip(CollisionMapsMetadataBuffer).ToArray();
+        var tileSet = new TileSet(0, tileSize);
+        int count = widths.Count / tileSize.Y;
+        for (var i = 0; i < count; i++)
+        {
+            var tile = new Tile(tileSet.TileSize);
+            Image image = tile.GetImage();
+            for (var y = 0; y < tileSize.X; y++)
+            {
+                int transparentWidth = tileSize.X - widths[i * tileSize.Y + y];
+                for (var x = 0; x < tileSize.Y; x++)
+                {
+                    if (x < transparentWidth) continue;
+                    image.SetPixel(x, y, Colors.Black);
+                }
+            }
+            tile.SetImage(image);
+            tileSet.Tiles.Add(tile);
+        }
+
+        return tileSet;
     }
 
     public async Task<Image> CreateTileMap(Node viewportContainer, int columnCount, 
