@@ -251,7 +251,7 @@ public partial class CollisionEditor : Control
 		string path = paths[0];
 		string extension = '*' + Path.GetExtension(path);
 
-		if (BinaryFile.Filters.All(filter => extension != filter.Key))
+		if (BinaryFile.Filters.All(filter => extension == filter.Key))
 		{
 			BinaryFile.Types type = BinaryFile.Open(path, out byte[] fileData);
 			switch (type)
@@ -270,6 +270,7 @@ public partial class CollisionEditor : Control
 		}
 
 		if (ImageFile.Filters.All(filter => extension != filter.Key)) return;
+		GD.Print("Image");
 		CreateTileSet(path);
 	}
 }
