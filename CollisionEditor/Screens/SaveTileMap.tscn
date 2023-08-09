@@ -326,7 +326,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = ExtResource("4_fadmp")
 theme_override_styles/focus = ExtResource("5_0x8t8")
-text = "0"
+text = "16"
 context_menu_enabled = false
 script = ExtResource("11_uqyoh")
 

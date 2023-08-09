@@ -158,7 +158,11 @@ public partial class TileSet : GodotObject
         {
             for (var x = 0; x < cellCount.X; x++)
             {
-                if (tileLimit != 0 && number++ >= tileLimit) return;
+                if (tileLimit != 0 && number++ >= tileLimit)
+                {
+                    ClearFirstTile();
+                    return;
+                }
                 CreateTileFromTileMap(tileMap, GetTilePosition(new Vector2I(x, y), separation, offset));
             }
         }
