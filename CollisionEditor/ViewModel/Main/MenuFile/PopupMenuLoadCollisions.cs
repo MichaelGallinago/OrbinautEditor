@@ -1,8 +1,8 @@
 using Godot;
 
-public partial class PopupMenuLoad : PopupMenuHandler
+public partial class PopupMenuLoadCollisions : PopupMenuHandler
 {
-    public PopupMenuLoad()
+    public PopupMenuLoadCollisions()
     {
         Name = "loadMenu";
         AddItem("TileMap", 0);

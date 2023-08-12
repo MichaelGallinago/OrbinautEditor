@@ -12,9 +12,9 @@ public partial class CollisionEditor : Control
 	public static CollisionEditor Object { get; private set; }
 	public static TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
+	public static FileDialog FileDialog { get; private set; }
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
-	public static FileDialog FileDialog { get; private set; }
 
 	public static int TileIndex 
 	{
@@ -39,12 +39,17 @@ public partial class CollisionEditor : Control
 		Object = this;
 		TileSet = new TileSet();
 		AngleMap = new AngleMap();
+		FileDialog = new FileDialog();
+		TileButtonsGrid = null;
 		IsTileMode = false;
 		
-		FileDialog = new FileDialog();
 		_fileDialogEvent = null;
 		_tileCount = 0;
 		_tileIndex = 0;
+
+		ActivityChangedEvents = null;
+		TileIndexChangedEvents = null;
+		AngleChangedEvents = null;
 
 		TileIndexChangedEvents += () =>
 		{
@@ -270,7 +275,6 @@ public partial class CollisionEditor : Control
 		}
 
 		if (ImageFile.Filters.All(filter => extension != filter.Key)) return;
-		GD.Print("Image");
 		CreateTileSet(path);
 	}
 }

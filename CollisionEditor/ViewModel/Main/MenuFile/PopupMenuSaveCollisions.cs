@@ -1,13 +1,13 @@
 using Godot;
 using System.Threading.Tasks;
 
-public partial class PopupMenuSave : PopupMenuHandler
+public partial class PopupMenuSaveCollisions : PopupMenuHandler
 {
     private const FileDialog.FileModeEnum FileMode = FileDialog.FileModeEnum.SaveFile;
 
     private static bool _isReady;
     
-    public PopupMenuSave()
+    public PopupMenuSaveCollisions()
     {
         Name = "saveMenu";
         AddItem("All", 0);

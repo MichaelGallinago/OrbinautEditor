@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/CollisionEditor.cs" id="1_s20f8"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_l04de"]
 [ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="3_u2xur"]
-[ext_resource type="Script" path="res://General/ViewModel/MenuButtonEditor.cs" id="4_auw4w"]
-[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuFile/MenuButtonFile.cs" id="5_33tbl"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuFile/MenuButtonFileCollisions.cs" id="4_ss4j6"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuMode/MenuButtonMode.cs" id="5_s632v"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuHelp/MenuButtonHelp.cs" id="6_thgmb"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="7_b17a6"]
 [ext_resource type="StyleBox" uid="uid://h70c1mhf6qsc" path="res://Styles/style_main_panel_light.tres" id="8_iw7bs"]
@@ -102,28 +102,7 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="MenuButtonEditor" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
-layout_mode = 2
-theme = ExtResource("2_l04de")
-theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
-theme_override_styles/normal = ExtResource("3_u2xur")
-theme_override_styles/pressed = ExtResource("3_u2xur")
-theme_override_styles/hover = ExtResource("3_u2xur")
-theme_override_styles/disabled = ExtResource("3_u2xur")
-theme_override_styles/focus = ExtResource("3_u2xur")
-text = "Editor
-"
-switch_on_hover = true
-item_count = 3
-popup/item_0/text = "Tiles"
-popup/item_0/id = 0
-popup/item_1/text = "Deformations"
-popup/item_1/id = 1
-popup/item_2/text = "Surfaces"
-popup/item_2/id = 2
-script = ExtResource("4_auw4w")
-
-[node name="MenuButtonFile" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
+[node name="MenuButtonFileCollisions" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
 layout_mode = 2
 theme = ExtResource("2_l04de")
 theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
@@ -134,7 +113,27 @@ theme_override_styles/disabled = ExtResource("3_u2xur")
 theme_override_styles/focus = ExtResource("3_u2xur")
 text = "File"
 switch_on_hover = true
-script = ExtResource("5_33tbl")
+script = ExtResource("4_ss4j6")
+
+[node name="MenuButtonMode" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
+layout_mode = 2
+theme = ExtResource("2_l04de")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = ExtResource("3_u2xur")
+theme_override_styles/pressed = ExtResource("3_u2xur")
+theme_override_styles/hover = ExtResource("3_u2xur")
+theme_override_styles/disabled = ExtResource("3_u2xur")
+theme_override_styles/focus = ExtResource("3_u2xur")
+text = "Mode"
+switch_on_hover = true
+item_count = 3
+popup/item_0/text = "Collisions"
+popup/item_0/id = 0
+popup/item_1/text = "Deformations"
+popup/item_1/id = 1
+popup/item_2/text = "Surfaces"
+popup/item_2/id = 2
+script = ExtResource("5_s632v")
 
 [node name="MenuButtonHelp" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
 layout_mode = 2
