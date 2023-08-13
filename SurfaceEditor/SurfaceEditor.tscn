@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6yb3akqk0adi"]
+[gd_scene load_steps=19 format=3 uid="uid://c6yb3akqk0adi"]
 
 [ext_resource type="Script" path="res://SurfaceEditor/ViewModel/SurfaceEditor.cs" id="1_17rex"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_ocdcg"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuMode/MenuButtonMode.cs" id="5_381ai"]
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuHelp/MenuButtonHelp.cs" id="6_fkace"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="7_jbjj8"]
+[ext_resource type="Script" path="res://SurfaceEditor/ViewModel/TextureRectSurface.cs" id="8_3u3hq"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="8_5i2tl"]
 [ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="9_lhfw6"]
+[ext_resource type="Script" path="res://SurfaceEditor/ViewModel/TextureRectBackground.cs" id="9_ubp6a"]
 [ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="10_ujn30"]
 [ext_resource type="Script" path="res://SurfaceEditor/ViewModel/LineEditSurfaceSizeX.cs" id="11_xcqvb"]
 [ext_resource type="StyleBox" uid="uid://bn8pso28ct0p6" path="res://Styles/Textbox/Vector/style_textbox_symbol.tres" id="12_ajrkr"]
@@ -180,11 +182,13 @@ horizontal_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("8_3u3hq")
 
 [node name="TextureRectBackground" type="TextureRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/ScrollContainer/TextureRectSurface"]
 layout_mode = 2
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_ubp6a")
 
 [node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
 custom_minimum_size = Vector2(0, 32)

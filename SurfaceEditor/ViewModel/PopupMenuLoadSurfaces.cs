@@ -20,22 +20,22 @@ public partial class PopupMenuLoadSurfaces : PopupMenuHandler
             case 2: OnBackgroundPressed(); break;
         }
     }
-    
+    //TODO
     private static void OnBinarySurfacePressed()
     {
-        SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-            SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
+        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        //    SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
     }
     
     private static void OnImageSurfacePressed()
     {
-        SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-            SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
+        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        //    SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
     }
 
     private static void OnBackgroundPressed()
     {
-        SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-            SurfaceEditor.OpenBackground, "Load AngleMap", string.Empty);
+        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        //    SurfaceEditor.OpenBackground, "Load AngleMap", string.Empty);
     }
 }
