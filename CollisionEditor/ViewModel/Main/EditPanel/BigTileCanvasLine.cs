@@ -2,33 +2,70 @@ using Godot;
 
 public partial class BigTileCanvasLine : Control
 {
-	private readonly BigTile _bigTile;
+	public Control BorderCanvas { get; }
+	public double BorderCanvasAlpha { get; set; }
+
+	private const float LineWidth = 2f;
+	private const float AngleOffset = 0.01f;
+	
+	private BigTile _bigTile;
+	private Vector2 _centre;
+	private (Vector2, Vector2, Vector2) _positions;
 
 	public BigTileCanvasLine(BigTile bigTile)
 	{
+		BorderCanvas = new Control();
+		BorderCanvas.Draw += DrawBorder;
 		_bigTile = bigTile;
-		_bigTile.MinimumSizeChanged += () => CustomMinimumSize = _bigTile.CustomMinimumSize;
+		_bigTile.MinimumSizeChanged += () =>
+		{
+			CustomMinimumSize = _bigTile.CustomMinimumSize;
+			BorderCanvas.CustomMinimumSize = CustomMinimumSize;
+		};
+	}
+
+	public override void _Ready()
+	{
+		AddChild(BorderCanvas);
+	}
+
+	public override void _Process(double delta)
+	{
+		if (BorderCanvasAlpha <= 0d) return;
+		BorderCanvasAlpha -= delta * byte.MaxValue;
+		BorderCanvas.QueueRedraw();
 	}
 
 	public override void _Draw()
 	{
 		if (CollisionEditor.AngleMap.Angles.Count == 0) return;
-		Vector2 centre = (Vector2)(CollisionEditor.TileSet.TileSize * _bigTile.TileScale) / 2f;
-		byte byteAngle = CollisionEditor.AngleMap.Angles[CollisionEditor.TileIndex];
-		(Vector2, Vector2, Vector2) positions = GetLinePositions(centre, byteAngle);
+		_centre = (Vector2)(CollisionEditor.TileSet.TileSize * _bigTile.TileScale) / 2f;
+		_positions = GetLinePositions(_centre);
 		
-		DrawLine(positions.Item1 + centre, -positions.Item1 + centre, Colors.Red, 2f);
-		DrawLine(-positions.Item1 + centre, positions.Item2 + centre, Colors.Red, 2f);
-		DrawLine(positions.Item2 + centre, positions.Item3 + centre, Colors.Red, 2f);
-		DrawLine(positions.Item1 + centre, positions.Item3 + centre, Colors.Red, 2f);
+		DrawAngleLine(this, _positions.Item1, -_positions.Item1, Colors.Red);
 	}
-	
-	private static (Vector2, Vector2, Vector2) GetLinePositions(Vector2 centre, byte byteAngle)
+
+	private void DrawBorder()
 	{
+		Color color = Colors.Red;
+		color.A8 = (byte)Mathf.Max(0, BorderCanvasAlpha);
+		DrawAngleLine(BorderCanvas, -_positions.Item1, _positions.Item2, color);
+		DrawAngleLine(BorderCanvas, _positions.Item2, _positions.Item3, color);
+		DrawAngleLine(BorderCanvas, _positions.Item1, _positions.Item3, color);
+	}
+
+	private void DrawAngleLine(CanvasItem node, Vector2 from, Vector2 to, Color color)
+	{
+		node.DrawLine(from + _centre, to + _centre, color, LineWidth);
+	}
+
+	private static (Vector2, Vector2, Vector2) GetLinePositions(Vector2 centre)
+	{
+		byte byteAngle = CollisionEditor.AngleMap.Angles[CollisionEditor.TileIndex];
 		float angle = 360f - (float)Angles.GetFullAngle(byteAngle, false);
 		float fullAngle = Mathf.DegToRad(angle);
 		float cornerAngle = Mathf.Atan2(centre.X, centre.Y);
-		int direction = fullAngle + 0.01f >= Mathf.Pi + cornerAngle || fullAngle < cornerAngle ? 1 : -1;
+		int direction = fullAngle + AngleOffset >= Mathf.Pi + cornerAngle || fullAngle < cornerAngle ? 1 : -1;
 
 		return CalculatePositions(centre, direction, angle, cornerAngle);
 	}
