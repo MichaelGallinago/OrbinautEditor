@@ -24,6 +24,7 @@ public partial class BigTile : TextureRect
 
 	public void UpdateTile(int? tileIndex)
 	{
+		if (CollisionEditor.TileSet.Tiles.Count == 0) return;
 		Texture = tileIndex is null ? new Texture2D() : CollisionEditor.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
 	}
 

@@ -26,4 +26,19 @@ public partial class SurfaceEditor : Control
     {
         container.Texture = ImageTexture.CreateFromImage(image); 
     }
+
+    public static void OpenBinarySurface(string path)
+    {
+        
+    }
+    
+    public static void OpenImageSurface(string path)
+    {
+        
+    }
+    
+    public static void SaveBinarySurface(string path)
+    {
+        
+    }
 }

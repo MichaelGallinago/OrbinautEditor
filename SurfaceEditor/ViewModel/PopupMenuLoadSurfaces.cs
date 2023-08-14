@@ -7,7 +7,6 @@ public partial class PopupMenuLoadSurfaces : PopupMenuHandler
         Name = "loadMenu";
         AddItem("Binary Surface", 0);
         AddItem("Image Surface", 1);
-        AddItem("Background", 2);
     }
 
     protected override void OnItemPressed(long id)
@@ -16,7 +15,6 @@ public partial class PopupMenuLoadSurfaces : PopupMenuHandler
         {
             case 0: OnBinarySurfacePressed(); break;
             case 1: OnImageSurfacePressed(); break;
-            case 2: OnBackgroundPressed(); break;
         }
     }
     
@@ -30,11 +28,5 @@ public partial class PopupMenuLoadSurfaces : PopupMenuHandler
     {
         SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             SurfaceEditor.OpenImageSurface, "Load Image Surface", string.Empty);
-    }
-
-    private static void OnBackgroundPressed()
-    {
-        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-            SurfaceEditor.OpenBackground, "Load AngleMap", string.Empty);
     }
 }

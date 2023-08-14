@@ -64,20 +64,20 @@ public partial class PopupMenuSaveCollisions : PopupMenuHandler
     
     private static void OnAngleMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, CollisionEditor.AngleMap.Save, 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileMode, CollisionEditor.AngleMap.Save, 
             "Save AngleMap", "AngleMap.bin");
     }
 
     private static void OnHeightMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, path => 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileMode, path => 
             TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, false, 
                 BinaryFile.Types.Heights), "Save HeightMap", "HeightMap.bin");
     }
     
     private static void OnWidthMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileMode, path => 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileMode, path => 
             TileUtilities.SaveCollisionMap(path, CollisionEditor.TileSet.Tiles, true, 
                 BinaryFile.Types.Widths), "Save WidthMap", "WidthMap.bin");
     }
@@ -88,7 +88,7 @@ public partial class PopupMenuSaveCollisions : PopupMenuHandler
         
         if (tileMap is null) return;
         
-        CollisionEditor.OpenFileDialog(ImageFile.Filters, FileMode, path => 
+        CollisionEditor.FileDialog.Open(ImageFile.Filters, FileMode, path => 
             TileUtilities.SaveTileMap(path, tileMap), "Save TileMap", "TileMap.png");
     }
 }

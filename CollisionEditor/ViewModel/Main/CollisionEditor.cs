@@ -170,6 +170,7 @@ public partial class CollisionEditor : Control
 
 	public static void ClearAngles()
 	{
+		if (AngleMap.Angles.Count == 0) return;
 		AngleMap.CreateAngles(AngleMap.Angles.Count);
 		AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}

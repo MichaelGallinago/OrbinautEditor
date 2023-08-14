@@ -8,7 +8,9 @@ public partial class LineEditHeights : LineEdit
 
 	public override void _Ready()
 	{
-		CollisionEditor.TileIndexChangedEvents += () => Text = CreateString(CollisionEditor.TileSet.Tiles[CollisionEditor.TileIndex].Heights);
+		if (CollisionEditor.TileSet.Tiles.Count == 0) return;
+		CollisionEditor.TileIndexChangedEvents += () => Text = 
+			CreateString(CollisionEditor.TileSet.Tiles[CollisionEditor.TileIndex].Heights);
 		CollisionEditor.ActivityChangedEvents += OnActivityChanged;
     }
 
