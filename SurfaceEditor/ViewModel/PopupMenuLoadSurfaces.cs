@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class PopupMenuLoadSurfaces : PopupMenuHandler
 {
@@ -20,22 +19,22 @@ public partial class PopupMenuLoadSurfaces : PopupMenuHandler
             case 2: OnBackgroundPressed(); break;
         }
     }
-    //TODO
+    
     private static void OnBinarySurfacePressed()
     {
-        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-        //    SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
+        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+            SurfaceEditor.OpenBinarySurface, "Load Binary Surface", string.Empty);
     }
     
     private static void OnImageSurfacePressed()
     {
-        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-        //    SurfaceEditor.OpenSurface, "Load Surface", string.Empty);
+        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+            SurfaceEditor.OpenImageSurface, "Load Image Surface", string.Empty);
     }
 
     private static void OnBackgroundPressed()
     {
-        //SurfaceEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
-        //    SurfaceEditor.OpenBackground, "Load AngleMap", string.Empty);
+        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+            SurfaceEditor.OpenBackground, "Load AngleMap", string.Empty);
     }
 }

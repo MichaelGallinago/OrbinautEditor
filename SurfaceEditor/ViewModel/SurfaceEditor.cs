@@ -6,11 +6,13 @@ public partial class SurfaceEditor : Control
     public static Vector2I SurfaceSize;
     public static TextureRectSurface Surface { get; set; }
     public static TextureRectBackground Background { get; set; }
+    public static CustomFileDialog FileDialog { get; private set; }
     
     public SurfaceEditor()
     {
         SurfaceSize = BaseSurfaceSize;
         Background = null;
+        FileDialog = new CustomFileDialog();
         CreateSurface();
     }
 

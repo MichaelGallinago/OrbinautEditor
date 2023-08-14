@@ -126,13 +126,11 @@ theme_override_styles/disabled = ExtResource("3_u2xur")
 theme_override_styles/focus = ExtResource("3_u2xur")
 text = "Mode"
 switch_on_hover = true
-item_count = 3
+item_count = 2
 popup/item_0/text = "Collisions"
 popup/item_0/id = 0
-popup/item_1/text = "Deformations"
+popup/item_1/text = "Surfaces"
 popup/item_1/id = 1
-popup/item_2/text = "Surfaces"
-popup/item_2/id = 2
 script = ExtResource("5_s632v")
 
 [node name="MenuButtonHelp" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]

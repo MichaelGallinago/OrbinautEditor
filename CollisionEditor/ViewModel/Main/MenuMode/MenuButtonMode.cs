@@ -8,8 +8,7 @@ public partial class MenuButtonMode : MenuButtonHandler
         string path = id switch 
         {
             0 => "res://CollisionEditor/Screens/CollisionEditor.tscn",
-            1 => "res://DeformationEditor/DeformationEditor.tscn",
-            2 => "res://SurfaceEditor/SurfaceEditor.tscn",
+            1 => "res://SurfaceEditor/SurfaceEditor.tscn",
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
         
