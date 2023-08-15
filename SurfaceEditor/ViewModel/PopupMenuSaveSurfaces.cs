@@ -15,6 +15,7 @@ public partial class PopupMenuSaveSurfaces : PopupMenuHandler
         switch (id)
         {
             case 0: OnBinarySurfacePressed(); break;
+            case 1: OnImageSurfacePressed(); break;
         }
     }
     
@@ -22,5 +23,11 @@ public partial class PopupMenuSaveSurfaces : PopupMenuHandler
     {
         SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.SaveFile, 
             SurfaceEditor.SaveBinarySurface, "Save Binary Surface", string.Empty);
+    }
+    
+    private static void OnImageSurfacePressed()
+    {
+        SurfaceEditor.FileDialog.Open(ImageFile.Filters, FileDialog.FileModeEnum.SaveFile, 
+            SurfaceEditor.SaveImageSurface, "Save Image Surface", string.Empty);
     }
 }

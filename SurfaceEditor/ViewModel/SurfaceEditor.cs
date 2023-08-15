@@ -13,6 +13,10 @@ public partial class SurfaceEditor : Control
         SurfaceSize = BaseSurfaceSize;
         Background = null;
         FileDialog = new CustomFileDialog();
+    }
+
+    public override void _Ready()
+    {
         CreateSurface();
     }
 
@@ -38,6 +42,11 @@ public partial class SurfaceEditor : Control
     }
     
     public static void SaveBinarySurface(string path)
+    {
+        
+    }
+    
+    public static void SaveImageSurface(string path)
     {
         
     }
