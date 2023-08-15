@@ -1,16 +1,16 @@
 using Godot;
 
-public partial class MenuButtonFile : MenuButtonHandler
+public partial class MenuButtonFileCollisions : MenuButtonHandler
 {
-	public MenuButtonFile()
+	public MenuButtonFileCollisions()
 	{
 		PopupMenu popup = GetPopup();
 		
-		popup.AddChild(new PopupMenuLoad());
+		popup.AddChild(new PopupMenuLoadCollisions());
 		popup.AddSubmenuItem("Load", "loadMenu", 0);
-		popup.AddChild(new PopupMenuSave());
+		popup.AddChild(new PopupMenuSaveCollisions());
 		popup.AddSubmenuItem("Save", "saveMenu", 1);
-		popup.AddChild(new PopupMenuUnload());
+		popup.AddChild(new PopupMenuUnloadCollisions());
 		popup.AddSubmenuItem("Unload", "unloadMenu", 2);
 		popup.AddSeparator();
 		popup.AddItem("Exit", 3);

@@ -12,9 +12,9 @@ public partial class CollisionEditor : Control
 	public static CollisionEditor Object { get; private set; }
 	public static TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
+	public static CustomFileDialog FileDialog { get; private set; }
 	public static TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
-	public static FileDialog FileDialog { get; private set; }
 
 	public static int TileIndex 
 	{
@@ -29,8 +29,7 @@ public partial class CollisionEditor : Control
 	public static event Action<bool> ActivityChangedEvents;
 	public static event Action TileIndexChangedEvents;
 	public static event Action<byte> AngleChangedEvents;
-
-	private static FileDialog.FileSelectedEventHandler _fileDialogEvent;
+	
 	private static int _tileCount;
 	private static int _tileIndex;
 
@@ -39,12 +38,16 @@ public partial class CollisionEditor : Control
 		Object = this;
 		TileSet = new TileSet();
 		AngleMap = new AngleMap();
+		FileDialog = new CustomFileDialog();
+		TileButtonsGrid = null;
 		IsTileMode = false;
-		
-		FileDialog = new FileDialog();
-		_fileDialogEvent = null;
+
 		_tileCount = 0;
 		_tileIndex = 0;
+
+		ActivityChangedEvents = null;
+		TileIndexChangedEvents = null;
+		AngleChangedEvents = null;
 
 		TileIndexChangedEvents += () =>
 		{
@@ -59,8 +62,8 @@ public partial class CollisionEditor : Control
 		
 		FileDialog.Unresizable = true;
 		FileDialog.Size = window.Size;
-		FileDialog.Access = FileDialog.AccessEnum.Filesystem;
-		FileDialog.FileMode = FileDialog.FileModeEnum.OpenFile;
+		FileDialog.Access = Godot.FileDialog.AccessEnum.Filesystem;
+		FileDialog.FileMode = Godot.FileDialog.FileModeEnum.OpenFile;
 		FileDialog.InitialPosition = Window.WindowInitialPosition.CenterScreenWithKeyboardFocus;
 		AddChild(FileDialog);
 
@@ -70,30 +73,6 @@ public partial class CollisionEditor : Control
 	public override void _Process(double delta)
 	{
 		ChangeActivity();
-	}
-
-	public static void OpenFileDialog(Dictionary<string, string> filters, FileDialog.FileModeEnum fileMode, 
-		FileDialog.FileSelectedEventHandler newEvent, string title, string currentFile)
-	{
-		FileDialog.FileMode = fileMode;
-
-		if (_fileDialogEvent is not null)
-		{
-			FileDialog.FileSelected -= _fileDialogEvent;	
-		}
-		_fileDialogEvent = newEvent;
-		FileDialog.FileSelected += _fileDialogEvent;
-
-		FileDialog.ClearFilters();
-		foreach (KeyValuePair<string, string> filter in filters)
-		{
-			FileDialog.AddFilter(filter.Key, filter.Value);	
-		}
-		
-		FileDialog.CurrentFile = currentFile;
-		FileDialog.Title = title;
-		
-		FileDialog.Show();
 	}
 
 	public async void CreateTileSet(string imagePath)
@@ -191,6 +170,7 @@ public partial class CollisionEditor : Control
 
 	public static void ClearAngles()
 	{
+		if (AngleMap.Angles.Count == 0) return;
 		AngleMap.CreateAngles(AngleMap.Angles.Count);
 		AngleChangedEvents?.Invoke(AngleMap.Angles[TileIndex]);
 	}
@@ -270,7 +250,6 @@ public partial class CollisionEditor : Control
 		}
 
 		if (ImageFile.Filters.All(filter => extension != filter.Key)) return;
-		GD.Print("Image");
 		CreateTileSet(path);
 	}
 }

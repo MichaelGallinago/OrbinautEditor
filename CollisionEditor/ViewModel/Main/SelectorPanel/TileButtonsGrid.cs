@@ -33,6 +33,7 @@ public partial class TileButtonsGrid : GridContainer
 		CollisionEditor.TileButtonsGrid = this;
 		CollisionEditor.TileIndexChangedEvents += () =>
 		{
+			if (_tileButtons.Count == 0) return;
 			TileButton button = _tileButtons[CollisionEditor.TileIndex];
 			button.ButtonPressed = true;
 			if (!_isGrabFocus) return;

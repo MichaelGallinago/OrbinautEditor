@@ -1,8 +1,8 @@
 using Godot;
 
-public partial class PopupMenuLoad : PopupMenuHandler
+public partial class PopupMenuLoadCollisions : PopupMenuHandler
 {
-    public PopupMenuLoad()
+    public PopupMenuLoadCollisions()
     {
         Name = "loadMenu";
         AddItem("TileMap", 0);
@@ -24,25 +24,25 @@ public partial class PopupMenuLoad : PopupMenuHandler
     
     private static void OnTileMapPressed()
     {
-        CollisionEditor.OpenFileDialog(ImageFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.Open(ImageFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             CollisionEditor.Object.CreateTileSet, "Load TileMap", string.Empty);
     }
 
     private static void OnAngleMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             CollisionEditor.OpenAngleMap, "Load AngleMap", string.Empty);
     }
     
     private static void OnHeightMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             OnHeightMapSelected, "Load HeightMap", string.Empty);
     }
     
     private static void OnWidthMapPressed()
     {
-        CollisionEditor.OpenFileDialog(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             OnWidthMapSelected, "Load WidthMap", string.Empty);
     }
     

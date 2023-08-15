@@ -19,11 +19,19 @@ public partial class BigTile : TextureRect
 		
 		CollisionEditor.ActivityChangedEvents += isActive => UpdateTile(isActive ? CollisionEditor.TileIndex : null);
 		CollisionEditor.TileIndexChangedEvents += () => UpdateTile(CollisionEditor.TileIndex);
-		CollisionEditor.AngleChangedEvents += _ => _canvasLine.QueueRedraw();
+		CollisionEditor.AngleChangedEvents += _ => OnAngleChanged();
 	}
 
 	public void UpdateTile(int? tileIndex)
 	{
+		if (CollisionEditor.TileSet.Tiles.Count == 0) return;
 		Texture = tileIndex is null ? new Texture2D() : CollisionEditor.TileSet.Tiles[(int)tileIndex].Sprite.Texture;
+	}
+
+	private void OnAngleChanged()
+	{
+		_canvasLine.QueueRedraw();
+		_canvasLine.BorderCanvas.QueueRedraw();
+		_canvasLine.BorderCanvasAlpha = byte.MaxValue;
 	}
 }
