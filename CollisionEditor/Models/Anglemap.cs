@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Godot;
+using OrbinautEditor.General.Model;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public class AngleMap
 {

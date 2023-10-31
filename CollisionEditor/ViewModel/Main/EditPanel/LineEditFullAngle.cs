@@ -1,5 +1,8 @@
 using System.Globalization;
 using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
 
 public partial class LineEditFullAngle : LineEdit
 {

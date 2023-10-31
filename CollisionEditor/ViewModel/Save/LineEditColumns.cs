@@ -1,6 +1,8 @@
 using Godot;
 
-public partial class LineEditColumns : LineEditValidableBase
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
+public partial class LineEditColumns : General.ViewModel.LineEditValidableBase
 {
     private const string StyleDirectory = "res://Styles/Textbox/Vector/";
     

@@ -1,4 +1,6 @@
-public partial class PopupMenuUnloadCollisions : PopupMenuHandler
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuFile;
+
+public partial class PopupMenuUnloadCollisions : General.ViewModel.PopupMenuHandler
 {
     public PopupMenuUnloadCollisions()
     {

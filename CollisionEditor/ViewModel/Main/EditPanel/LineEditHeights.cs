@@ -1,6 +1,8 @@
-using Godot;
 using System.Collections.Generic;
 using System.Text;
+using Godot;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
 
 public partial class LineEditHeights : LineEdit
 {
@@ -12,13 +14,13 @@ public partial class LineEditHeights : LineEdit
 		CollisionEditor.TileIndexChangedEvents += () => Text = 
 			CreateString(CollisionEditor.TileSet.Tiles[CollisionEditor.TileIndex].Heights);
 		CollisionEditor.ActivityChangedEvents += OnActivityChanged;
-    }
+	}
 
-    private void OnActivityChanged(bool isActive)
-    {
-        if (isActive) return;
-        Text = string.Empty;
-    }
+	private void OnActivityChanged(bool isActive)
+	{
+		if (isActive) return;
+		Text = string.Empty;
+	}
 	
 	private static string CreateString(IEnumerable<byte> values)
 	{

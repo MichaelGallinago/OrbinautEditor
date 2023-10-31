@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
+
 public partial class BigTileCanvasSquares : Control
 {
     private readonly BigTile _bigTile;

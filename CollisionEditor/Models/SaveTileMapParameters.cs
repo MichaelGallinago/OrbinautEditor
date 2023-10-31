@@ -1,6 +1,8 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public class SaveTileMapParameters
 {
@@ -13,7 +15,7 @@ public class SaveTileMapParameters
         set
         {
             _separation = value;
-            SaveTileMap.UpdateImage();
+            ViewModel.Save.SaveTileMap.UpdateImage();
         }
     }
 
@@ -24,7 +26,7 @@ public class SaveTileMapParameters
         set
         {
             _offset = value;
-            SaveTileMap.UpdateImage();
+            ViewModel.Save.SaveTileMap.UpdateImage();
         }
     }
 

@@ -1,5 +1,7 @@
-using Godot;
 using System;
+using Godot;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public class LoadTileMapParameters
 {

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 
+namespace OrbinautEditor.General.Model;
+
 public static class BinaryFile
 {
     public const byte Metadata = 0;

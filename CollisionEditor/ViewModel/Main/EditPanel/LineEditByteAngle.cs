@@ -1,4 +1,6 @@
-public partial class LineEditByteAngle : LineEditValidableBase
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
+
+public partial class LineEditByteAngle : General.ViewModel.LineEditValidableBase
 {
 	private const string BaseText = "0";
 

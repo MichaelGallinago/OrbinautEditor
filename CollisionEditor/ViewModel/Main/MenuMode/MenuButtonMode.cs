@@ -1,5 +1,8 @@
 using System;
 using Godot;
+using OrbinautEditor.General.ViewModel;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuMode;
 
 public partial class MenuButtonMode : MenuButtonHandler
 {
@@ -8,7 +11,8 @@ public partial class MenuButtonMode : MenuButtonHandler
         string path = id switch 
         {
             0 => "res://CollisionEditor/Screens/CollisionEditor.tscn",
-            1 => "res://SurfaceEditor/SurfaceEditor.tscn",
+            1 => "res://PaletteEditor/PaletteEditor.tscn",
+            2 => "res://SurfaceEditor/SurfaceEditor.tscn",
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
         

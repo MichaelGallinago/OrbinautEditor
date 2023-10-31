@@ -1,19 +1,23 @@
 using System;
-using Godot;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+using OrbinautEditor.General.Model;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main;
 
 public partial class CollisionEditor : Control
 {
 	private static readonly Vector2I BaseTileSize = new(16, 16);
 
 	public static CollisionEditor Object { get; private set; }
-	public static TileSet TileSet { get; private set; }
+	public static Models.TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
-	public static CustomFileDialog FileDialog { get; private set; }
-	public static TileButtonsGrid TileButtonsGrid { get; set; }
+	public static General.Model.CustomFileDialog FileDialog { get; private set; }
+	public static SelectorPanel.TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
 
 	public static int TileIndex 
@@ -36,9 +40,9 @@ public partial class CollisionEditor : Control
 	public CollisionEditor()
 	{
 		Object = this;
-		TileSet = new TileSet();
+		TileSet = new Models.TileSet();
 		AngleMap = new AngleMap();
-		FileDialog = new CustomFileDialog();
+		FileDialog = new General.Model.CustomFileDialog();
 		TileButtonsGrid = null;
 		IsTileMode = false;
 
@@ -79,18 +83,18 @@ public partial class CollisionEditor : Control
 	{
 		Image image = ImageFile.Open(imagePath);
 		var packedScreen = GD.Load<PackedScene>("res://CollisionEditor/Screens/LoadTileMap.tscn");
-		var screen = packedScreen.Instantiate<LoadTileMap>();
-		LoadTileMap.Image = image;
+		var screen = packedScreen.Instantiate<Load.LoadTileMap>();
+		Load.LoadTileMap.Image = image;
 		
 		AddChild(screen);
 		GetTree().Paused = true;
-		LoadTileMapParameters parameters = await Task.Run(LoadTileMap.GetParameters);
+		LoadTileMapParameters parameters = await Task.Run(Load.LoadTileMap.GetParameters);
 		GetTree().Paused = false;
 		screen.QueueFree();
 
-		if (LoadTileMap.IsLoadPressed is null or false) return;
+		if (Load.LoadTileMap.IsLoadPressed is null or false) return;
 
-		TileSet = new TileSet(image, parameters.TileSize, 
+		TileSet = new Models.TileSet(image, parameters.TileSize, 
 			parameters.Separation, parameters.Offset, parameters.TileNumber);
 		OnTileSetCreated();
 	}
@@ -119,15 +123,15 @@ public partial class CollisionEditor : Control
 	public async Task<Image> CreateTileMap()
 	{
 		var packedScreen = GD.Load<PackedScene>("res://CollisionEditor/Screens/SaveTileMap.tscn");
-		var screen = packedScreen.Instantiate<SaveTileMap>();
+		var screen = packedScreen.Instantiate<Save.SaveTileMap>();
 
 		AddChild(screen);
 		GetTree().Paused = true;
-		Image image = await Task.Run(SaveTileMap.GetImage);
+		Image image = await Task.Run(Save.SaveTileMap.GetImage);
 		GetTree().Paused = false;
 		screen.QueueFree();
 
-		return SaveTileMap.IsSavePressed is null or false ? null : image;
+		return Save.SaveTileMap.IsSavePressed is null or false ? null : image;
 	}
 
 	public static void AddTile(int tileIndex)
@@ -216,13 +220,13 @@ public partial class CollisionEditor : Control
 		AngleMap = new AngleMap(fileData, TileSet.Tiles.Count);
 
 		if (TileSet.Tiles.Count != 0) return;
-		TileSet = new TileSet(AngleMap.Angles.Count, BaseTileSize);
+		TileSet = new Models.TileSet(AngleMap.Angles.Count, BaseTileSize);
 		OnTileSetCreated();
 	}
 
 	private static void CreateCollisionMap(IReadOnlyList<byte> fileData, bool isHeights)
 	{
-		TileSet = TileSet.CreateFromCollisions(fileData, isHeights);
+		TileSet = Models.TileSet.CreateFromCollisions(fileData, isHeights);
 		OnTileSetCreated();
 	}
 

@@ -1,6 +1,9 @@
 using Godot;
+using OrbinautEditor.General.Model;
 
-public partial class PopupMenuLoadCollisions : PopupMenuHandler
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuFile;
+
+public partial class PopupMenuLoadCollisions : General.ViewModel.PopupMenuHandler
 {
     public PopupMenuLoadCollisions()
     {

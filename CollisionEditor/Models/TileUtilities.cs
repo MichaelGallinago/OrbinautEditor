@@ -1,9 +1,12 @@
 using System;
-using Godot;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Godot;
+using OrbinautEditor.General.Model;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public static class TileUtilities
 {

@@ -1,4 +1,6 @@
-public partial class LineEditSeparationLoadY : LineEditValidableVector
+namespace OrbinautEditor.CollisionEditor.ViewModel.Load;
+
+public partial class LineEditSeparationLoadY : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

@@ -1,5 +1,8 @@
 using System;
 using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Load;
 
 public partial class LoadTileMap : Control
 {

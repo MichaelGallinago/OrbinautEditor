@@ -1,7 +1,11 @@
-using Godot;
 using System.Threading.Tasks;
+using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+using OrbinautEditor.General.Model;
 
-public partial class PopupMenuSaveCollisions : PopupMenuHandler
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuFile;
+
+public partial class PopupMenuSaveCollisions : General.ViewModel.PopupMenuHandler
 {
     private const FileDialog.FileModeEnum FileMode = FileDialog.FileModeEnum.SaveFile;
 

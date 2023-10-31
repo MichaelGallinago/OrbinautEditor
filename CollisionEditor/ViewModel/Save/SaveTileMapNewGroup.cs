@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
 public partial class SaveTileMapNewGroup : Button
 {
     private PackedScene _packedGroup;

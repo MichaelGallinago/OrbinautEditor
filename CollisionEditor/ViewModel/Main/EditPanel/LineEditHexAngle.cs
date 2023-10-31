@@ -1,6 +1,9 @@
 using System.Globalization;
+using OrbinautEditor.CollisionEditor.Models;
 
-public partial class LineEditHexAngle : LineEditValidableBase
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
+
+public partial class LineEditHexAngle : General.ViewModel.LineEditValidableBase
 {
 	private const string BaseText = "0x00";
 	private const int BasePrefixIndex = 0;

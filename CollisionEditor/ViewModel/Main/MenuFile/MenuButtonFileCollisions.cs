@@ -1,6 +1,8 @@
 using Godot;
 
-public partial class MenuButtonFileCollisions : MenuButtonHandler
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuFile;
+
+public partial class MenuButtonFileCollisions : General.ViewModel.MenuButtonHandler
 {
 	public MenuButtonFileCollisions()
 	{

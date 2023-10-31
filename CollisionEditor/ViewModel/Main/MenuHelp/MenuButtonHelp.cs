@@ -1,7 +1,8 @@
 using System.Diagnostics;
-using Godot;
 
-public partial class MenuButtonHelp : MenuButtonHandler
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.MenuHelp;
+
+public partial class MenuButtonHelp : General.ViewModel.MenuButtonHandler
 {
 	protected override void OnItemPressed(long id)
 	{

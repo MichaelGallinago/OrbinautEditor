@@ -1,8 +1,10 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Godot;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public partial class TileSet : GodotObject
 {
@@ -141,7 +143,7 @@ public partial class TileSet : GodotObject
     {
         if (pixelPositionY == int.MinValue)
         {
-           return _ => Colors.Transparent;
+            return _ => Colors.Transparent;
         }
         return positionY => positionY >= pixelPositionY ? Colors.Black : Colors.Transparent;
     }

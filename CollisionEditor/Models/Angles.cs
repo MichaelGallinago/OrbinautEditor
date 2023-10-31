@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+
+namespace OrbinautEditor.CollisionEditor.Models;
 
 public class Angles
 {

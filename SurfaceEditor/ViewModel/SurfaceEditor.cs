@@ -1,18 +1,20 @@
 using Godot;
 
+namespace OrbinautEditor.SurfaceEditor.ViewModel;
+
 public partial class SurfaceEditor : Control
 {
     private static readonly Vector2I BaseSurfaceSize = new(16, 16);
     public static Vector2I SurfaceSize;
     public static TextureRectSurface Surface { get; set; }
     public static TextureRectBackground Background { get; set; }
-    public static CustomFileDialog FileDialog { get; private set; }
+    public static General.Model.CustomFileDialog FileDialog { get; private set; }
     
     public SurfaceEditor()
     {
         SurfaceSize = BaseSurfaceSize;
         Background = null;
-        FileDialog = new CustomFileDialog();
+        FileDialog = new General.Model.CustomFileDialog();
     }
 
     public override void _Ready()

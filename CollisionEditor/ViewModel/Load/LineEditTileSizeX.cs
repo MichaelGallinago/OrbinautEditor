@@ -1,4 +1,6 @@
-public partial class LineEditTileSizeX : LineEditValidableVector
+namespace OrbinautEditor.CollisionEditor.ViewModel.Load;
+
+public partial class LineEditTileSizeX : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

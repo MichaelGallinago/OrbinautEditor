@@ -1,4 +1,6 @@
-public partial class LineEditOffsetLoadY : LineEditValidableVector
+namespace OrbinautEditor.CollisionEditor.ViewModel.Load;
+
+public partial class LineEditOffsetLoadY : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

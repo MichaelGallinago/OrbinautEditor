@@ -1,5 +1,7 @@
-using Godot;
 using System;
+using Godot;
+
+namespace OrbinautEditor.General.ViewModel;
 
 public abstract partial class LineEditValidable : LineEdit
 {

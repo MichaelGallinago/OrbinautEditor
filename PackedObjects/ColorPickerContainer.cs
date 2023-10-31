@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.PackedObjects;
+
 public partial class ColorPickerContainer : HBoxContainer
 {
     [Export] private Color _baseColor;

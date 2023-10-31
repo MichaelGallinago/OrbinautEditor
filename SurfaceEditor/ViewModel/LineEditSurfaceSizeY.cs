@@ -1,7 +1,6 @@
-using Godot;
-using System;
+namespace OrbinautEditor.SurfaceEditor.ViewModel;
 
-public partial class LineEditSurfaceSizeY : LineEditValidableVector
+public partial class LineEditSurfaceSizeY : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

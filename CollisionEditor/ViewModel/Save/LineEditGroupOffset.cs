@@ -1,6 +1,8 @@
 using Godot;
 
-public partial class LineEditGroupOffset : LineEditValidableBase
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
+public partial class LineEditGroupOffset : General.ViewModel.LineEditValidableBase
 {
     private const string StyleDirectory = "res://Styles/Textbox/Vector/";
     
@@ -35,4 +37,3 @@ public partial class LineEditGroupOffset : LineEditValidableBase
         Text = SaveTileMap.Parameters.GroupOffset.ToString();
     }
 }
-

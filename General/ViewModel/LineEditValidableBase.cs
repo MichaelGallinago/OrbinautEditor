@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.General.ViewModel;
+
 public abstract partial class LineEditValidableBase : LineEditValidable
 {
 	private const string StyleDirectory = "res://Styles/Textbox/";

@@ -1,0 +1,312 @@
+[gd_scene load_steps=21 format=3 uid="uid://d0381nkup1xgx"]
+
+[ext_resource type="Script" path="res://PaletteEditor/PaletteEditor.cs" id="1_0umfb"]
+[ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_1xhk1"]
+[ext_resource type="StyleBox" uid="uid://bvg1a38t63v3b" path="res://Styles/style_menu.tres" id="3_5kvae"]
+[ext_resource type="Script" path="res://PaletteEditor/MenuButtonFilePalette.cs" id="4_rsgio"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuMode/MenuButtonMode.cs" id="5_3aaem"]
+[ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuHelp/MenuButtonHelp.cs" id="6_6gh6j"]
+[ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="7_r8yaf"]
+[ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="8_7d34g"]
+[ext_resource type="Script" path="res://PaletteEditor/PalettePickerButton.cs" id="8_xuuw1"]
+[ext_resource type="Script" path="res://PaletteEditor/ColorButtonContainer.cs" id="9_7e133"]
+[ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="9_v5sp4"]
+[ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="10_eapom"]
+[ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="10_rlr16"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0nn2"]
+bg_color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmle2"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pv53a"]
+content_margin_top = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bsjt"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.188235, 0.207843, 0.239216, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4oh2"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.227451, 0.243137, 0.270588, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7gkp"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.129412, 0.145098, 0.176471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtlyd"]
+content_margin_left = 4.0
+content_margin_top = 1.0
+content_margin_right = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.729412, 0.980392, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="PaletteEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0umfb")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0nn2")
+
+[node name="ScreenContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="TopPanel" type="HBoxContainer" parent="ScreenContainer/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MenuButtonFilePalette" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
+layout_mode = 2
+theme = ExtResource("2_1xhk1")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = ExtResource("3_5kvae")
+theme_override_styles/pressed = ExtResource("3_5kvae")
+theme_override_styles/hover = ExtResource("3_5kvae")
+theme_override_styles/disabled = ExtResource("3_5kvae")
+theme_override_styles/focus = ExtResource("3_5kvae")
+text = "File"
+switch_on_hover = true
+script = ExtResource("4_rsgio")
+
+[node name="MenuButtonMode" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
+layout_mode = 2
+theme = ExtResource("2_1xhk1")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = ExtResource("3_5kvae")
+theme_override_styles/pressed = ExtResource("3_5kvae")
+theme_override_styles/hover = ExtResource("3_5kvae")
+theme_override_styles/disabled = ExtResource("3_5kvae")
+theme_override_styles/focus = ExtResource("3_5kvae")
+text = "Mode"
+switch_on_hover = true
+item_count = 3
+popup/item_0/text = "Collisions"
+popup/item_0/id = 0
+popup/item_1/text = "Palette"
+popup/item_1/id = 1
+popup/item_2/text = "Surfaces"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+script = ExtResource("5_3aaem")
+
+[node name="MenuButtonHelp" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_1xhk1")
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = ExtResource("3_5kvae")
+theme_override_styles/pressed = ExtResource("3_5kvae")
+theme_override_styles/hover = ExtResource("3_5kvae")
+theme_override_styles/disabled = ExtResource("3_5kvae")
+theme_override_styles/focus = ExtResource("3_5kvae")
+text = "Help"
+switch_on_hover = true
+item_count = 1
+popup/item_0/text = "Docs"
+popup/item_0/id = 0
+script = ExtResource("6_6gh6j")
+
+[node name="MainPanelMarginContainer" type="MarginContainer" parent="ScreenContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmle2")
+
+[node name="MainPanel" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="SelectorPanelMarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Background" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("7_r8yaf")
+
+[node name="SelectorPanel" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pv53a")
+text = "Edit"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+script = ExtResource("8_xuuw1")
+
+[node name="RemoveColorButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(84, 28)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bsjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w4oh2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c7gkp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jtlyd")
+text = "Remove"
+icon = ExtResource("8_7d34g")
+
+[node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("10_rlr16")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorButtonContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("9_7e133")
+
+[node name="PaletteButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_pressed_color = Color(0.443137, 0.737255, 0.988235, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.470588, 0.470588, 0.470588, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("9_v5sp4")
+theme_override_styles/hover = ExtResource("9_v5sp4")
+theme_override_styles/pressed = ExtResource("9_v5sp4")
+theme_override_styles/disabled = ExtResource("9_v5sp4")
+theme_override_styles/focus = ExtResource("10_eapom")
+disabled = true
+text = "+"
+
+[connection signal="CreateSortedPalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnCreateSortedPalette"]
+[connection signal="LoadSprites" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnLoadSprites"]
+[connection signal="SavePalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnSavePalette"]
+[connection signal="color_changed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ColorPickerButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnSelectedColorChanged"]
+[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnRemoveColorButtonPressed"]
+[connection signal="SelectedColorChanged" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ColorPickerButton" method="OnSelectedColorChanged"]

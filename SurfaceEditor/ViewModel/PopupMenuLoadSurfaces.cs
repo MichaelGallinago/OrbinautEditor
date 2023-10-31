@@ -1,6 +1,9 @@
 using Godot;
+using OrbinautEditor.General.Model;
 
-public partial class PopupMenuLoadSurfaces : PopupMenuHandler
+namespace OrbinautEditor.SurfaceEditor.ViewModel;
+
+public partial class PopupMenuLoadSurfaces : General.ViewModel.PopupMenuHandler
 {
     public PopupMenuLoadSurfaces()
     {

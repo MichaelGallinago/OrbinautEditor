@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
+
 public partial class BigTilePanel : Panel
 {
 	private CenterContainer _container;

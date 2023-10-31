@@ -1,5 +1,8 @@
 using System;
 using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
 
 public partial class SaveTileMap : Control
 {
@@ -67,14 +70,14 @@ public partial class SaveTileMap : Control
     public static async void UpdateImage()
     {
         if (IsSavePressed is false) return;
-        Image = await CollisionEditor.TileSet.CreateTileMap(
+        Image = await Main.CollisionEditor.TileSet.CreateTileMap(
             Object, Parameters.Columns, Parameters.Colors.ToArray(), 
             Parameters.GroupOffset, Parameters.Separation, Parameters.Offset);
     }
 
     public static void AddGroup(Node group)
     {
-        Parameters.Colors.Add(group.GetChild<ColorPicker>(ColorPickerIndex).Color);
+        Parameters.Colors.Add(group.GetChild<PackedObjects.ColorPicker>(ColorPickerIndex).Color);
         UpdateImage();
     }
     

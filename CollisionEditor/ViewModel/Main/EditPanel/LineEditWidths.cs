@@ -1,6 +1,8 @@
-using Godot;
 using System.Collections.Generic;
 using System.Text;
+using Godot;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
 
 public partial class LineEditWidths : LineEdit
 {

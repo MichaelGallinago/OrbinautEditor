@@ -116,7 +116,6 @@ switch_on_hover = true
 script = ExtResource("4_ss4j6")
 
 [node name="MenuButtonMode" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_l04de")
 theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
@@ -127,11 +126,14 @@ theme_override_styles/disabled = ExtResource("3_u2xur")
 theme_override_styles/focus = ExtResource("3_u2xur")
 text = "Mode"
 switch_on_hover = true
-item_count = 2
+item_count = 3
 popup/item_0/text = "Collisions"
 popup/item_0/id = 0
-popup/item_1/text = "Surfaces"
+popup/item_1/text = "Palette"
 popup/item_1/id = 1
+popup/item_2/text = "Surfaces"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 script = ExtResource("5_s632v")
 
 [node name="MenuButtonHelp" type="MenuButton" parent="ScreenContainer/MarginContainer/TopPanel"]

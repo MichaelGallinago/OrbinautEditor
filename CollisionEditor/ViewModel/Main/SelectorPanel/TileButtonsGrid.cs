@@ -1,7 +1,10 @@
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.SelectorPanel;
 
 public partial class TileButtonsGrid : GridContainer
 {
@@ -57,7 +60,7 @@ public partial class TileButtonsGrid : GridContainer
 		SelectedTileButtonUpdate();
 	}
 
-	public void CreateTileButtons(TileSet tileSet)
+	public void CreateTileButtons(Models.TileSet tileSet)
 	{
 		ClearTileButtons();
 		
@@ -75,7 +78,7 @@ public partial class TileButtonsGrid : GridContainer
 		_tileButtons.RemoveAt(index);
 	}
 	
-	public void InsertTileButton(int index, TileSet tileSet)
+	public void InsertTileButton(int index, Models.TileSet tileSet)
 	{
 		if (_buttonSize != tileSet.TileSize * ButtonScale)
 		{
@@ -88,12 +91,12 @@ public partial class TileButtonsGrid : GridContainer
 		MoveChild(tileButton, index);
 	}
 	
-	public void UpdateTileButton(int index, TileSet tileSet)
+	public void UpdateTileButton(int index, Models.TileSet tileSet)
 	{
 		_tileButtons[index].TextureNormal = tileSet.Tiles[index].Sprite.Texture;
 	}
 
-	public void UpdateTileButtons(TileSet tileSet)
+	public void UpdateTileButtons(Models.TileSet tileSet)
 	{
 		for (var i = 0; i < tileSet.Tiles.Count; i++)
 		{

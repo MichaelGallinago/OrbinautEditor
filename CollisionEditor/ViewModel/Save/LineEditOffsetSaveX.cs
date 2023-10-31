@@ -1,6 +1,8 @@
 using Godot;
 
-public partial class LineEditOffsetSaveX : LineEditValidableVector
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
+public partial class LineEditOffsetSaveX : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

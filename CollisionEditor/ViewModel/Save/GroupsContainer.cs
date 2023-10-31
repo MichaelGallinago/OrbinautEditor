@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
 public partial class GroupsContainer : VBoxContainer
 {
     public GroupsContainer()

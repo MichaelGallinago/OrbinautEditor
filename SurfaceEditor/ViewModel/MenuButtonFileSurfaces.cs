@@ -1,5 +1,8 @@
 using Godot;
-public partial class MenuButtonFileSurfaces : MenuButtonHandler
+
+namespace OrbinautEditor.SurfaceEditor.ViewModel;
+
+public partial class MenuButtonFileSurfaces : General.ViewModel.MenuButtonHandler
 {
     public MenuButtonFileSurfaces()
     {

@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.SelectorPanel;
+
 public partial class TileButtonRemove : Button
 {
 	public override void _Ready()

@@ -1,5 +1,7 @@
 using Godot;
 
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
+
 public partial class AngleButtonAdd : Button
 {
 	public override void _Ready()

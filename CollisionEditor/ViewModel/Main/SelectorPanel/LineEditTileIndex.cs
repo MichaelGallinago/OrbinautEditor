@@ -1,4 +1,6 @@
-public partial class LineEditTileIndex : LineEditValidableBase
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.SelectorPanel;
+
+public partial class LineEditTileIndex : General.ViewModel.LineEditValidableBase
 {
 	private const string BaseText = "0";
 	private int _tileCount;

@@ -1,6 +1,8 @@
 using Godot;
 
-public partial class LineEditSeparationSaveY : LineEditValidableVector
+namespace OrbinautEditor.CollisionEditor.ViewModel.Save;
+
+public partial class LineEditSeparationSaveY : General.ViewModel.LineEditValidableVector
 {
     protected override bool ValidateText()
     {

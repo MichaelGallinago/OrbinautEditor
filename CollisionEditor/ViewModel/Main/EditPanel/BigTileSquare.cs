@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
 
 public class BigTileSquare
 {

@@ -1,4 +1,7 @@
 using Godot;
+using OrbinautEditor.CollisionEditor.Models;
+
+namespace OrbinautEditor.CollisionEditor.ViewModel.Main.EditPanel;
 
 public partial class BigTileCanvasLine : Control
 {
