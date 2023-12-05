@@ -23,13 +23,13 @@ public partial class PopupMenuLoadSurfaces : General.ViewModel.PopupMenuHandler
     
     private static void OnBinarySurfacePressed()
     {
-        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        SurfaceEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             SurfaceEditor.OpenBinarySurface, "Load Binary Surface", string.Empty);
     }
     
     private static void OnImageSurfacePressed()
     {
-        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        SurfaceEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             SurfaceEditor.OpenImageSurface, "Load Image Surface", string.Empty);
     }
 }

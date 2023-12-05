@@ -2,11 +2,10 @@ using Godot;
 
 namespace OrbinautEditor.PaletteEditor;
 
-public partial class PalettePickerButton : ColorPickerButton
+public partial class CurrentColorContainer : VBoxContainer
 {
     private void OnSelectedColorChanged(Color color, int index)
     {
-        if (index < 0) return;
-        Color = color;
+        Visible = index >= 0;
     }
 }

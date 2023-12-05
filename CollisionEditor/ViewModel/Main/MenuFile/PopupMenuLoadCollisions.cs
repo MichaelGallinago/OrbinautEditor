@@ -27,25 +27,25 @@ public partial class PopupMenuLoadCollisions : General.ViewModel.PopupMenuHandle
     
     private static void OnTileMapPressed()
     {
-        CollisionEditor.FileDialog.Open(ImageFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.OpenFile(ImageFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             CollisionEditor.Object.CreateTileSet, "Load TileMap", string.Empty);
     }
 
     private static void OnAngleMapPressed()
     {
-        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             CollisionEditor.OpenAngleMap, "Load AngleMap", string.Empty);
     }
     
     private static void OnHeightMapPressed()
     {
-        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             OnHeightMapSelected, "Load HeightMap", string.Empty);
     }
     
     private static void OnWidthMapPressed()
     {
-        CollisionEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
+        CollisionEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.OpenFile, 
             OnWidthMapSelected, "Load WidthMap", string.Empty);
     }
     

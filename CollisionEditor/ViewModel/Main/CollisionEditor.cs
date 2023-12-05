@@ -16,7 +16,7 @@ public partial class CollisionEditor : Control
 	public static CollisionEditor Object { get; private set; }
 	public static Models.TileSet TileSet { get; private set; }
 	public static AngleMap AngleMap { get; private set; }
-	public static General.Model.CustomFileDialog FileDialog { get; private set; }
+	public static CustomFileDialog FileDialog { get; private set; }
 	public static SelectorPanel.TileButtonsGrid TileButtonsGrid { get; set; }
 	public static bool IsTileMode { get; set; }
 
@@ -42,7 +42,7 @@ public partial class CollisionEditor : Control
 		Object = this;
 		TileSet = new Models.TileSet();
 		AngleMap = new AngleMap();
-		FileDialog = new General.Model.CustomFileDialog();
+		FileDialog = new CustomFileDialog();
 		TileButtonsGrid = null;
 		IsTileMode = false;
 
@@ -67,7 +67,6 @@ public partial class CollisionEditor : Control
 		FileDialog.Unresizable = true;
 		FileDialog.Size = window.Size;
 		FileDialog.Access = Godot.FileDialog.AccessEnum.Filesystem;
-		FileDialog.FileMode = Godot.FileDialog.FileModeEnum.OpenFile;
 		FileDialog.InitialPosition = Window.WindowInitialPosition.CenterScreenWithKeyboardFocus;
 		AddChild(FileDialog);
 

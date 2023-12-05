@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0381nkup1xgx"]
+[gd_scene load_steps=31 format=3 uid="uid://d0381nkup1xgx"]
 
 [ext_resource type="Script" path="res://PaletteEditor/PaletteEditor.cs" id="1_0umfb"]
 [ext_resource type="Theme" uid="uid://p0xhnyor07xk" path="res://Styles/theme_menu_button.tres" id="2_1xhk1"]
@@ -8,11 +8,17 @@
 [ext_resource type="Script" path="res://CollisionEditor/ViewModel/Main/MenuHelp/MenuButtonHelp.cs" id="6_6gh6j"]
 [ext_resource type="StyleBox" uid="uid://dxmy16783wqas" path="res://Styles/style_main_panel.tres" id="7_r8yaf"]
 [ext_resource type="Texture2D" uid="uid://dkunabqo4dti2" path="res://Resorses/Sprites/cross.png" id="8_7d34g"]
+[ext_resource type="Script" path="res://PaletteEditor/CurrentColorContainer.cs" id="8_giag0"]
 [ext_resource type="Script" path="res://PaletteEditor/PalettePickerButton.cs" id="8_xuuw1"]
 [ext_resource type="Script" path="res://PaletteEditor/ColorButtonContainer.cs" id="9_7e133"]
 [ext_resource type="StyleBox" uid="uid://dcq82e0btdh3p" path="res://Styles/Button Tiles/style_button_tiles.tres" id="9_v5sp4"]
+[ext_resource type="Texture2D" uid="uid://b7saukq6pu1o3" path="res://Resorses/Sprites/arrow_left_light.png" id="9_vtj7t"]
 [ext_resource type="StyleBox" uid="uid://cob1lv32321a5" path="res://Styles/style_button_no_focus.tres" id="10_eapom"]
 [ext_resource type="StyleBox" uid="uid://ckdl5ak7dokb0" path="res://Styles/StyleBoxFlat.tres" id="10_rlr16"]
+[ext_resource type="Texture2D" uid="uid://cm1ay5dmi1seq" path="res://Resorses/Sprites/arrow_right_light.png" id="11_7apd7"]
+[ext_resource type="StyleBox" uid="uid://cm6imf7n3lb7x" path="res://Styles/Textbox/Vector/style_textbox_normal_offset.tres" id="12_e7xw2"]
+[ext_resource type="StyleBox" uid="uid://dti1htahsux2h" path="res://Styles/Textbox/Vector/style_textbox_focus_offset.tres" id="13_7cmht"]
+[ext_resource type="Script" path="res://PaletteEditor/LineEditColorIndex.cs" id="14_eale6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0nn2"]
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
@@ -24,8 +30,41 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pv53a"]
-content_margin_top = 6.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh7md"]
+bg_color = Color(0.188235, 0.207843, 0.239216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.188235, 0.207843, 0.239216, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn7lg"]
+bg_color = Color(0.129412, 0.145098, 0.176471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvsh2"]
+bg_color = Color(0.227451, 0.243137, 0.270588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xljdw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vflw0"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.729412, 0.980392, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bsjt"]
 content_margin_left = 4.0
@@ -216,39 +255,34 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="ColorRect" type="ColorRect" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
+[node name="CurrentColorContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(1, 1, 1, 0)
+script = ExtResource("8_giag0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Label" type="Label" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_pv53a")
-text = "Edit"
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wh7md")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sn7lg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lvsh2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xljdw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vflw0")
+text = "
+"
+alignment = 0
 script = ExtResource("8_xuuw1")
 
-[node name="RemoveColorButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(84, 28)
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+
+[node name="MoveColorLeftButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
 theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
@@ -256,11 +290,51 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8bsjt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w4oh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c7gkp")
 theme_override_styles/focus = SubResource("StyleBoxFlat_jtlyd")
-text = "Remove"
+icon = ExtResource("9_vtj7t")
+icon_alignment = 1
+
+[node name="RemoveColorButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bsjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w4oh2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c7gkp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jtlyd")
 icon = ExtResource("8_7d34g")
+icon_alignment = 1
+
+[node name="MoveColorRightButton" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_colors/icon_pressed_color = Color(0.439216, 0.729412, 0.980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_8bsjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w4oh2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c7gkp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jtlyd")
+icon = ExtResource("11_7apd7")
+icon_alignment = 1
+
+[node name="LineEditColorIndex" type="LineEdit" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer"]
+custom_minimum_size = Vector2(80, 28)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("12_e7xw2")
+theme_override_styles/focus = ExtResource("13_7cmht")
+theme_override_styles/read_only = ExtResource("12_e7xw2")
+placeholder_text = "Color Index"
+alignment = 1
+editable = false
+context_menu_enabled = false
+script = ExtResource("14_eale6")
 
 [node name="Panel" type="Panel" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = ExtResource("10_rlr16")
@@ -274,22 +348,29 @@ anchor_bottom = 1.0
 offset_top = -26.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 4
+theme_override_constants/separation = 16
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ColorButtonContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 script = ExtResource("9_7e133")
 
-[node name="PaletteButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PaletteButtonAdd" type="Button" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(26, 0)
 layout_mode = 2
+size_flags_vertical = 0
 focus_mode = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_pressed_color = Color(0.443137, 0.737255, 0.988235, 1)
@@ -301,12 +382,36 @@ theme_override_styles/hover = ExtResource("9_v5sp4")
 theme_override_styles/pressed = ExtResource("9_v5sp4")
 theme_override_styles/disabled = ExtResource("9_v5sp4")
 theme_override_styles/focus = ExtResource("10_eapom")
-disabled = true
 text = "+"
 
+[node name="ColorPickerCreationButton" type="ColorPickerButton" parent="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wh7md")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sn7lg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lvsh2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xljdw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vflw0")
+text = "
+"
+alignment = 0
+
+[connection signal="LoadPalette" from="." to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnLoadPalette"]
+[connection signal="LoadSprites" from="." to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnLoadSprites"]
+[connection signal="SavePalette" from="." to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnSavePalette"]
 [connection signal="CreateSortedPalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnCreateSortedPalette"]
+[connection signal="LoadPalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnLoadPalette"]
 [connection signal="LoadSprites" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnLoadSprites"]
 [connection signal="SavePalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="." method="OnSavePalette"]
-[connection signal="color_changed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ColorPickerButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnSelectedColorChanged"]
-[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/RemoveColorButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnRemoveColorButtonPressed"]
-[connection signal="SelectedColorChanged" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ColorPickerButton" method="OnSelectedColorChanged"]
+[connection signal="UnloadPalette" from="ScreenContainer/MarginContainer/TopPanel/MenuButtonFilePalette" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="Clear"]
+[connection signal="color_changed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/ColorPickerButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnSelectedColorChanged"]
+[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2/MoveColorLeftButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnMoveLeftPressed"]
+[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2/RemoveColorButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnRemoveColorButtonPressed"]
+[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/HBoxContainer2/MoveColorRightButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnMoveRightPressed"]
+[connection signal="SelectedColorChanged" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer" method="OnSelectedColorChanged"]
+[connection signal="SelectedColorChanged" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/ColorPickerButton" method="OnSelectedColorChanged"]
+[connection signal="SelectedColorChanged" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/MarginContainer/CurrentColorContainer/LineEditColorIndex" method="OnSelectedColorChanged"]
+[connection signal="pressed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/HBoxContainer/PaletteButtonAdd" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnAddPaletteButtonPressed"]
+[connection signal="color_changed" from="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/HBoxContainer/ColorPickerCreationButton" to="ScreenContainer/MainPanelMarginContainer/MainPanel/SelectorPanelMarginContainer/Background/SelectorPanel/Panel/HBoxContainer/ScrollContainer/ColorButtonContainer" method="OnCreationColorChanged"]

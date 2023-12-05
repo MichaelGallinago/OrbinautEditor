@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5fc4rj4p68o5"]
+[gd_scene load_steps=5 format=3 uid="uid://c5fc4rj4p68o5"]
 
 [ext_resource type="Script" path="res://PaletteEditor/PaletteColorButton.cs" id="1_ystcv"]
 
@@ -13,8 +13,16 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwkbf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75i38"]
+
 [node name="PaletteColorButton" type="Button"]
+custom_minimum_size = Vector2(26, 26)
 offset_right = 8.0
 offset_bottom = 8.0
+size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_rqvsr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fwkbf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_75i38")
 script = ExtResource("1_ystcv")

@@ -23,13 +23,13 @@ public partial class PopupMenuSaveSurfaces : General.ViewModel.PopupMenuHandler
     
     private static void OnBinarySurfacePressed()
     {
-        SurfaceEditor.FileDialog.Open(BinaryFile.Filters, FileDialog.FileModeEnum.SaveFile, 
+        SurfaceEditor.FileDialog.OpenFile(BinaryFile.Filters, FileDialog.FileModeEnum.SaveFile, 
             SurfaceEditor.SaveBinarySurface, "Save Binary Surface", string.Empty);
     }
     
     private static void OnImageSurfacePressed()
     {
-        SurfaceEditor.FileDialog.Open(ImageFile.Filters, FileDialog.FileModeEnum.SaveFile, 
+        SurfaceEditor.FileDialog.OpenFile(ImageFile.Filters, FileDialog.FileModeEnum.SaveFile, 
             SurfaceEditor.SaveImageSurface, "Save Image Surface", string.Empty);
     }
 }
