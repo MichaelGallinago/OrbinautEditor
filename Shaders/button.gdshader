@@ -4,7 +4,7 @@ const vec3 BaseColor = vec3(224, 224, 224);
 const vec3 PressColor = vec3(113, 188, 252);
 uniform bool IsPressed;
 
-void fragment() 
+void fragment()
 {
 	vec4 pixelColor = texture(TEXTURE, UV);
 	pixelColor.rgb = (IsPressed ? PressColor : BaseColor) / 255.;
